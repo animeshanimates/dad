@@ -100,7 +100,7 @@
     
     .nav-links {
       display: flex; gap: 2rem; list-style: none;
-    } /* FIXED: This closing bracket was missing! */
+    } /* <-- THIS WAS THE MISSING BRACKET */
     
     .nav-links a {
       font-size: 0.875rem;
@@ -589,7 +589,7 @@
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
-
+    
     // Hero Parallax & Blur effect
     const heroText = document.querySelector('.hero .reveal');
     window.addEventListener('scroll', () => {
