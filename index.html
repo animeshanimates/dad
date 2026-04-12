@@ -100,6 +100,8 @@
     
     .nav-links {
       display: flex; gap: 2rem; list-style: none;
+    } /* FIXED: This closing bracket was missing! */
+    
     .nav-links a {
       font-size: 0.875rem;
       color: var(--text-main);
@@ -153,14 +155,14 @@
     
     .hero h1 span { color: var(--text-muted); }
 
-   .hero p {
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  color: var(--text-muted);
-  max-width: 700px;
-  margin: 0 auto 3rem auto; /* Fixes the horizontal alignment */
-  font-weight: 400;
-  text-wrap: balance; /* Makes the lines break elegantly */
-}
+    .hero p {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 3rem auto;
+      font-weight: 400;
+      text-wrap: balance;
+    }
 
     .btn {
       display: inline-flex;
@@ -302,7 +304,7 @@
       background: var(--text-main);
       transform-origin: top;
       transform: scaleY(0);
-      transition: transform 1.2s var(--ease) 0.3s; /* Delays slightly so you can see it draw */
+      transition: transform 1.2s var(--ease) 0.3s;
     }
     .reveal.visible .quote::before {
       transform: scaleY(1);
@@ -393,7 +395,7 @@
     }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; } /* Could add a mobile menu later */
+      .nav-links { display: none; }
       .section { padding: 5rem 5%; }
       .hero p { font-size: 1.125rem; }
       .quote { padding-left: 1rem; font-size: 1.25rem; }
@@ -587,6 +589,7 @@
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
+
     // Hero Parallax & Blur effect
     const heroText = document.querySelector('.hero .reveal');
     window.addEventListener('scroll', () => {
