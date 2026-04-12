@@ -1,0 +1,25 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "blog"
+    label: "Articles Manager"
+    files:
+      - label: "All Articles"
+        name: "articles"
+        file: "articles.json"
+        fields:
+          - label: "Articles List"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "URL ID (e.g. sarfaesi-act-guide)", name: "id", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Publish Date (e.g. Apr 12, 2026)", name: "date", widget: "string"}
+              - {label: "Category", name: "category", widget: "string"}
+              - {label: "Short Excerpt (shown on homepage card)", name: "excerpt", widget: "text"}
+              - {label: "Full Article Body", name: "body", widget: "markdown"}
