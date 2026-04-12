@@ -70,9 +70,11 @@
       color: var(--text-muted);
       max-width: 700px;
       font-weight: 400;
+      text-wrap: balance;
     }
     
     .text-center { text-align: center; }
+    .text-center .section-subtitle { margin: 0 auto; } /* Fixes horizontal alignment */
 
     /* ── NAVIGATION (FROSTED GLASS) ── */
     nav {
@@ -253,7 +255,7 @@
 
     .practice-card ul {
       list-style: none;
-      color: var(--text-muted);
+      color: #6e6e73; /* Made darker for better readability */
       font-size: 0.95rem;
     }
 
