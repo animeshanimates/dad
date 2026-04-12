@@ -136,13 +136,14 @@
     
     .hero h1 span { color: var(--text-muted); }
 
-    .hero p {
-      font-size: clamp(1.25rem, 3vw, 1.75rem);
-      color: var(--text-muted);
-      max-width: 700px;
-      margin-bottom: 3rem;
-      font-weight: 400;
-    }
+   .hero p {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto 3rem auto; /* Fixes the horizontal alignment */
+  font-weight: 400;
+  text-wrap: balance; /* Makes the lines break elegantly */
+}
 
     .btn {
       display: inline-flex;
