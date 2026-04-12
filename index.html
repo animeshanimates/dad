@@ -74,7 +74,7 @@
     }
     
     .text-center { text-align: center; }
-    .text-center .section-subtitle { margin: 0 auto; } /* Fixes horizontal alignment */
+    .text-center .section-subtitle { margin: 0 auto; }
 
     /* ── NAVIGATION (FROSTED GLASS) ── */
     nav {
@@ -145,7 +145,7 @@
       align-items: center;
       text-align: center;
       padding: 0 5%;
-      padding-top: 64px; /* offset nav */
+      padding-top: 64px;
     }
 
     .hero h1 {
@@ -255,7 +255,7 @@
 
     .practice-card ul {
       list-style: none;
-      color: #6e6e73; /* Made darker for better readability */
+      color: #6e6e73;
       font-size: 0.95rem;
     }
 
@@ -280,6 +280,66 @@
     .practice-card:hover ul li::before {
       opacity: 0.8;
       transform: scale(1.2);
+    }
+
+    /* ── ARTICLES / INSIGHTS SECTION ── */
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+    .article-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+    .article-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+    .article-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+      color: var(--text-main);
+    }
+    .article-excerpt {
+      font-size: 0.95rem;
+      color: #6e6e73;
+      margin-bottom: 2rem;
+      flex-grow: 1;
+      line-height: 1.6;
+    }
+    .article-read-more {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .article-read-more::after {
+      content: '→';
+      transition: transform 0.3s var(--ease);
+    }
+    .article-card:hover .article-read-more::after {
+      transform: translateX(6px);
     }
 
     /* ── APPROACH SECTION ── */
@@ -399,7 +459,7 @@
     }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; } /* Could add a mobile menu later */
+      .nav-links { display: none; }
       .section { padding: 5rem 5%; }
       .hero p { font-size: 1.125rem; }
       .quote { padding-left: 1rem; font-size: 1.25rem; }
@@ -415,6 +475,7 @@
       <li><a href="#about">Profile</a></li>
       <li><a href="#practice">Practice Areas</a></li>
       <li><a href="#approach">My Approach</a></li>
+      <li><a href="#insights">Insights</a></li>
     </ul>
     <a href="#contact" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;">Get in Touch</a>
   </nav>
@@ -516,6 +577,38 @@
         <div class="quote">
           "I believe legal representation should be objective, unbiased, and grounded in a clear understanding of the client's rights. My work is driven by a responsibility to assist the courts in the pursuit of justice."
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="insights" class="section">
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow">Insights & Updates</span>
+        <h2 class="section-title">Legal commentary<br>and latest rulings.</h2>
+      </div>
+
+      <div class="article-grid">
+        <a href="https://linkedin.com" target="_blank" class="article-card reveal delay-1">
+          <span class="article-meta">Oct 24 • Cheque Bounce</span>
+          <h3 class="article-title">Understanding the latest Supreme Court ruling on Section 138.</h3>
+          <p class="article-excerpt">A breakdown of how the recent judgment affects the timeline for issuing legal notices in dishonour cases.</p>
+          <span class="article-read-more">Read Article</span>
+        </a>
+
+        <a href="https://linkedin.com" target="_blank" class="article-card reveal delay-2">
+          <span class="article-meta">Oct 18 • Property Law</span>
+          <h3 class="article-title">SARFAESI Act: Rights of the borrower during an e-auction.</h3>
+          <p class="article-excerpt">Exploring the statutory remedies available to borrowers when banks initiate auction proceedings under the Act.</p>
+          <span class="article-read-more">Read Article</span>
+        </a>
+
+        <a href="https://linkedin.com" target="_blank" class="article-card reveal delay-3">
+          <span class="article-meta">Oct 12 • Criminal Defense</span>
+          <h3 class="article-title">The evolution of bail jurisprudence in ED and PMLA matters.</h3>
+          <p class="article-excerpt">Analyzing recent High Court interpretations of the stringent twin conditions for bail under the Prevention of Money Laundering Act.</p>
+          <span class="article-read-more">Read Article</span>
+        </a>
       </div>
     </div>
   </section>
