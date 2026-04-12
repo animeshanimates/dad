@@ -100,15 +100,32 @@
     
     .nav-links {
       display: flex; gap: 2rem; list-style: none;
-    }
     .nav-links a {
       font-size: 0.875rem;
       color: var(--text-main);
       text-decoration: none;
       opacity: 0.8;
-      transition: opacity 0.2s;
+      transition: opacity 0.3s var(--ease);
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 1px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--text-main);
+      transform-origin: bottom right;
+      transition: transform 0.4s var(--ease);
     }
     .nav-links a:hover { opacity: 1; }
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
 
     /* Mobile Menu Button */
     .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
@@ -162,12 +179,25 @@
       background: var(--text-main);
       color: #fff;
       border: 1px solid var(--text-main);
+      position: relative;
+      overflow: hidden;
     }
-    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 50%; height: 100%;
+      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
+      transform: skewX(-25deg);
+      transition: left 0.6s var(--ease);
+    }
     .btn-primary:hover {
       background: #424245;
       border-color: #424245;
       transform: scale(1.02);
+    }
+    .btn-primary:hover::before {
+      left: 150%;
     }
 
     /* ── LAYOUT CONTAINERS ── */
@@ -227,14 +257,23 @@
       margin-bottom: 0.5rem;
       position: relative;
       padding-left: 1.25rem;
+      transition: transform 0.4s var(--ease), color 0.4s var(--ease);
     }
-
+    .practice-card:hover ul li {
+      transform: translateX(6px);
+      color: var(--text-main);
+    }
     .practice-card ul li::before {
       content: '•';
       position: absolute;
       left: 0;
       color: var(--text-main);
       opacity: 0.3;
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    }
+    .practice-card:hover ul li::before {
+      opacity: 0.8;
+      transform: scale(1.2);
     }
 
     /* ── APPROACH SECTION ── */
@@ -249,9 +288,24 @@
       line-height: 1.4;
       font-weight: 500;
       color: var(--text-main);
-      border-left: 4px solid var(--text-main);
+      position: relative;
       padding-left: 2rem;
       margin-top: 3rem;
+    }
+    .quote::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--text-main);
+      transform-origin: top;
+      transform: scaleY(0);
+      transition: transform 1.2s var(--ease) 0.3s; /* Delays slightly so you can see it draw */
+    }
+    .reveal.visible .quote::before {
+      transform: scaleY(1);
     }
 
     /* ── CONTACT SECTION ── */
@@ -533,6 +587,17 @@
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
+    // Hero Parallax & Blur effect
+    const heroText = document.querySelector('.hero .reveal');
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      // Only run this at the top of the page to save battery/performance
+      if (scrollY < 600 && heroText) {
+        heroText.style.transform = `translateY(${scrollY * 0.15}px)`;
+        heroText.style.opacity = 1 - (scrollY / 400);
+        heroText.style.filter = `blur(${scrollY * 0.015}px)`;
+      }
+    }, { passive: true });
   </script>
 </body>
 </html>
