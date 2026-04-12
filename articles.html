@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Article | Adv. Suresh Kumar Pal</title>
+  <meta name="description" content="Legal insights and commentary by Advocate Suresh Kumar Pal, High Court Allahabad.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    :root {
+      --bg-color: #fbfbfd;
+      --card-bg: #ffffff;
+      --text-main: #1d1d1f;
+      --text-muted: #86868b;
+      --border: rgba(0, 0, 0, 0.08);
+      --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      background: rgba(251, 251, 253, 0.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+    }
+    .nav-logo {
+      font-size: 1.125rem; font-weight: 600;
+      color: var(--text-main); text-decoration: none; letter-spacing: -0.01em;
+    }
+    .nav-back {
+      font-size: 0.875rem; color: var(--text-muted);
+      text-decoration: none; display: flex; align-items: center; gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text-main); }
+    .nav-back::before { content: '←'; }
+
+    /* ARTICLE LAYOUT */
+    .article-wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 120px 5% 100px;
+    }
+
+    /* CATEGORY TAG */
+    .article-category {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 980px;
+      padding: 0.3rem 0.9rem;
+      margin-bottom: 1.75rem;
+    }
+
+    /* HEADLINE */
+    .article-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+      color: var(--text-main);
+    }
+
+    /* META LINE */
+    .article-meta {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .article-meta-dot { opacity: 0.4; }
+
+    /* DIVIDER */
+    .article-divider {
+      width: 48px; height: 2px;
+      background: var(--text-main);
+      margin-bottom: 3rem;
+      opacity: 0.15;
+    }
+
+    /* ARTICLE BODY — Lora for reading comfort */
+    .article-body {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.125rem;
+      line-height: 1.85;
+      color: #2c2c2e;
+    }
+
+    .article-body h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.375rem;
+      font-weight: 600;
+      margin: 3rem 0 1rem;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .article-body h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 2rem 0 0.75rem;
+      color: var(--text-main);
+    }
+
+    .article-body p {
+      margin-bottom: 1.5rem;
+    }
+
+    .article-body ul, .article-body ol {
+      margin: 0 0 1.5rem 1.5rem;
+    }
+
+    .article-body li {
+      margin-bottom: 0.6rem;
+    }
+
+    .article-body strong {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .article-body blockquote {
+      border-left: 3px solid var(--text-main);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* LOADING STATE */
+    .loading {
+      text-align: center;
+      padding: 5rem 0;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    .loading-spinner {
+      width: 24px; height: 24px;
+      border: 2px solid var(--border);
+      border-top-color: var(--text-main);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* NOT FOUND */
+    .not-found {
+      text-align: center;
+      padding: 5rem 0;
+    }
+    .not-found h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+    .not-found p { color: var(--text-muted); margin-bottom: 2rem; }
+    .btn-outline {
+      display: inline-flex; align-items: center;
+      padding: 0.75rem 1.5rem; border-radius: 980px;
+      border: 1px solid var(--text-main); color: var(--text-main);
+      text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { background: var(--text-main); color: #fff; }
+
+    /* FOOTER AREA */
+    .article-footer {
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .article-footer p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
+    }
+    .article-footer a {
+      color: var(--text-main);
+    }
+
+    /* FADE IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .article-title { font-size: 1.75rem; }
+      .article-body { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Adv. S.K. Pal</a>
+    <a href="/#insights" class="nav-back">All Articles</a>
+  </nav>
+
+  <div class="article-wrapper">
+
+    <!-- LOADING STATE -->
+    <div class="loading" id="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Loading article…</p>
+    </div>
+
+    <!-- NOT FOUND STATE -->
+    <div class="not-found" id="not-found-state" style="display:none;">
+      <h2>Article not found</h2>
+      <p>The article you are looking for does not exist or may have been moved.</p>
+      <a href="/#insights" class="btn-outline">← Back to Articles</a>
+    </div>
+
+    <!-- ARTICLE CONTENT -->
+    <article id="article-content" style="display:none;">
+      <span class="article-category fade-in" id="post-category"></span>
+      <h1 class="article-title fade-in" id="post-title"></h1>
+      <div class="article-meta fade-in">
+        <span id="post-date"></span>
+        <span class="article-meta-dot">·</span>
+        <span id="read-time"></span>
+      </div>
+      <div class="article-divider fade-in"></div>
+      <div class="article-body fade-in" id="post-body"></div>
+
+      <div class="article-footer fade-in">
+        <p>
+          This article is for informational purposes only and does not constitute legal advice.
+          For advice specific to your matter, please <a href="/#contact">contact the office</a> to schedule a consultation.
+          &copy; Adv. Suresh Kumar Pal.
+        </p>
+      </div>
+    </article>
+
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+
+    function estimateReadTime(text) {
+      const words = text.trim().split(/\s+/).length;
+      const minutes = Math.ceil(words / 200);
+      return `${minutes} min read`;
+    }
+
+    function animateIn() {
+      document.querySelectorAll('.fade-in').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 80);
+      });
+    }
+
+    if (!postId) {
+      document.getElementById('loading-state').style.display = 'none';
+      document.getElementById('not-found-state').style.display = 'block';
+    } else {
+      fetch('articles.json')
+        .then(res => res.json())
+        .then(data => {
+          const post = data.items.find(item => item.id === postId);
+          document.getElementById('loading-state').style.display = 'none';
+
+          if (!post) {
+            document.getElementById('not-found-state').style.display = 'block';
+            return;
+          }
+
+          // Populate fields
+          document.title = `${post.title} | Adv. Suresh Kumar Pal`;
+          document.getElementById('post-category').textContent = post.category;
+          document.getElementById('post-title').textContent = post.title;
+          document.getElementById('post-date').textContent = post.date;
+          document.getElementById('read-time').textContent = estimateReadTime(post.body);
+          document.getElementById('post-body').innerHTML = marked.parse(post.body);
+
+          document.getElementById('article-content').style.display = 'block';
+          requestAnimationFrame(animateIn);
+        })
+        .catch(() => {
+          document.getElementById('loading-state').style.display = 'none';
+          document.getElementById('not-found-state').style.display = 'block';
+        });
+    }
+  </script>
+
+</body>
+</html>
