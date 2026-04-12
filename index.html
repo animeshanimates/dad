@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <title>Adv. Suresh Kumar Pal | High Court, Allahabad</title>
+  <meta name="description" content="Advocate Suresh Kumar Pal - Delivering trusted legal expertise, civil litigation, and criminal defense at the High Court of Allahabad.">
+  <meta name="keywords" content="Advocate Suresh Kumar Pal, High Court Allahabad, Lawyer Prayagraj, DRT, Civil Litigation, Criminal Defense">
+  <meta name="author" content="Adv. Suresh Kumar Pal">
+
+  <meta property="og:title" content="Advocate Suresh Kumar Pal">
+  <meta property="og:description" content="Trusted legal expertise with integrity, precision, and unwavering commitment to justice.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── BASE & VARIABLES ── */
+    :root {
+      --bg-color: #fbfbfd;
+      --card-bg: #ffffff;
+      --text-main: #1d1d1f;
+      --text-muted: #86868b;
+      --text-light: #f5f5f7;
+      --accent: #2c2c2e;
+      --border: rgba(0, 0, 0, 0.08);
+      --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1, h2, h3, h4 { letter-spacing: -0.02em; font-weight: 600; }
+    p { font-weight: 400; line-height: 1.6; }
+    
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section-subtitle {
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      color: var(--text-muted);
+      max-width: 700px;
+      font-weight: 400;
+    }
+
+    /* ── NAVIGATION (FROSTED GLASS) ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      background: rgba(251, 251, 253, 0.8);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid transparent;
+      z-index: 1000;
+      transition: border-bottom 0.3s var(--ease);
+    }
+    nav.scrolled { border-bottom: 1px solid var(--border); }
+    
+    .nav-logo {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--text-main);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+
+    /* Mobile Menu Button */
+    .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
+
+    /* ── HERO SECTION ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 5%;
+      padding-top: 64px; /* offset nav */
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      max-width: 1000px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero h1 span { color: var(--text-muted); }
+
+    .hero p {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      color: var(--text-muted);
+      max-width: 700px;
+      margin-bottom: 3rem;
+      font-weight: 400;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      border-radius: 980px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s var(--ease);
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background: var(--text-main);
+      color: #fff;
+      border: 1px solid var(--text-main);
+    }
+    
+    .btn-primary:hover {
+      background: #424245;
+      border-color: #424245;
+      transform: scale(1.02);
+    }
+
+    /* ── LAYOUT CONTAINERS ── */
+    .section { padding: 8rem 5%; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    /* ── ABOUT SECTION ── */
+    .about-text p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .about-text p strong { color: var(--text-main); }
+
+    /* ── PRACTICE AREAS (APPLE STYLE CARDS) ── */
+    .practice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .practice-card {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+      border: 1px solid var(--border);
+    }
+
+    .practice-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+
+    .practice-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .practice-card ul {
+      list-style: none;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .practice-card ul li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.25rem;
+    }
+
+    .practice-card ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--text-main);
+      opacity: 0.3;
+    }
+
+    /* ── APPROACH SECTION ── */
+    .approach-bg {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .quote {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      line-height: 1.4;
+      font-weight: 500;
+      color: var(--text-main);
+      border-left: 4px solid var(--text-main);
+      padding-left: 2rem;
+      margin-top: 3rem;
+    }
+
+    /* ── CONTACT SECTION ── */
+    .contact-box {
+      background: var(--text-main);
+      color: var(--text-light);
+      border-radius: 32px;
+      padding: 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .contact-box h2 { color: #fff; margin-bottom: 0.5rem; }
+    .contact-box .section-subtitle { color: #a1a1a6; margin-bottom: 3rem; }
+
+    .contact-info-item {
+      margin-bottom: 2rem;
+    }
+    .contact-info-item h4 {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #a1a1a6;
+      margin-bottom: 0.5rem;
+    }
+    .contact-info-item p, .contact-info-item a {
+      font-size: 1.125rem;
+      color: #fff;
+      text-decoration: none;
+      line-height: 1.5;
+    }
+    .contact-info-item a:hover { text-decoration: underline; }
+
+    /* ── FOOTER & DISCLAIMER ── */
+    footer {
+      background: var(--bg-color);
+      padding: 4rem 5% 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .disclaimer-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .disclaimer-box h4 { font-size: 0.875rem; margin-bottom: 1rem; color: var(--text-main); }
+    .disclaimer-box p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.6; }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s var(--ease), transform 1s var(--ease);
+      will-change: opacity, transform;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Staggered delays */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE DESIGN ── */
+    @media (max-width: 900px) {
+      .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+      .contact-box { grid-template-columns: 1fr; padding: 3rem; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; } /* Could add a mobile menu later */
+      .section { padding: 5rem 5%; }
+      .hero p { font-size: 1.125rem; }
+      .quote { padding-left: 1rem; font-size: 1.25rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="#" class="nav-logo">Adv. S.K. Pal</a>
+    <ul class="nav-links">
+      <li><a href="#about">Profile</a></li>
+      <li><a href="#practice">Practice Areas</a></li>
+      <li><a href="#approach">My Approach</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;">Get in Touch</a>
+  </nav>
+
+  <header class="hero">
+    <div class="reveal">
+      <h1>Unwavering commitment<br><span>to justice.</span></h1>
+      <p>Delivering trusted legal expertise, strategic clarity, and dedicated representation across India's highest courts and tribunals.</p>
+      <a href="#practice" class="btn btn-primary">Explore Practice Areas</a>
+    </div>
+  </header>
+
+  <section id="about" class="section">
+    <div class="container grid-2">
+      <div class="reveal">
+        <span class="eyebrow">The Advocate</span>
+        <h2 class="section-title">Integrity. Precision.<br>Experience.</h2>
+      </div>
+      <div class="about-text reveal delay-1">
+        <p>I am <strong>Advocate Suresh Kumar Pal</strong>, enrolled with the Bar Council of India and the Bar Council of Uttar Pradesh.</p>
+        <p>With a dedicated legal practice, I consistently represent clients before the Hon'ble High Court of Judicature at Allahabad, the Debts Recovery Tribunal (DRT), and various other distinguished tribunals and forums across India.</p>
+        <p>Whether representing individuals, businesses, or institutions, I provide practical and strategic legal solutions tailored to the specific complexities of each matter.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="practice" class="section" style="background: var(--bg-color);">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="eyebrow">Expertise</span>
+        <h2 class="section-title">Core areas of practice.</h2>
+        <p class="section-subtitle">Comprehensive legal representation across civil, criminal, and corporate domains.</p>
+      </div>
+
+      <div class="practice-grid">
+        <div class="practice-card reveal delay-1">
+          <h3>Litigation & Dispute Resolution</h3>
+          <ul>
+            <li>Civil Disputes, Property & Contracts</li>
+            <li>Criminal Law – Trials, Appeals & Bail</li>
+            <li>Cheque Bounce (NI Act Sec. 138)</li>
+            <li>Matrimonial, Family & Divorce</li>
+            <li>Consumer Protection</li>
+            <li>Writs & Constitutional Law</li>
+          </ul>
+        </div>
+        
+        <div class="practice-card reveal delay-2">
+          <h3>Banking & Finance</h3>
+          <ul>
+            <li>DRT, DRAT & SARFAESI matters</li>
+            <li>Debt Recovery & Enforcement</li>
+            <li>Insolvency & Bankruptcy (IBC)</li>
+            <li>NCLT & Corporate Disputes</li>
+            <li>Shareholder & Management issues</li>
+          </ul>
+        </div>
+
+        <div class="practice-card reveal delay-3">
+          <h3>Regulatory & Enforcement</h3>
+          <ul>
+            <li>Prevention of Corruption Act</li>
+            <li>CBI Investigated Cases</li>
+            <li>NCB Matters (NDPS Act)</li>
+            <li>ED Matters & PMLA Proceedings</li>
+          </ul>
+        </div>
+
+        <div class="practice-card reveal delay-1">
+          <h3>Tribunals & Administration</h3>
+          <ul>
+            <li>CAT Matters (Service Law)</li>
+            <li>Civil Service & Education disputes</li>
+            <li>Recruitment & Appointment matters</li>
+            <li>RERA Disputes (Buyers & Builders)</li>
+          </ul>
+        </div>
+
+        <div class="practice-card reveal delay-2">
+          <h3>Taxation Law</h3>
+          <ul>
+            <li>Direct & Indirect Tax advisory</li>
+            <li>Income Tax Litigation</li>
+            <li>GST Disputes & Representation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="approach" class="section approach-bg">
+    <div class="container grid-2">
+      <div class="reveal">
+        <span class="eyebrow">Philosophy</span>
+        <h2 class="section-title">A foundation built on transparency.</h2>
+        <p class="section-subtitle">My practice relies on a client-focused approach that combines legal clarity with efficient, confidential representation.</p>
+      </div>
+      <div class="reveal delay-1">
+        <div class="quote">
+          "I believe legal representation should be objective, unbiased, and grounded in a clear understanding of the client's rights. My work is driven by a responsibility to assist the courts in the pursuit of justice."
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="contact-box reveal">
+        <div>
+          <h2>Get in Touch</h2>
+          <p class="section-subtitle">Consultations are strictly confidential and available by appointment.</p>
+          <a href="tel:+919140434453" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: none;">Call +91-9140434453</a>
+        </div>
+        
+        <div>
+          <div class="contact-info-item">
+            <h4>Email</h4>
+            <a href="mailto:advsureshpal.co.in@gmail.com">advsureshpal.co.in@gmail.com</a>
+          </div>
+          <div class="contact-info-item">
+            <h4>Chamber</h4>
+            <p>Chamber No. 95<br>High Court, Allahabad</p>
+          </div>
+          <div class="contact-info-item">
+            <h4>Office</h4>
+            <p>5A, Sardar Patel Marg,<br>Civil Lines, Prayagraj,<br>Uttar Pradesh 211001</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="disclaimer-box reveal">
+        <h4>Legal Disclaimer</h4>
+        <p>As per the rules of the Bar Council of India, advocates are not permitted to solicit work or advertise. By visiting this website, the user acknowledges that the information provided is solely available for informational purposes, voluntarily sought by the user, and constitutes neither solicitation nor advertising. No legal opinion is provided unless formally engaged, and all consultations remain confidential as per professional conduct rules.</p>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Adv. Suresh Kumar Pal. All rights reserved.</p>
+        <p>Prayagraj, Uttar Pradesh, India</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set dynamic year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll Navbar effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // Intersection Observer for scroll animations (Apple style fade-ups)
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Optional: Stop observing once revealed to keep it static
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>
