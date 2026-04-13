@@ -124,6 +124,12 @@
     }
     .meta-dot { opacity: 0.5; }
 
+    .meta-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
     /* SHARE BUTTON (TRIGGER) */
     .share-trigger-btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -131,11 +137,16 @@
       padding: 0.5rem 1rem; border-radius: 980px;
       font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 600;
       color: var(--ink); cursor: pointer;
-      transition: all 0.2s var(--ease);
+      transition: all 0.2s var(--ease), transform 0.35s var(--spring);
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      -webkit-tap-highlight-color: transparent;
     }
     .share-trigger-btn:hover {
       background: var(--silver); transform: translateY(-1px);
+    }
+    .share-trigger-btn:active {
+      transform: scale(0.95);
+      transition: transform 0.1s ease-out;
     }
     .share-trigger-btn svg { width: 16px; height: 16px; }
 
@@ -614,10 +625,18 @@
           <span id="read-time">— min read</span>
         </div>
         
-        <button class="share-trigger-btn" id="open-share-modal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-          Share
-        </button>
+        <div class="meta-actions">
+          <button class="like-btn" id="like-btn" type="button">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span class="like-count" id="like-count">0</span>
+          </button>
+          <button class="share-trigger-btn" id="open-share-modal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+            Share
+          </button>
+        </div>
       </div>
 
       <div class="key-takeaways reveal-item" id="key-takeaways-box" style="display:none;">
@@ -631,22 +650,6 @@
         <p>This article is for informational purposes only and does not constitute legal advice. &copy; Adv. Suresh Kumar Pal.</p>
       </div>
 
-      <!-- ── ENGAGEMENT BAR ── -->
-      <div class="engagement-bar reveal-item" id="engagement-bar">
-          <button class="like-btn" id="like-btn" type="button">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-            </svg>
-            <span class="like-count" id="like-count">0</span>
-          </button>
-          <button class="engage-share-btn" id="engage-share-btn" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle>
-              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-            </svg>
-            Share
-          </button>
-      </div>
 
       <!-- ── DISCUSSION SECTION ── -->
       <section class="discussion-section reveal-item" id="discussion-section">
@@ -879,7 +882,6 @@
       // ── DOM refs ──
       const likeBtn      = document.getElementById('like-btn');
       const likeCountEl  = document.getElementById('like-count');
-      const shareBtn     = document.getElementById('engage-share-btn');
       const commentInput = document.getElementById('comment-input');
       const postBtn      = document.getElementById('post-comment-btn');
       const commentsList = document.getElementById('comments-list');
@@ -913,14 +915,6 @@
         localStorage.setItem(likeKey, likes);
         localStorage.setItem(likedKey, liked);
         renderLikes();
-      });
-
-      // ─────────────────────────────────────────────────────────
-      // SHARE (opens existing share modal)
-      // ─────────────────────────────────────────────────────────
-      shareBtn.addEventListener('click', () => {
-        document.getElementById('share-overlay').classList.add('active');
-        triggerHaptic('light');
       });
 
       // ─────────────────────────────────────────────────────────
