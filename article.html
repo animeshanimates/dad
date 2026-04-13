@@ -916,6 +916,9 @@
           document.getElementById('post-body').innerHTML       = marked.parse(post.body);
           document.getElementById('article-content').style.display = 'block';
 
+          // Strip old markdown-generated ToC/Quick Index from the body
+          stripOldToC();
+
           // Render Key Takeaways if they exist in the JSON
           if(post.takeaways && post.takeaways.length > 0) {
             const ktList = document.getElementById('kt-list');
@@ -943,6 +946,73 @@
           document.getElementById('loading-state').style.display = 'none';
           document.getElementById('not-found-state').style.display = 'block';
         });
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       STRIP OLD MARKDOWN TOC
+       Removes any "Table of Contents" / "Quick Index" / "Contents"
+       section from the rendered article body so only the dynamic
+       ScrollSpy ToC is shown.
+    ══════════════════════════════════════════════════════════════ */
+    function stripOldToC() {
+      const body = document.getElementById('post-body');
+      const tocPatterns = /^(table of contents|quick index|contents|in this article)$/i;
+
+      // Find headings that match ToC-like titles
+      body.querySelectorAll('h2, h3, h4, strong').forEach(el => {
+        const text = el.textContent.trim();
+        if (!tocPatterns.test(text)) return;
+
+        const toRemove = [el];
+
+        // Walk forward and collect the immediately following list(s) and <hr>
+        let sibling = el.nextElementSibling;
+        while (sibling) {
+          const tag = sibling.tagName;
+          if (tag === 'UL' || tag === 'OL') {
+            toRemove.push(sibling);
+            sibling = sibling.nextElementSibling;
+          } else if (tag === 'HR') {
+            toRemove.push(sibling);
+            sibling = sibling.nextElementSibling;
+          } else {
+            break;
+          }
+        }
+
+        // Also remove a preceding <hr> if present
+        const prev = el.previousElementSibling;
+        if (prev && prev.tagName === 'HR') {
+          toRemove.push(prev);
+        }
+
+        // Remove all collected elements
+        toRemove.forEach(n => n.remove());
+      });
+
+      // Also check for <p> containing bold ToC text (e.g., <p><strong>Quick Index</strong></p>)
+      body.querySelectorAll('p').forEach(p => {
+        const strong = p.querySelector('strong');
+        if (strong && tocPatterns.test(strong.textContent.trim())) {
+          const toRemove = [p];
+          let sibling = p.nextElementSibling;
+          while (sibling) {
+            const tag = sibling.tagName;
+            if (tag === 'UL' || tag === 'OL') {
+              toRemove.push(sibling);
+              sibling = sibling.nextElementSibling;
+            } else if (tag === 'HR') {
+              toRemove.push(sibling);
+              sibling = sibling.nextElementSibling;
+            } else {
+              break;
+            }
+          }
+          const prev = p.previousElementSibling;
+          if (prev && prev.tagName === 'HR') toRemove.push(prev);
+          toRemove.forEach(n => n.remove());
+        }
+      });
     }
 
     /* ══════════════════════════════════════════════════════════════
