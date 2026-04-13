@@ -131,56 +131,76 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .nav-logo {
-      font-size: 1.125rem;
-      font-weight: 600;
+    .nav-brand {
+      font-size: 1rem;
+      font-weight: 700;
       color: var(--text-main);
       text-decoration: none;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.05em;
+      transition: opacity 0.3s var(--ease);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-brand:hover {
+      opacity: 0.8;
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 0.25rem;
       list-style: none;
+      align-items: center;
     }
 
-    .nav-links a {
-      font-size: 0.875rem;
-      color: var(--text-main);
-      text-decoration: none;
-      opacity: 0.8;
-      transition: opacity 0.3s var(--ease), transform 0.25s var(--spring);
+    .nav-icon {
+      color: var(--text-muted);
+      transition: all 0.3s var(--spring);
       position: relative;
-      padding-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      text-decoration: none;
       -webkit-tap-highlight-color: transparent;
+      border-radius: 10px;
     }
 
-    .nav-links a:active {
-      transform: scale(0.96);
+    .nav-icon:hover {
+      color: var(--text-main);
+      transform: scale(1.1);
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .nav-icon:active {
+      transform: scale(0.92);
       transition: transform 0.1s ease-out;
     }
 
-    .nav-links a::after {
-      content: '';
+    /* Tooltip */
+    .nav-icon::after {
+      content: attr(data-tooltip);
       position: absolute;
-      width: 100%;
-      transform: scaleX(0);
-      height: 1px;
-      bottom: 0;
-      left: 0;
-      background-color: var(--text-main);
-      transform-origin: bottom right;
-      transition: transform 0.4s var(--ease);
+      bottom: -28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      opacity: 0;
+      pointer-events: none;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--text-main);
+      padding: 3px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+      z-index: 10;
     }
 
-    .nav-links a:hover {
+    .nav-icon:hover::after {
       opacity: 1;
-    }
-
-    .nav-links a:hover::after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
+      transform: translateX(-50%) translateY(0);
     }
 
     .menu-toggle {
@@ -838,12 +858,20 @@
   </div>
 
   <nav id="navbar">
-    <a href="#" class="nav-logo">Adv. S.K. Pal</a>
+    <a href="index.html" class="nav-brand">S.K. PAL</a>
     <ul class="nav-links">
-      <li><a href="#practice">Profile</a></li>
-      <li><a href="#practice">Practice Areas</a></li>
-      <li><a href="#insights">Insights</a></li>
-      <li><a href="#approach">My Approach</a></li>
+      <li><a href="#practice" class="nav-icon" data-tooltip="Profile">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </a></li>
+      <li><a href="#practice" class="nav-icon" data-tooltip="Practice Areas">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+      </a></li>
+      <li><a href="#insights" class="nav-icon" data-tooltip="Insights">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+      </a></li>
+      <li><a href="#approach" class="nav-icon" data-tooltip="My Approach">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+      </a></li>
     </ul>
   </nav>
 
@@ -1137,8 +1165,8 @@
     }
 
     // ── Attach Haptic Feedback ─────────────────────────────────
-    // Light haptic: nav links, view-all link, icon-row links
-    document.querySelectorAll('.nav-links a, .nav-logo, .view-all-link, .icon-row a').forEach(el => {
+    // Light haptic: nav icons, brand, view-all link
+    document.querySelectorAll('.nav-icon, .nav-brand, .view-all-link').forEach(el => {
       el.addEventListener('click', () => triggerHaptic('light'));
     });
 
