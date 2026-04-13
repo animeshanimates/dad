@@ -372,14 +372,15 @@
   </div>
 
   <script>
-    /* ── FETCH & RENDER ──────────────────────────────────────── */
+    
+/* ── FETCH & RENDER ──────────────────────────────────────── */
     const urlParams = new URLSearchParams(window.location.search);
     const postId    = urlParams.get('id');
 
     function estimateReadTime(text) {
-      return Math.ceil(text.trim().split(/\s+/).length / 200);
+      return Math.ceil(text.trim().split(/\s+/).length / 200) + ' min read';
     }
-
+    
     /* ── SCROLL PROGRESS ─────────────────────────────────────── */
     const progressBar = document.getElementById('progress-bar');
     window.addEventListener('scroll', () => {
