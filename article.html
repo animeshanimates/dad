@@ -587,6 +587,87 @@
       height: 40px;
       color: var(--ash);
     }
+
+    /* ────────────────────────────────────────────────────────────
+       TABLE OF CONTENTS — ScrollSpy
+    ──────────────────────────────────────────────────────────── */
+    .toc-container {
+      margin-bottom: 2.5rem;
+      display: none; /* JS shows it when headings exist */
+    }
+
+    .toc-container.visible {
+      display: block;
+    }
+
+    .toc-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--stone);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toc-label::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: var(--stone);
+      border-radius: 50%;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .toc-list li {
+      margin: 0;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 0.5rem 1rem;
+      border-left: 2px solid var(--border);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--stone);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      line-height: 1.45;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .toc-link:hover {
+      color: var(--ink);
+      border-left-color: var(--ash);
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .toc-link.active {
+      color: var(--ink);
+      border-left-color: var(--ink);
+      background: rgba(0, 0, 0, 0.02);
+      font-weight: 600;
+    }
+
+    /* Indent h3 links under h2 */
+    .toc-link[data-depth="3"] {
+      padding-left: 1.75rem;
+      font-size: 0.825rem;
+    }
+
+    @media (max-width: 768px) {
+      .toc-container {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -642,6 +723,11 @@
       <div class="key-takeaways reveal-item" id="key-takeaways-box" style="display:none;">
         <div class="kt-header">Key Takeaways</div>
         <ul class="kt-list" id="kt-list"></ul>
+      </div>
+
+      <div class="toc-container reveal-item" id="toc-container">
+        <div class="toc-label">In this article</div>
+        <ul class="toc-list" id="toc-list"></ul>
       </div>
 
       <div class="article-body" id="post-body"></div>
@@ -850,6 +936,7 @@
           observeBody();
           addCopyButtons();
           setupShareModal(post.title);
+          buildToC();
           initEngagement(postId);
         })
         .catch(() => {
@@ -869,6 +956,74 @@
         case 'medium':  navigator.vibrate(30); break;
         case 'success': navigator.vibrate([15, 50, 20]); break;
       }
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       TABLE OF CONTENTS — Builder + ScrollSpy
+    ══════════════════════════════════════════════════════════════ */
+    function buildToC() {
+      const body     = document.getElementById('post-body');
+      const tocList  = document.getElementById('toc-list');
+      const tocBox   = document.getElementById('toc-container');
+      const headings = body.querySelectorAll('h2, h3');
+
+      // Don't show ToC for very short articles
+      if (headings.length < 2) return;
+
+      headings.forEach((heading, i) => {
+        // Ensure each heading has an id for anchor linking
+        if (!heading.id) {
+          heading.id = 'section-' + i;
+        }
+
+        const li = document.createElement('li');
+        const a  = document.createElement('a');
+        a.className  = 'toc-link';
+        a.href       = '#' + heading.id;
+        a.textContent = heading.textContent;
+        a.setAttribute('data-depth', heading.tagName === 'H3' ? '3' : '2');
+        a.setAttribute('data-target', heading.id);
+
+        // Haptic on click
+        a.addEventListener('click', () => triggerHaptic('light'));
+
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+
+      // Show the ToC
+      tocBox.classList.add('visible');
+
+      // Initialize ScrollSpy
+      initScrollSpy(headings);
+    }
+
+    function initScrollSpy(headings) {
+      const tocLinks = document.querySelectorAll('.toc-link');
+      let currentActive = null;
+
+      const spyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+
+            // Remove active from all
+            tocLinks.forEach(link => link.classList.remove('active'));
+
+            // Find and activate the matching link
+            const activeLink = document.querySelector(`.toc-link[data-target="${id}"]`);
+            if (activeLink) {
+              activeLink.classList.add('active');
+              currentActive = activeLink;
+            }
+          }
+        });
+      }, {
+        rootMargin: '-100px 0px -60% 0px',
+        threshold: 0
+      });
+
+      headings.forEach(h => spyObserver.observe(h));
     }
 
     /* ══════════════════════════════════════════════════════════════
