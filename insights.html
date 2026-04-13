@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>Legal Insights & Commentary | Adv. Suresh Kumar Pal</title>
+  <meta name="description"
+    content="Explore legal articles, case law analysis, and expert commentary by Advocate Suresh Kumar Pal, High Court of Allahabad.">
+  <meta name="keywords"
+    content="Legal Insights, Case Law, SARFAESI, RERA, DRT, Advocate Suresh Kumar Pal, High Court Allahabad">
+  <meta name="author" content="Adv. Suresh Kumar Pal">
+
+  <meta property="og:title" content="Legal Insights & Commentary | Adv. Suresh Kumar Pal">
+  <meta property="og:description"
+    content="Searchable archive of legal articles, case analyses, and expert commentary.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ══════════════════════════════════════════════════════════════
+       BASE & VARIABLES — Identical to index.html
+    ══════════════════════════════════════════════════════════════ */
+    :root {
+      --bg-color: #fbfbfd;
+      --card-bg: #ffffff;
+      --text-main: #1d1d1f;
+      --text-muted: #86868b;
+      --text-light: #f5f5f7;
+      --accent: #2c2c2e;
+      --border: rgba(0, 0, 0, 0.08);
+      --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       TYPOGRAPHY — Reused from index.html
+    ══════════════════════════════════════════════════════════════ */
+    h1, h2, h3, h4 {
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+
+    p {
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section-subtitle {
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      color: var(--text-muted);
+      max-width: 700px;
+      font-weight: 400;
+      text-wrap: balance;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       NAVIGATION — Exact copy from index.html
+    ══════════════════════════════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      background: rgba(251, 251, 253, 0.8);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid transparent;
+      z-index: 1000;
+      transition: border-bottom 0.3s var(--ease);
+    }
+
+    nav.scrolled {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--text-main);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.3s var(--ease);
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 1px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--text-main);
+      transform-origin: bottom right;
+      transition: transform 0.4s var(--ease);
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      border-radius: 980px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s var(--ease);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--text-main);
+      color: #fff;
+      border: 1px solid var(--text-main);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 100%);
+      transform: skewX(-25deg);
+      transition: left 0.6s var(--ease);
+    }
+
+    .btn-primary:hover {
+      background: #424245;
+      border-color: #424245;
+      transform: scale(1.02);
+    }
+
+    .btn-primary:hover::before {
+      left: 150%;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       LAYOUT
+    ══════════════════════════════════════════════════════════════ */
+    .section {
+      padding: 8rem 5%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       PAGE HEADER
+    ══════════════════════════════════════════════════════════════ */
+    .page-header {
+      padding-top: calc(64px + 5rem);
+      padding-bottom: 3rem;
+      padding-left: 5%;
+      padding-right: 5%;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: headerReveal 0.8s var(--ease) 0.1s forwards;
+    }
+
+    .page-header p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: headerReveal 0.8s var(--ease) 0.25s forwards;
+    }
+
+    @keyframes headerReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       STICKY CONTROL BAR
+    ══════════════════════════════════════════════════════════════ */
+    .control-bar {
+      position: sticky;
+      top: 64px;
+      z-index: 100;
+      background: rgba(251, 251, 253, 0.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 5%;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: headerReveal 0.8s var(--ease) 0.4s forwards;
+    }
+
+    .control-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* ── Search Bar ── */
+    .search-wrapper {
+      position: relative;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      pointer-events: none;
+      transition: color 0.3s var(--ease);
+    }
+
+    #search-input {
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-main);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 0 0.75rem 2rem;
+      outline: none;
+      transition: border-color 0.3s var(--ease), border-width 0.3s var(--ease);
+    }
+
+    #search-input::placeholder {
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+
+    #search-input:focus {
+      border-bottom: 2px solid var(--text-main);
+    }
+
+    #search-input:focus ~ .search-icon {
+      color: var(--text-main);
+    }
+
+    /* ── Category Pills ── */
+    .pills-row {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+    }
+
+    .pills-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pill {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4rem 1rem;
+      border-radius: 980px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .pill:hover {
+      color: var(--text-main);
+      border-color: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .pill.active {
+      color: #fff;
+      background: var(--text-main);
+      border-color: var(--text-main);
+    }
+
+    .pill.active:hover {
+      background: #424245;
+      border-color: #424245;
+    }
+
+    /* ── Results count ── */
+    .results-count {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-top: 0.25rem;
+      min-height: 1.2em;
+      transition: opacity 0.3s var(--ease);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       ARTICLE GRID — Exact styles from index.html
+    ══════════════════════════════════════════════════════════════ */
+    .archive-section {
+      padding: 3rem 5% 8rem;
+    }
+
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Article Card — Exact from index.html */
+    .article-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+      cursor: pointer;
+      min-height: 240px;
+    }
+
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 0, 0, 0.14);
+    }
+
+    .article-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 980px;
+      padding: 0.25rem 0.75rem;
+      margin-bottom: 1.25rem;
+      align-self: flex-start;
+    }
+
+    .article-card-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 0.85rem;
+      color: var(--text-main);
+      flex-grow: 1;
+    }
+
+    .article-card-excerpt {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .article-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+
+    .article-card-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .article-read-arrow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .article-card:hover .article-read-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       EMPTY STATE
+    ══════════════════════════════════════════════════════════════ */
+    .articles-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 5rem 1.5rem;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .articles-empty svg {
+      display: block;
+      margin: 0 auto 1.5rem;
+      width: 48px;
+      height: 48px;
+      color: var(--border);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       CARD TRANSITION ANIMATIONS
+    ══════════════════════════════════════════════════════════════ */
+    .article-card.fade-out {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+
+    .article-card.fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .article-card.fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    }
+
+    /* Fade for empty state */
+    .articles-empty.fade-in {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .articles-empty.fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       LOADING STATE
+    ══════════════════════════════════════════════════════════════ */
+    .loading-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 5rem 1rem;
+    }
+
+    .loading-ring {
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--border);
+      border-top-color: var(--text-main);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-state p {
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       FOOTER — Exact copy from index.html
+    ══════════════════════════════════════════════════════════════ */
+    footer {
+      background: var(--bg-color);
+      padding: 4rem 5% 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .disclaimer-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .disclaimer-box h4 {
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .disclaimer-box p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       BCI DISCLAIMER MODAL — Exact copy from index.html
+    ══════════════════════════════════════════════════════════════ */
+    #bci-disclaimer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s var(--ease), visibility 0.4s;
+      padding: 1rem;
+    }
+
+    #bci-disclaimer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .bci-modal {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 600px;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      transform: translateY(20px);
+      transition: transform 0.4s var(--ease);
+    }
+
+    #bci-disclaimer-overlay.active .bci-modal {
+      transform: translateY(0);
+    }
+
+    .bci-modal h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .bci-modal p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .bci-checkbox-wrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .bci-checkbox-wrapper input[type="checkbox"] {
+      margin-top: 0.25rem;
+      width: 1.1rem;
+      height: 1.1rem;
+      cursor: pointer;
+    }
+
+    .bci-checkbox-wrapper label {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .btn-bci-proceed {
+      width: 100%;
+      padding: 1rem;
+      background: var(--text-main);
+      color: #fff;
+      border: none;
+      border-radius: 980px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .btn-bci-proceed.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .btn-bci-proceed.active:hover {
+      background: #424245;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .page-header {
+        padding-top: calc(64px + 3rem);
+        padding-bottom: 2rem;
+      }
+
+      .page-header h1 {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+      }
+
+      .control-bar {
+        padding: 1rem 5%;
+      }
+
+      .article-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .archive-section {
+        padding: 2rem 5% 5rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══ BCI DISCLAIMER MODAL ═══ -->
+  <div id="bci-disclaimer-overlay">
+    <div class="bci-modal">
+      <h2>Disclaimer</h2>
+      <p>The Bar Council of India does not permit advertisement or solicitation by advocates in any form or manner. By
+        accessing this website, you acknowledge and confirm that you are seeking information relating to Adv. Suresh
+        Kumar Pal of your own accord and that there has been no form of solicitation, advertisement, or inducement by
+        him or his members. The content of this website is for informational purposes only and should not be interpreted
+        as soliciting or rendering legal advice.</p>
+      <div class="bci-checkbox-wrapper">
+        <input type="checkbox" id="bci-accept-checkbox">
+        <label for="bci-accept-checkbox">I accept the above.</label>
+      </div>
+      <button id="bci-proceed-btn" class="btn-bci-proceed">Proceed to Website</button>
+    </div>
+  </div>
+
+  <!-- ═══ NAVIGATION — Exact from index.html ═══ -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Adv. S.K. Pal</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">Profile</a></li>
+      <li><a href="index.html#practice">Practice Areas</a></li>
+      <li><a href="insights.html" style="opacity: 1;">Insights</a></li>
+      <li><a href="index.html#approach">My Approach</a></li>
+    </ul>
+    <a href="index.html#contact" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;">Get in Touch</a>
+  </nav>
+
+  <!-- ═══ PAGE HEADER ═══ -->
+  <header class="page-header">
+    <span class="eyebrow" style="opacity:0; animation: headerReveal 0.8s var(--ease) 0s forwards;">Archive</span>
+    <h1>Legal Insights &amp; Commentary</h1>
+    <p>Searchable archive of case analyses, commentaries, and legal guides authored by Adv. Suresh Kumar Pal.</p>
+  </header>
+
+  <!-- ═══ STICKY CONTROL BAR ═══ -->
+  <div class="control-bar" id="control-bar">
+    <div class="control-bar-inner">
+
+      <!-- Search Bar -->
+      <div class="search-wrapper">
+        <input type="text" id="search-input" placeholder="Search articles, case laws..." autocomplete="off">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </div>
+
+      <!-- Category Pills (generated dynamically by JS) -->
+      <div class="pills-row" id="pills-row"></div>
+
+      <!-- Results Count -->
+      <div class="results-count" id="results-count"></div>
+
+    </div>
+  </div>
+
+  <!-- ═══ ARTICLES GRID ═══ -->
+  <main class="archive-section">
+    <div class="article-grid" id="article-grid">
+      <!-- Loading state shown initially -->
+      <div class="loading-state" id="loading-state">
+        <div class="loading-ring"></div>
+        <p>Loading insights…</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══ FOOTER — Exact from index.html ═══ -->
+  <footer>
+    <div class="container">
+      <div class="disclaimer-box">
+        <h4>Legal Disclaimer</h4>
+        <p>As per the rules of the Bar Council of India, advocates are not permitted to solicit work or advertise. By
+          visiting this website, the user acknowledges that the information provided is solely available for
+          informational purposes, voluntarily sought by the user, and constitutes neither solicitation nor advertising.
+          No legal opinion is provided unless formally engaged, and all consultations remain confidential as per
+          professional conduct rules.</p>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Adv. Suresh Kumar Pal. All rights reserved.</p>
+        <p>Prayagraj, Uttar Pradesh, India</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ══════════════════════════════════════════════════════════════
+       INSIGHTS PAGE — Vanilla JavaScript Engine
+       Zero external dependencies.
+    ══════════════════════════════════════════════════════════════ */
+
+    // ── STATE ──────────────────────────────────────────────────
+    let allArticles = [];        // Full article list from JSON
+    let activeCategory = 'All';  // Currently selected category
+    let searchQuery = '';        // Current search string
+    let isTransitioning = false; // Prevents rapid re-renders
+
+    // ── DOM REFERENCES ────────────────────────────────────────
+    const grid         = document.getElementById('article-grid');
+    const pillsRow     = document.getElementById('pills-row');
+    const searchInput  = document.getElementById('search-input');
+    const resultsCount = document.getElementById('results-count');
+    const loadingState = document.getElementById('loading-state');
+
+    // ══════════════════════════════════════════════════════════
+    // 1. FETCH articles.json and bootstrap the page
+    // ══════════════════════════════════════════════════════════
+    fetch('articles.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+      })
+      .then(data => {
+        // Store articles in reverse chronological order (newest first)
+        allArticles = [...data.items].reverse();
+
+        // Remove loading spinner
+        loadingState.remove();
+
+        // Build category pills from unique categories in data
+        buildCategoryPills(allArticles);
+
+        // Render the initial full grid
+        renderCards(allArticles, true);
+      })
+      .catch(() => {
+        // If fetch fails, show a graceful error
+        loadingState.remove();
+        grid.innerHTML = `
+          <div class="articles-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            Could not load articles. Please try again later.
+          </div>`;
+      });
+
+    // ══════════════════════════════════════════════════════════
+    // 2. BUILD CATEGORY PILLS dynamically from JSON data
+    // ══════════════════════════════════════════════════════════
+    function buildCategoryPills(articles) {
+      // Extract every unique category string
+      const categories = [...new Set(articles.map(a => a.category).filter(Boolean))];
+
+      // Always lead with an "All" pill
+      const allPill = createPill('All', true);
+      pillsRow.appendChild(allPill);
+
+      // Append one pill per unique category
+      categories.forEach(cat => {
+        pillsRow.appendChild(createPill(cat, false));
+      });
+    }
+
+    /**
+     * Creates a single pill <button> element.
+     * @param {string} label   — The pill text
+     * @param {boolean} active — Whether it starts active
+     * @returns {HTMLButtonElement}
+     */
+    function createPill(label, active) {
+      const btn = document.createElement('button');
+      btn.className = 'pill' + (active ? ' active' : '');
+      btn.textContent = label;
+      btn.setAttribute('data-category', label);
+      btn.setAttribute('type', 'button');
+
+      btn.addEventListener('click', () => {
+        // Deactivate all pills, activate this one
+        pillsRow.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update state and re-filter
+        activeCategory = label;
+        filterAndRender();
+      });
+
+      return btn;
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // 3. SEARCH INPUT — debounced keyboard handler
+    // ══════════════════════════════════════════════════════════
+    let debounceTimer = null;
+
+    searchInput.addEventListener('input', (e) => {
+      // Debounce: wait 200ms after the user stops typing
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        searchQuery = e.target.value.trim().toLowerCase();
+        filterAndRender();
+      }, 200);
+    });
+
+    // ══════════════════════════════════════════════════════════
+    // 4. FILTER ENGINE — combines search + category
+    // ══════════════════════════════════════════════════════════
+    function getFilteredArticles() {
+      return allArticles.filter(article => {
+        // Category check: "All" matches everything
+        const categoryMatch =
+          activeCategory === 'All' || article.category === activeCategory;
+
+        // Search check: match against title and excerpt (case-insensitive)
+        const searchMatch =
+          !searchQuery ||
+          article.title.toLowerCase().includes(searchQuery) ||
+          article.excerpt.toLowerCase().includes(searchQuery);
+
+        return categoryMatch && searchMatch;
+      });
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // 5. FILTER → ANIMATE → RENDER pipeline
+    // ══════════════════════════════════════════════════════════
+    function filterAndRender() {
+      if (isTransitioning) return; // Guard: prevent overlapping transitions
+      isTransitioning = true;
+
+      const filtered = getFilteredArticles();
+
+      // Get all current cards in the grid
+      const currentCards = grid.querySelectorAll('.article-card, .articles-empty');
+
+      if (currentCards.length === 0) {
+        // No cards to fade out — directly render new ones
+        renderCards(filtered, true);
+        isTransitioning = false;
+        return;
+      }
+
+      // ── PHASE 1: Fade out existing cards ──
+      currentCards.forEach(card => card.classList.add('fade-out'));
+
+      // ── PHASE 2: Wait for fade-out, then swap DOM ──
+      setTimeout(() => {
+        renderCards(filtered, true);
+        isTransitioning = false;
+      }, 320); // Matches the 300ms CSS transition + small buffer
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // 6. RENDER CARDS — builds DOM and staggers fade-in
+    // ══════════════════════════════════════════════════════════
+    /**
+     * Renders article cards into the grid.
+     * @param {Array}   articles   — Array of article objects to display
+     * @param {boolean} animate    — Whether to apply staggered fade-in
+     */
+    function renderCards(articles, animate) {
+      // Clear the grid
+      grid.innerHTML = '';
+
+      // Update the results count display
+      updateResultsCount(articles.length);
+
+      // ── EMPTY STATE ──
+      if (articles.length === 0) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'articles-empty' + (animate ? ' fade-in' : '');
+        emptyDiv.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="8" x2="14" y2="14"></line>
+            <line x1="14" y1="8" x2="8" y2="14"></line>
+          </svg>
+          No insights found matching your criteria.
+        `;
+        grid.appendChild(emptyDiv);
+
+        // Trigger fade-in on next frame
+        if (animate) {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              emptyDiv.classList.add('visible');
+            });
+          });
+        }
+        return;
+      }
+
+      // ── BUILD CARDS ──
+      articles.forEach((article, index) => {
+        const card = document.createElement('a');
+        card.href = `article.html?id=${encodeURIComponent(article.id)}`;
+        card.className = 'article-card' + (animate ? ' fade-in' : '');
+        card.id = `card-${article.id}`;
+
+        card.innerHTML = `
+          <span class="article-tag">${article.category || 'Insights'}</span>
+          <h3 class="article-card-title">${article.title}</h3>
+          <p class="article-card-excerpt">${article.excerpt}</p>
+          <div class="article-card-footer">
+            <span class="article-card-date">${article.date}</span>
+            <span class="article-read-arrow">Read →</span>
+          </div>
+        `;
+
+        grid.appendChild(card);
+
+        // ── STAGGERED FADE-IN ──
+        // Each card fades in with a delay based on its index
+        if (animate) {
+          const delay = index * 80; // 80ms stagger between cards
+          card.style.transitionDelay = `${delay}ms`;
+
+          // Use double rAF to ensure the browser paints the initial state first
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              card.classList.add('visible');
+            });
+          });
+        }
+      });
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // 7. RESULTS COUNT — updates the text below the pills
+    // ══════════════════════════════════════════════════════════
+    function updateResultsCount(count) {
+      if (searchQuery || activeCategory !== 'All') {
+        // Show count only when a filter/search is active
+        resultsCount.textContent = `${count} article${count !== 1 ? 's' : ''} found`;
+      } else {
+        // Show total count on initial load
+        resultsCount.textContent = `${count} article${count !== 1 ? 's' : ''} total`;
+      }
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // 8. NAV SCROLL EFFECT — adds border on scroll
+    // ══════════════════════════════════════════════════════════
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // ══════════════════════════════════════════════════════════
+    // 9. DYNAMIC FOOTER YEAR
+    // ══════════════════════════════════════════════════════════
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ══════════════════════════════════════════════════════════
+    // 10. BCI DISCLAIMER MODAL — Exact logic from index.html
+    // ══════════════════════════════════════════════════════════
+    const disclaimerOverlay = document.getElementById('bci-disclaimer-overlay');
+    const acceptCheckbox = document.getElementById('bci-accept-checkbox');
+    const proceedBtn = document.getElementById('bci-proceed-btn');
+
+    // Show modal if user hasn't accepted yet
+    if (!localStorage.getItem('bciDisclaimerAccepted')) {
+      document.body.style.overflow = 'hidden';
+      disclaimerOverlay.classList.add('active');
+    }
+
+    // Toggle proceed button based on checkbox
+    acceptCheckbox.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        proceedBtn.classList.add('active');
+      } else {
+        proceedBtn.classList.remove('active');
+      }
+    });
+
+    // Handle proceed click
+    proceedBtn.addEventListener('click', () => {
+      if (acceptCheckbox.checked) {
+        localStorage.setItem('bciDisclaimerAccepted', 'true');
+        disclaimerOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+
+</html>
