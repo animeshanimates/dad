@@ -958,59 +958,101 @@
       const body = document.getElementById('post-body');
       const tocPatterns = /^(table of contents|quick index|contents|in this article)$/i;
 
-      // Find headings that match ToC-like titles
+      // ── PHASE 1: Strip leading duplicate title, intro, and dividers ──
+      // The markdown body often starts with:
+      //   h1 (title) → p (intro) → hr → h3 "Quick Index" → ul → hr → div → h2 (real content)
+      // We strip everything before the first numbered/real section heading.
+      const children = Array.from(body.children);
+      for (const child of children) {
+        const tag = child.tagName;
+
+        // Stop at the first real content heading (h2 with numbered section)
+        if (tag === 'H2') {
+          // If it's a ToC heading, remove it (handled in Phase 2)
+          // Otherwise it's real content — stop stripping
+          if (!tocPatterns.test(child.textContent.trim())) break;
+        }
+
+        // Remove: h1 (duplicate title), intro paragraphs, hrs, anchor divs
+        if (tag === 'H1' || tag === 'HR') {
+          child.remove();
+          continue;
+        }
+
+        // Remove empty anchor divs (e.g., <div id="notices"></div>)
+        if (tag === 'DIV' && child.children.length === 0 && child.textContent.trim() === '') {
+          child.remove();
+          continue;
+        }
+
+        // Remove intro paragraphs (text before first real heading)
+        if (tag === 'P') {
+          child.remove();
+          continue;
+        }
+
+        // Remove ToC headings and their lists
+        if ((tag === 'H3' || tag === 'H4') && tocPatterns.test(child.textContent.trim())) {
+          child.remove();
+          continue;
+        }
+
+        // Remove ToC lists
+        if (tag === 'UL' || tag === 'OL') {
+          // Check if this list contains anchor links (ToC pattern)
+          const links = child.querySelectorAll('a[href^="#"]');
+          if (links.length > 0) {
+            child.remove();
+            continue;
+          }
+        }
+
+        // If we hit something unexpected, stop to avoid removing real content
+        break;
+      }
+
+      // ── PHASE 2: Strip any remaining ToC sections deeper in the body ──
       body.querySelectorAll('h2, h3, h4, strong').forEach(el => {
         const text = el.textContent.trim();
         if (!tocPatterns.test(text)) return;
 
         const toRemove = [el];
-
-        // Walk forward and collect the immediately following list(s) and <hr>
         let sibling = el.nextElementSibling;
         while (sibling) {
-          const tag = sibling.tagName;
-          if (tag === 'UL' || tag === 'OL') {
+          const t = sibling.tagName;
+          if (t === 'UL' || t === 'OL' || t === 'HR') {
             toRemove.push(sibling);
             sibling = sibling.nextElementSibling;
-          } else if (tag === 'HR') {
-            toRemove.push(sibling);
-            sibling = sibling.nextElementSibling;
-          } else {
-            break;
-          }
+          } else break;
         }
-
-        // Also remove a preceding <hr> if present
         const prev = el.previousElementSibling;
-        if (prev && prev.tagName === 'HR') {
-          toRemove.push(prev);
-        }
-
-        // Remove all collected elements
+        if (prev && prev.tagName === 'HR') toRemove.push(prev);
         toRemove.forEach(n => n.remove());
       });
 
-      // Also check for <p> containing bold ToC text (e.g., <p><strong>Quick Index</strong></p>)
+      // Also handle <p><strong>Quick Index</strong></p> pattern
       body.querySelectorAll('p').forEach(p => {
         const strong = p.querySelector('strong');
         if (strong && tocPatterns.test(strong.textContent.trim())) {
           const toRemove = [p];
           let sibling = p.nextElementSibling;
           while (sibling) {
-            const tag = sibling.tagName;
-            if (tag === 'UL' || tag === 'OL') {
+            const t = sibling.tagName;
+            if (t === 'UL' || t === 'OL' || t === 'HR') {
               toRemove.push(sibling);
               sibling = sibling.nextElementSibling;
-            } else if (tag === 'HR') {
-              toRemove.push(sibling);
-              sibling = sibling.nextElementSibling;
-            } else {
-              break;
-            }
+            } else break;
           }
           const prev = p.previousElementSibling;
           if (prev && prev.tagName === 'HR') toRemove.push(prev);
           toRemove.forEach(n => n.remove());
+        }
+      });
+
+      // ── PHASE 3: Remove empty anchor divs scattered in the body ──
+      body.querySelectorAll('div').forEach(div => {
+        if (div.children.length === 0 && div.textContent.trim() === '' && div.id) {
+          div.remove();
         }
       });
     }
