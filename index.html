@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  
+
   <title>Adv. Suresh Kumar Pal | High Court, Allahabad</title>
-  <meta name="description" content="Advocate Suresh Kumar Pal - Delivering trusted legal expertise, civil litigation, and criminal defense at the High Court of Allahabad.">
-  <meta name="keywords" content="Advocate Suresh Kumar Pal, High Court Allahabad, Lawyer Prayagraj, DRT, Civil Litigation, Criminal Defense">
+  <meta name="description"
+    content="Advocate Suresh Kumar Pal - Delivering trusted legal expertise, civil litigation, and criminal defense at the High Court of Allahabad.">
+  <meta name="keywords"
+    content="Advocate Suresh Kumar Pal, High Court Allahabad, Lawyer Prayagraj, DRT, Civil Litigation, Criminal Defense">
   <meta name="author" content="Adv. Suresh Kumar Pal">
 
   <meta property="og:title" content="Advocate Suresh Kumar Pal">
-  <meta property="og:description" content="Trusted legal expertise with integrity, precision, and unwavering commitment to justice.">
+  <meta property="og:description"
+    content="Trusted legal expertise with integrity, precision, and unwavering commitment to justice.">
   <meta property="og:type" content="website">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet">
 
   <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -33,9 +39,16 @@
       --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    html { scroll-behavior: smooth; font-size: 16px; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -48,9 +61,19 @@
     }
 
     /* ── TYPOGRAPHY ── */
-    h1, h2, h3, h4 { letter-spacing: -0.02em; font-weight: 600; }
-    p { font-weight: 400; line-height: 1.6; }
-    
+    h1,
+    h2,
+    h3,
+    h4 {
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+
+    p {
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
     .eyebrow {
       font-size: 0.75rem;
       font-weight: 600;
@@ -75,14 +98,21 @@
       font-weight: 400;
       text-wrap: balance;
     }
-    
-    .text-center { text-align: center; }
-    .text-center .section-subtitle { margin: 0 auto; }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-center .section-subtitle {
+      margin: 0 auto;
+    }
 
     /* ── NAVIGATION (FROSTED GLASS) ── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 64px;
       display: flex;
       align-items: center;
@@ -95,8 +125,11 @@
       z-index: 1000;
       transition: border-bottom 0.3s var(--ease);
     }
-    nav.scrolled { border-bottom: 1px solid var(--border); }
-    
+
+    nav.scrolled {
+      border-bottom: 1px solid var(--border);
+    }
+
     .nav-logo {
       font-size: 1.125rem;
       font-weight: 600;
@@ -104,11 +137,13 @@
       text-decoration: none;
       letter-spacing: -0.01em;
     }
-    
+
     .nav-links {
-      display: flex; gap: 2rem; list-style: none;
+      display: flex;
+      gap: 2rem;
+      list-style: none;
     }
-    
+
     .nav-links a {
       font-size: 0.875rem;
       color: var(--text-main);
@@ -118,6 +153,7 @@
       position: relative;
       padding-bottom: 4px;
     }
+
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -130,13 +166,24 @@
       transform-origin: bottom right;
       transition: transform 0.4s var(--ease);
     }
-    .nav-links a:hover { opacity: 1; }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
     .nav-links a:hover::after {
       transform: scaleX(1);
       transform-origin: bottom left;
     }
 
-    .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-main);
+    }
 
     /* ── HERO SECTION ── */
     .hero {
@@ -158,8 +205,10 @@
       max-width: 1000px;
       margin-bottom: 1.5rem;
     }
-    
-    .hero h1 span { color: var(--text-muted); }
+
+    .hero h1 span {
+      color: var(--text-muted);
+    }
 
     .hero p {
       font-size: clamp(1.25rem, 3vw, 1.75rem);
@@ -182,7 +231,7 @@
       transition: all 0.3s var(--ease);
       cursor: pointer;
     }
-    
+
     .btn-primary {
       background: var(--text-main);
       color: #fff;
@@ -190,26 +239,39 @@
       position: relative;
       overflow: hidden;
     }
+
     .btn-primary::before {
       content: '';
       position: absolute;
-      top: 0; left: -100%;
-      width: 50%; height: 100%;
-      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 100%);
       transform: skewX(-25deg);
       transition: left 0.6s var(--ease);
     }
+
     .btn-primary:hover {
       background: #424245;
       border-color: #424245;
       transform: scale(1.02);
     }
-    .btn-primary:hover::before { left: 150%; }
+
+    .btn-primary:hover::before {
+      left: 150%;
+    }
 
     /* ── LAYOUT CONTAINERS ── */
-    .section { padding: 8rem 5%; }
-    .container { max-width: 1200px; margin: 0 auto; }
-    
+    .section {
+      padding: 8rem 5%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -223,7 +285,10 @@
       color: var(--text-muted);
       margin-bottom: 1.5rem;
     }
-    .about-text p strong { color: var(--text-main); }
+
+    .about-text p strong {
+      color: var(--text-main);
+    }
 
     /* ── PRACTICE AREAS ── */
     .practice-grid {
@@ -237,14 +302,14 @@
       background: var(--card-bg);
       padding: 2.5rem;
       border-radius: 24px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
       transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
       border: 1px solid var(--border);
     }
 
     .practice-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
     }
 
     .practice-card h3 {
@@ -265,10 +330,12 @@
       padding-left: 1.25rem;
       transition: transform 0.4s var(--ease), color 0.4s var(--ease);
     }
+
     .practice-card:hover ul li {
       transform: translateX(6px);
       color: var(--text-main);
     }
+
     .practice-card ul li::before {
       content: '•';
       position: absolute;
@@ -277,6 +344,7 @@
       opacity: 0.3;
       transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
     }
+
     .practice-card:hover ul li::before {
       opacity: 0.8;
       transform: scale(1.2);
@@ -288,7 +356,7 @@
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-    
+
     .quote {
       font-size: clamp(1.5rem, 3vw, 2.25rem);
       line-height: 1.4;
@@ -298,10 +366,12 @@
       padding-left: 2rem;
       margin-top: 3rem;
     }
+
     .quote::before {
       content: '';
       position: absolute;
-      left: 0; top: 0;
+      left: 0;
+      top: 0;
       width: 4px;
       height: 100%;
       background: var(--text-main);
@@ -309,10 +379,15 @@
       transform: scaleY(0);
       transition: transform 1.2s var(--ease) 0.3s;
     }
-    .reveal.visible .quote::before { transform: scaleY(1); }
+
+    .reveal.visible .quote::before {
+      transform: scaleY(1);
+    }
 
     /* ── ARTICLES / INSIGHTS SECTION ── */
-    #insights { background: var(--bg-color); }
+    #insights {
+      background: var(--bg-color);
+    }
 
     .articles-header {
       display: flex;
@@ -337,6 +412,7 @@
       border-bottom: 1px solid transparent;
       transition: color 0.3s, border-color 0.3s;
     }
+
     .view-all-link:hover {
       color: var(--text-main);
       border-bottom-color: var(--text-main);
@@ -365,8 +441,8 @@
 
     .article-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-      border-color: rgba(0,0,0,0.14);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 0, 0, 0.14);
     }
 
     .article-tag {
@@ -429,6 +505,7 @@
       transform: translateX(-4px);
       transition: opacity 0.3s, transform 0.3s;
     }
+
     .article-card:hover .article-read-arrow {
       opacity: 1;
       transform: translateX(0);
@@ -455,11 +532,21 @@
       overflow: hidden;
       position: relative;
     }
-    
-    .contact-box h2 { color: #fff; margin-bottom: 0.5rem; }
-    .contact-box .section-subtitle { color: #a1a1a6; margin-bottom: 3rem; }
 
-    .contact-info-item { margin-bottom: 2rem; }
+    .contact-box h2 {
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-box .section-subtitle {
+      color: #a1a1a6;
+      margin-bottom: 3rem;
+    }
+
+    .contact-info-item {
+      margin-bottom: 2rem;
+    }
+
     .contact-info-item h4 {
       font-size: 0.875rem;
       text-transform: uppercase;
@@ -467,13 +554,18 @@
       color: #a1a1a6;
       margin-bottom: 0.5rem;
     }
-    .contact-info-item p, .contact-info-item a {
+
+    .contact-info-item p,
+    .contact-info-item a {
       font-size: 1.125rem;
       color: #fff;
       text-decoration: none;
       line-height: 1.5;
     }
-    .contact-info-item a:hover { text-decoration: underline; }
+
+    .contact-info-item a:hover {
+      text-decoration: underline;
+    }
 
     /* ── FOOTER & DISCLAIMER ── */
     footer {
@@ -490,8 +582,17 @@
       margin-bottom: 3rem;
     }
 
-    .disclaimer-box h4 { font-size: 0.875rem; margin-bottom: 1rem; color: var(--text-main); }
-    .disclaimer-box p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.6; }
+    .disclaimer-box h4 {
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .disclaimer-box p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
 
     .footer-bottom {
       display: flex;
@@ -510,32 +611,189 @@
       transition: opacity 1s var(--ease), transform 1s var(--ease);
       will-change: opacity, transform;
     }
+
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
+
+    .delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .delay-3 {
+      transition-delay: 0.3s;
+    }
 
     /* ── RESPONSIVE DESIGN ── */
     @media (max-width: 900px) {
-      .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
-      .contact-box { grid-template-columns: 1fr; padding: 3rem; }
-      .articles-header { flex-direction: column; align-items: flex-start; }
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .contact-box {
+        grid-template-columns: 1fr;
+        padding: 3rem;
+      }
+
+      .articles-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .section { padding: 5rem 5%; }
-      .hero p { font-size: 1.125rem; }
-      .quote { padding-left: 1rem; font-size: 1.25rem; }
-      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-      .article-grid { grid-template-columns: 1fr; }
+      .nav-links {
+        display: none;
+      }
+
+      .section {
+        padding: 5rem 5%;
+      }
+
+      .hero p {
+        font-size: 1.125rem;
+      }
+
+      .quote {
+        padding-left: 1rem;
+        font-size: 1.25rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .article-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── BCI DISCLAIMER MODAL ── */
+    #bci-disclaimer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s var(--ease), visibility 0.4s;
+      padding: 1rem;
+    }
+
+    #bci-disclaimer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .bci-modal {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 600px;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      transform: translateY(20px);
+      transition: transform 0.4s var(--ease);
+    }
+
+    #bci-disclaimer-overlay.active .bci-modal {
+      transform: translateY(0);
+    }
+
+    .bci-modal h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .bci-modal p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .bci-checkbox-wrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .bci-checkbox-wrapper input[type="checkbox"] {
+      margin-top: 0.25rem;
+      width: 1.1rem;
+      height: 1.1rem;
+      cursor: pointer;
+    }
+
+    .bci-checkbox-wrapper label {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .btn-bci-proceed {
+      width: 100%;
+      padding: 1rem;
+      background: var(--text-main);
+      color: #fff;
+      border: none;
+      border-radius: 980px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .btn-bci-proceed.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .btn-bci-proceed.active:hover {
+      background: #424245;
     }
   </style>
 </head>
+
 <body>
+
+  <div id="bci-disclaimer-overlay">
+    <div class="bci-modal">
+      <h2>Disclaimer</h2>
+      <p>The Bar Council of India does not permit advertisement or solicitation by advocates in any form or manner. By
+        accessing this website, you acknowledge and confirm that you are seeking information relating to Adv. Suresh
+        Kumar Pal of your own accord and that there has been no form of solicitation, advertisement, or inducement by
+        him or his members. The content of this website is for informational purposes only and should not be interpreted
+        as soliciting or rendering legal advice.</p>
+      <div class="bci-checkbox-wrapper">
+        <input type="checkbox" id="bci-accept-checkbox">
+        <label for="bci-accept-checkbox">I accept the above.</label>
+      </div>
+      <button id="bci-proceed-btn" class="btn-bci-proceed">Proceed to Website</button>
+    </div>
+  </div>
 
   <nav id="navbar">
     <a href="#" class="nav-logo">Adv. S.K. Pal</a>
@@ -551,7 +809,8 @@
   <header class="hero">
     <div class="reveal">
       <h1>Unwavering commitment<br><span>to justice.</span></h1>
-      <p>Delivering trusted legal expertise, strategic clarity, and dedicated representation across India's highest courts and tribunals.</p>
+      <p>Delivering trusted legal expertise, strategic clarity, and dedicated representation across India's highest
+        courts and tribunals.</p>
       <a href="#practice" class="btn btn-primary">Explore Practice Areas</a>
     </div>
   </header>
@@ -563,9 +822,13 @@
         <h2 class="section-title">Integrity. Precision.<br>Experience.</h2>
       </div>
       <div class="about-text reveal delay-1">
-        <p>I am <strong>Advocate Suresh Kumar Pal</strong>, enrolled with the Bar Council of India and the Bar Council of Uttar Pradesh.</p>
-        <p>With a dedicated legal practice, I consistently represent clients before the Hon'ble High Court of Judicature at Allahabad, the Debts Recovery Tribunal (DRT), and various other distinguished tribunals and forums across India.</p>
-        <p>Whether representing individuals, businesses, or institutions, I provide practical and strategic legal solutions tailored to the specific complexities of each matter.</p>
+        <p>I am <strong>Advocate Suresh Kumar Pal</strong>, enrolled with the Bar Council of India and the Bar Council
+          of Uttar Pradesh.</p>
+        <p>With a dedicated legal practice, I consistently represent clients before the Hon'ble High Court of Judicature
+          at Allahabad, the Debts Recovery Tribunal (DRT), and various other distinguished tribunals and forums across
+          India.</p>
+        <p>Whether representing individuals, businesses, or institutions, I provide practical and strategic legal
+          solutions tailored to the specific complexities of each matter.</p>
       </div>
     </div>
   </section>
@@ -575,7 +838,8 @@
       <div class="text-center reveal">
         <span class="eyebrow">Expertise</span>
         <h2 class="section-title">Core areas of practice.</h2>
-        <p class="section-subtitle">Comprehensive legal representation across civil, criminal, and corporate domains.</p>
+        <p class="section-subtitle">Comprehensive legal representation across civil, criminal, and corporate domains.
+        </p>
       </div>
 
       <div class="practice-grid">
@@ -590,7 +854,7 @@
             <li>Writs & Constitutional Law</li>
           </ul>
         </div>
-        
+
         <div class="practice-card reveal delay-2">
           <h3>Banking & Finance</h3>
           <ul>
@@ -659,11 +923,13 @@
       <div class="reveal">
         <span class="eyebrow">Philosophy</span>
         <h2 class="section-title">A foundation built on transparency.</h2>
-        <p class="section-subtitle">My practice relies on a client-focused approach that combines legal clarity with efficient, confidential representation.</p>
+        <p class="section-subtitle">My practice relies on a client-focused approach that combines legal clarity with
+          efficient, confidential representation.</p>
       </div>
       <div class="reveal delay-1">
         <div class="quote">
-          "I believe legal representation should be objective, unbiased, and grounded in a clear understanding of the client's rights. My work is driven by a responsibility to assist the courts in the pursuit of justice."
+          "I believe legal representation should be objective, unbiased, and grounded in a clear understanding of the
+          client's rights. My work is driven by a responsibility to assist the courts in the pursuit of justice."
         </div>
       </div>
     </div>
@@ -675,9 +941,10 @@
         <div>
           <h2>Get in Touch</h2>
           <p class="section-subtitle">Consultations are strictly confidential and available by appointment.</p>
-          <a href="tel:+919140434453" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: none;">Call +91-9140434453</a>
+          <a href="tel:+919140434453" class="btn btn-primary"
+            style="background: #fff; color: var(--text-main); border: none;">Call +91-9140434453</a>
         </div>
-        
+
         <div>
           <div class="contact-info-item">
             <h4>Email</h4>
@@ -700,9 +967,13 @@
     <div class="container">
       <div class="disclaimer-box reveal">
         <h4>Legal Disclaimer</h4>
-        <p>As per the rules of the Bar Council of India, advocates are not permitted to solicit work or advertise. By visiting this website, the user acknowledges that the information provided is solely available for informational purposes, voluntarily sought by the user, and constitutes neither solicitation nor advertising. No legal opinion is provided unless formally engaged, and all consultations remain confidential as per professional conduct rules.</p>
+        <p>As per the rules of the Bar Council of India, advocates are not permitted to solicit work or advertise. By
+          visiting this website, the user acknowledges that the information provided is solely available for
+          informational purposes, voluntarily sought by the user, and constitutes neither solicitation nor advertising.
+          No legal opinion is provided unless formally engaged, and all consultations remain confidential as per
+          professional conduct rules.</p>
       </div>
-      
+
       <div class="footer-bottom">
         <p>&copy; <span id="year"></span> Adv. Suresh Kumar Pal. All rights reserved.</p>
         <p>Prayagraj, Uttar Pradesh, India</p>
@@ -800,6 +1071,34 @@
         }
       });
     }
+
+    // ── BCI Disclaimer Modal Logic
+    const disclaimerOverlay = document.getElementById('bci-disclaimer-overlay');
+    const acceptCheckbox = document.getElementById('bci-accept-checkbox');
+    const proceedBtn = document.getElementById('bci-proceed-btn');
+
+    if (!localStorage.getItem('bciDisclaimerAccepted')) {
+      // Show modal and disable scrolling
+      document.body.style.overflow = 'hidden';
+      disclaimerOverlay.classList.add('active');
+    }
+
+    acceptCheckbox.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        proceedBtn.classList.add('active');
+      } else {
+        proceedBtn.classList.remove('active');
+      }
+    });
+
+    proceedBtn.addEventListener('click', () => {
+      if (acceptCheckbox.checked) {
+        localStorage.setItem('bciDisclaimerAccepted', 'true');
+        disclaimerOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
   </script>
 </body>
+
 </html>
