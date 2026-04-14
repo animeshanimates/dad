@@ -126,43 +126,25 @@
       align-items: center;
     }
 
-    .nav-icon {
-      color: var(--stone);
-      transition: all 0.3s var(--spring);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.5rem;
-      text-decoration: none;
-      -webkit-tap-highlight-color: transparent;
-      border-radius: 10px;
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.875rem; font-weight: 500; color: var(--stone);
+      text-decoration: none; margin-bottom: 2.5rem; transition: color 0.2s;
     }
-
-    .nav-icon:hover {
-      color: var(--text);
-      transform: scale(1.1);
-      background: rgba(0, 0, 0, 0.03);
-    }
+    .nav-back:hover { color: var(--text-main); }
     
-    html.dark-mode .nav-icon:hover {
-      background: rgba(255, 255, 255, 0.05);
+    .fab-btn {
+      position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px;
+      border-radius: 50%; background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;
+      z-index: 9999; border: 1px solid var(--border); cursor: pointer;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+      color: var(--ink);
     }
-
-    .nav-icon:active {
-      transform: scale(0.92);
-      transition: transform 0.1s ease-out;
-    }
-
-    /* Tooltip */
-    .nav-icon::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: -28px;
-      left: 50%;
-      transform: translateX(-50%) translateY(6px);
-      opacity: 0;
-      pointer-events: none;
+    .fab-btn:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+    .fab-btn:active { transform: scale(0.95); }
+    html.dark-mode .fab-btn { background: rgba(44, 44, 46, 0.8); color: #fff; border-color: rgba(255,255,255,0.1); }
       font-size: 0.6rem;
       font-weight: 600;
       letter-spacing: 0.08em;
@@ -231,7 +213,7 @@
     .share-trigger-btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: var(--white); border: 1px solid var(--border);
-      padding: 0.5rem 1rem; border-radius: 980px;
+      padding: 0.5rem 1rem; border-radius: 9999px;
       font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 600;
       color: var(--ink); cursor: pointer;
       transition: all 0.2s var(--ease), transform 0.35s var(--spring);
@@ -420,7 +402,7 @@
       padding: 0.6rem 1.25rem;
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 980px;
+      border-radius: 9999px;
       font-family: 'Inter', sans-serif;
       font-size: 0.9rem;
       font-weight: 600;
@@ -592,11 +574,11 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.6rem 1.75rem;
+      padding: 0.75rem 1.75rem;
       background: var(--ink);
       color: var(--bg);
       border: none;
-      border-radius: 980px;
+      border-radius: 9999px;
       font-family: 'Inter', sans-serif;
       font-size: 0.95rem;
       font-weight: 600;
@@ -782,27 +764,13 @@
 
   <nav id="navbar">
     <a href="index.html" class="nav-brand">S.K. PAL</a>
-    <ul class="nav-links">
-      <li><button id="theme-toggle" class="nav-icon" data-tooltip="Theme" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer;">
-        <svg id="theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        <svg id="theme-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-      </button></li>
-      <li><a href="index.html#practice" class="nav-icon" data-tooltip="Profile">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-      </a></li>
-      <li><a href="index.html#practice" class="nav-icon" data-tooltip="Practice Areas">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-      </a></li>
-      <li><a href="insights.html" class="nav-icon" data-tooltip="Insights">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-      </a></li>
-      <li><a href="index.html#approach" class="nav-icon" data-tooltip="My Approach">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
-      </a></li>
-    </ul>
   </nav>
 
   <div class="page-shell">
+    <a href="insights.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Articles
+    </a>
 
     <div class="state-box" id="loading-state">
       <div class="loading-ring"></div>
@@ -949,32 +917,7 @@
     const db = getFirestore(firebaseApp);
 
     
-    /* ── DARK MODE TOGGLE ────────────────────────────────────── */
-    const themeToggle = document.getElementById('theme-toggle');
-    const moonIcon = document.getElementById('theme-icon-moon');
-    const sunIcon = document.getElementById('theme-icon-sun');
-
-    function updateThemeIcons() {
-      if (document.documentElement.classList.contains('dark-mode')) {
-        moonIcon.style.display = 'none';
-        sunIcon.style.display = 'block';
-      } else {
-        moonIcon.style.display = 'block';
-        sunIcon.style.display = 'none';
-      }
-    }
-    
-    // Initial icon state
-    updateThemeIcons();
-
-    themeToggle.addEventListener('click', () => {
-      triggerHaptic('light');
-      
-      document.documentElement.classList.toggle('dark-mode');
-      const isDark = document.documentElement.classList.contains('dark-mode');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      updateThemeIcons();
-    });
+    /* ── DARK MODE TOGGLE (GLOBAL FAB) ────────────────────────────────────── */
 
 /* ── FETCH & RENDER ──────────────────────────────────────── */
     const urlParams = new URLSearchParams(window.location.search);
@@ -1542,6 +1485,44 @@
         }
       });
     }
+
+    // ── Global FAB Theme Logic ──
+    document.addEventListener('DOMContentLoaded', () => {
+      const globalThemeToggle = document.getElementById('global-theme-toggle');
+      const fabMoon = document.getElementById('fab-moon');
+      const fabSun = document.getElementById('fab-sun');
+
+      function setGlobalTheme(isDark) {
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          if(fabMoon && fabSun) { fabMoon.style.display = 'none'; fabSun.style.display = 'block'; }
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          if(fabMoon && fabSun) { fabMoon.style.display = 'block'; fabSun.style.display = 'none'; }
+          localStorage.setItem('theme', 'light');
+        }
+      }
+
+      if (globalThemeToggle) {
+        // Initial setup on toggle icons based on current html class
+        setGlobalTheme(document.documentElement.classList.contains('dark-mode'));
+
+        globalThemeToggle.addEventListener('click', () => {
+          const isDark = document.documentElement.classList.contains('dark-mode');
+          setGlobalTheme(!isDark);
+          if (typeof triggerHaptic === 'function') triggerHaptic('light');
+          else if (navigator.vibrate) navigator.vibrate(10);
+        });
+      }
+    });
+
   </script>
+
+  <!-- Global FAB -->
+  <button id="global-theme-toggle" class="fab-btn" aria-label="Toggle Dark Mode">
+    <svg id="fab-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <svg id="fab-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+  </button>
 </body>
 </html>

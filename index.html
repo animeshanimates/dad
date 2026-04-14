@@ -139,6 +139,8 @@
       letter-spacing: 0.05em;
       transition: opacity 0.3s var(--ease);
       -webkit-tap-highlight-color: transparent;
+      position: relative;
+      z-index: 1001; /* Above mobile menu overlay */
     }
 
     .nav-brand:hover {
@@ -147,25 +149,25 @@
 
     .nav-links {
       display: flex;
-      gap: 0.25rem;
+      gap: 2rem;
       list-style: none;
       align-items: center;
     }
-
-    .nav-icon {
-      color: var(--text-muted);
-      transition: all 0.3s var(--spring);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.5rem;
+    
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-main);
       text-decoration: none;
-      -webkit-tap-highlight-color: transparent;
-      border-radius: 10px;
+      opacity: 0.8;
+      transition: opacity 0.3s var(--ease), transform 0.2s var(--ease);
+      padding-bottom: 2px;
     }
-
-    .nav-icon:hover {
+    
+    .nav-links a:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
       color: var(--text-main);
       transform: scale(1.1);
       background: rgba(0, 0, 0, 0.03);
@@ -207,9 +209,78 @@
       display: none;
       background: none;
       border: none;
-      font-size: 1.5rem;
+      padding: 0.5rem;
       cursor: pointer;
       color: var(--text-main);
+      z-index: 1001;
+    }
+    
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100vh;
+      background: rgba(251, 251, 253, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 999;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s var(--ease);
+    }
+    
+    .mobile-menu-overlay.active {
+      opacity: 1; pointer-events: auto;
+    }
+    
+    .mobile-menu-content {
+      display: flex; flex-direction: column; gap: 2rem; text-align: center;
+      transform: translateY(20px); transition: transform 0.4s var(--spring);
+    }
+    
+    .mobile-menu-overlay.active .mobile-menu-content {
+      transform: translateY(0);
+    }
+    
+    .mobile-link {
+      font-size: 1.5rem; font-weight: 600; color: var(--text-main); text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+    }
+    
+    /* ── GLOBAL FAB ── */
+    .fab-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.3s var(--spring), box-shadow 0.3s var(--ease);
+      color: var(--text-main);
+    }
+    .fab-btn:hover {
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+    .fab-btn:active {
+      transform: scale(0.95);
+    }
+    html.dark-mode .fab-btn {
+      background: rgba(44, 44, 46, 0.8);
+      color: #fff;
+      border-color: rgba(255,255,255,0.1);
     }
 
     /* ── HERO SECTION ── */
@@ -250,8 +321,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 1rem 2rem;
-      border-radius: 980px;
+      padding: 0.75rem 1.75rem;
+      border-radius: 9999px;
       font-size: 1rem;
       font-weight: 500;
       text-decoration: none;
@@ -260,8 +331,12 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
     .btn:active {
-      transform: scale(0.96);
+      transform: scale(0.98);
       transition: transform 0.1s ease-out;
     }
 
@@ -521,9 +596,7 @@
       margin-bottom: 1.5rem;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      box-orient: vertical;
       -webkit-line-clamp: 3;
-      line-clamp: 3;
       overflow: hidden;
     }
 
@@ -877,20 +950,23 @@
   <nav id="navbar">
     <a href="index.html" class="nav-brand">S.K. PAL</a>
     <ul class="nav-links">
-      <li><a href="#practice" class="nav-icon" data-tooltip="Profile">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-      </a></li>
-      <li><a href="#practice" class="nav-icon" data-tooltip="Practice Areas">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-      </a></li>
-      <li><a href="#insights" class="nav-icon" data-tooltip="Insights">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-      </a></li>
-      <li><a href="#approach" class="nav-icon" data-tooltip="My Approach">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
-      </a></li>
+      <li><a href="#practice">Practice Areas</a></li>
+      <li><a href="#insights">Insights</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="hamburger-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="close-icon" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
   </nav>
+
+  <div class="mobile-menu-overlay" id="mobile-menu">
+    <div class="mobile-menu-content">
+      <a href="#practice" class="mobile-link">Practice Areas</a>
+      <a href="#insights" class="mobile-link">Insights</a>
+      <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+  </div>
 
   <header class="hero">
     <div>
@@ -1004,7 +1080,7 @@
 
 
   <!-- ── CONNECT ICONS ── -->
-  <section class="section reveal-on-scroll" style="padding: 4rem 5%; text-align: center;">
+  <section id="contact" class="section reveal-on-scroll" style="padding: 4rem 5%; text-align: center;">
     <span class="eyebrow" style="margin-bottom: 1.5rem;">Connect</span>
     <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem;">
       <a href="tel:+919140434453" aria-label="Call" class="connect-icon">
@@ -1178,7 +1254,76 @@
     proceedBtn.addEventListener('click', () => {
       if (acceptCheckbox.checked) triggerHaptic('success');
     });
+
+    // ── Mobile Menu & Theme Logic ──
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile Menu
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const closeIcon = document.getElementById('close-icon');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+
+      if(mobileBtn && mobileMenu) {
+        function toggleMenu() {
+          const isActive = mobileMenu.classList.contains('active');
+          mobileMenu.classList.toggle('active');
+          if (isActive) {
+            hamburgerIcon.style.display = 'block';
+            closeIcon.style.display = 'none';
+            document.body.style.overflow = '';
+          } else {
+            hamburgerIcon.style.display = 'none';
+            closeIcon.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+          }
+        }
+        mobileBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', () => {
+          if (mobileMenu.classList.contains('active')) toggleMenu();
+        }));
+      }
+
+      // Theme
+      const themeToggle = document.getElementById('global-theme-toggle');
+      const moonIcon = document.getElementById('fab-moon');
+      const sunIcon = document.getElementById('fab-sun');
+
+      function setTheme(isDark) {
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          if(moonIcon && sunIcon) { moonIcon.style.display = 'none'; sunIcon.style.display = 'block'; }
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          if(moonIcon && sunIcon) { moonIcon.style.display = 'block'; sunIcon.style.display = 'none'; }
+          localStorage.setItem('theme', 'light');
+        }
+      }
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        setTheme(true);
+      } else {
+        setTheme(false);
+      }
+
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          const isDark = document.documentElement.classList.contains('dark-mode');
+          setTheme(!isDark);
+          if (typeof triggerHaptic === 'function') triggerHaptic('light');
+          else if (navigator.vibrate) navigator.vibrate(10);
+        });
+      }
+    });
   </script>
+
+  <!-- Global FAB -->
+  <button id="global-theme-toggle" class="fab-btn" aria-label="Toggle Dark Mode">
+    <svg id="fab-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <svg id="fab-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+  </button>
 </body>
 
 </html>
