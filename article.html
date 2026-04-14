@@ -10,6 +10,13 @@
     gtag('config', 'G-RV8HS48BCT');
   </script>
 
+  <script>
+    // Prevent flash of light mode by checking theme synchronously
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark-mode');
+    }
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Article | Adv. Suresh Kumar Pal</title>
@@ -43,6 +50,19 @@
       --nav-h:    64px;
     }
 
+    html.dark-mode {
+      --bg: #121212;
+      --paper: #121212;
+      --white: #1e1e1e;
+      --silver: #2a2a2a;
+      --ash: #333333;
+      --stone: #aaaaaa;
+      --charcoal: #dddddd;
+      --ink: #e0e0e0;
+      --black: #ffffff;
+      --border: #333333;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
 
@@ -53,6 +73,7 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     /* ────────────────────────────────────────────────────────────
@@ -450,19 +471,19 @@
 
     .comment-textarea {
       width: 100%;
-      min-height: 56px;
+      min-height: 64px;
       max-height: 200px;
-      padding: 1rem;
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid var(--border);
+      padding: 1.25rem;
+      background: var(--silver);
+      border: 1px solid var(--border);
+      border-radius: 12px;
       font-family: 'Inter', sans-serif;
       font-size: 1rem;
       color: var(--ink);
       resize: none;
       overflow: hidden;
       outline: none;
-      transition: border-color 0.3s var(--ease);
+      transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
       line-height: 1.6;
     }
 
@@ -472,7 +493,12 @@
     }
 
     .comment-textarea:focus {
-      border-bottom-color: var(--ink);
+      border-color: var(--ink);
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+    }
+    
+    html.dark-mode .comment-textarea:focus {
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
     }
 
     .comment-form-row {
@@ -490,19 +516,24 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.6rem 1.5rem;
+      padding: 0.6rem 1.75rem;
       background: var(--ink);
-      color: var(--white);
+      color: var(--bg);
       border: none;
       border-radius: 980px;
       font-family: 'Inter', sans-serif;
-      font-size: 0.875rem;
+      font-size: 0.95rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.25s var(--ease), transform 0.35s var(--spring);
       -webkit-tap-highlight-color: transparent;
       opacity: 0.4;
       pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    html.dark-mode .post-comment-btn {
+      box-shadow: none;
     }
 
     .post-comment-btn.active {
@@ -512,27 +543,32 @@
 
     .post-comment-btn.active:hover {
       background: var(--charcoal);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
     }
 
     .post-comment-btn.active:active {
       transform: scale(0.96);
       transition: transform 0.1s ease-out;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     /* Comment Cards */
     .comments-list {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .comment-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.25rem 1.5rem;
+      background: transparent;
+      border-bottom: 1px solid var(--border);
+      padding: 0 0 1.5rem 0;
       transition: opacity 0.5s var(--ease), transform 0.5s var(--spring);
+    }
+    
+    .comment-card:last-child {
+      border-bottom: none;
     }
 
     .comment-card.entering {
@@ -542,41 +578,26 @@
 
     .comment-card-header {
       display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .comment-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--ink);
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      font-weight: 700;
-      flex-shrink: 0;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
     }
 
     .comment-author {
-      font-size: 0.875rem;
-      font-weight: 600;
+      font-size: 0.95rem;
+      font-weight: 700;
       color: var(--ink);
     }
 
     .comment-date {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: var(--stone);
-      margin-left: auto;
     }
 
     .comment-body {
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: var(--charcoal);
-      line-height: 1.65;
+      line-height: 1.6;
       white-space: pre-wrap;
       word-break: break-word;
     }
