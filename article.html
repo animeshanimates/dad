@@ -747,7 +747,7 @@
         <div class="comment-form" id="comment-form">
           <textarea class="comment-textarea" id="comment-input" placeholder="Share your thoughts…" rows="1"></textarea>
           <div class="comment-form-row">
-            <span class="comment-form-hint">Comments are stored locally on your device.</span>
+            <span class="comment-form-hint">Posting as Guest Reader</span>
             <button class="post-comment-btn" id="post-comment-btn" type="button">Post</button>
           </div>
         </div>
@@ -796,7 +796,28 @@
     </div>
   </div>
 
-  <script>
+  <script type="module">
+    // ── Firebase Modular SDK (v10) ──────────────────────────────
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import {
+      getFirestore, collection, addDoc, getDocs,
+      query, where, doc, updateDoc, increment,
+      setDoc, getDoc
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBfc91GFE3xx6_DBtMhSuKkewuKEEPGMMU",
+      authDomain: "sk-pal-legal.firebaseapp.com",
+      projectId: "sk-pal-legal",
+      storageBucket: "sk-pal-legal.firebasestorage.app",
+      messagingSenderId: "317619689287",
+      appId: "1:317619689287:web:a79218398663c0e6865e62",
+      measurementId: "G-RV8HS48BCT"
+    };
+
+    const firebaseApp = initializeApp(firebaseConfig);
+    const db = getFirestore(firebaseApp);
+
     
 /* ── FETCH & RENDER ──────────────────────────────────────── */
     const urlParams = new URLSearchParams(window.location.search);
@@ -1139,13 +1160,9 @@
     }
 
     /* ══════════════════════════════════════════════════════════════
-       ENGAGEMENT: LIKES + COMMENTS (Zero-Backend / localStorage)
+       ENGAGEMENT: LIKES + COMMENTS (Firebase Firestore)
     ══════════════════════════════════════════════════════════════ */
-    function initEngagement(articleId) {
-      const likeKey    = `article_${articleId}_likes`;
-      const likedKey   = `article_${articleId}_liked`;
-      const commentKey = `article_${articleId}_comments`;
-
+    async function initEngagement(articleId) {
       // ── DOM refs ──
       const likeBtn      = document.getElementById('like-btn');
       const likeCountEl  = document.getElementById('like-count');
@@ -1154,85 +1171,21 @@
       const commentsList = document.getElementById('comments-list');
       const countBadge   = document.getElementById('comment-count-badge');
 
-      // ─────────────────────────────────────────────────────────
-      // LIKES
-      // ─────────────────────────────────────────────────────────
-      let likes  = parseInt(localStorage.getItem(likeKey) || '0', 10);
-      let liked  = localStorage.getItem(likedKey) === 'true';
+      // ── Firestore refs ──
+      const articleRef = doc(db, 'articles', articleId);
 
-      function renderLikes() {
-        likeCountEl.textContent = likes;
-        likeBtn.classList.toggle('liked', liked);
-      }
-      renderLikes();
-
-      likeBtn.addEventListener('click', () => {
-        if (liked) {
-          // Unlike
-          likes = Math.max(0, likes - 1);
-          liked = false;
-        } else {
-          // Like with pop animation
-          likes++;
-          liked = true;
-          likeBtn.classList.add('pop');
-          setTimeout(() => likeBtn.classList.remove('pop'), 400);
-          triggerHaptic('success');
-        }
-        localStorage.setItem(likeKey, likes);
-        localStorage.setItem(likedKey, liked);
-        renderLikes();
-      });
+      // ── Local UI flag to prevent duplicate likes per browser ──
+      const likedKey = `fb_liked_${articleId}`;
+      let liked = localStorage.getItem(likedKey) === 'true';
 
       // ─────────────────────────────────────────────────────────
-      // COMMENT TEXTAREA — auto-expand
+      // HELPERS
       // ─────────────────────────────────────────────────────────
-      commentInput.addEventListener('input', () => {
-        // Auto-grow textarea
-        commentInput.style.height = 'auto';
-        commentInput.style.height = Math.min(commentInput.scrollHeight, 200) + 'px';
-
-        // Toggle post button
-        const hasText = commentInput.value.trim().length > 0;
-        postBtn.classList.toggle('active', hasText);
-      });
-
-      // ─────────────────────────────────────────────────────────
-      // COMMENTS — load, save, render
-      // ─────────────────────────────────────────────────────────
-      function getComments() {
-        try {
-          return JSON.parse(localStorage.getItem(commentKey) || '[]');
-        } catch { return []; }
-      }
-
-      function saveComments(arr) {
-        localStorage.setItem(commentKey, JSON.stringify(arr));
-      }
-
       function formatDate(iso) {
         const d = new Date(iso);
         return d.toLocaleDateString('en-IN', {
           day: 'numeric', month: 'short', year: 'numeric'
         });
-      }
-
-      function createCommentEl(comment, animate) {
-        const card = document.createElement('div');
-        card.className = 'comment-card' + (animate ? ' entering' : '');
-
-        const initials = comment.name.split(' ').map(n => n[0]).join('').toUpperCase();
-
-        card.innerHTML = `
-          <div class="comment-card-header">
-            <div class="comment-avatar">${initials}</div>
-            <span class="comment-author">${comment.name}</span>
-            <span class="comment-date">${formatDate(comment.date)}</span>
-          </div>
-          <div class="comment-body">${escapeHTML(comment.text)}</div>
-        `;
-
-        return card;
       }
 
       function escapeHTML(str) {
@@ -1241,10 +1194,62 @@
         return div.innerHTML;
       }
 
-      function renderComments() {
-        const comments = getComments();
-        commentsList.innerHTML = '';
+      function createCommentEl(comment, animate) {
+        const card = document.createElement('div');
+        card.className = 'comment-card' + (animate ? ' entering' : '');
+        const initials = comment.name.split(' ').map(n => n[0]).join('').toUpperCase();
+        card.innerHTML = `
+          <div class="comment-card-header">
+            <div class="comment-avatar">${initials}</div>
+            <span class="comment-author">${comment.name}</span>
+            <span class="comment-date">${formatDate(comment.date)}</span>
+          </div>
+          <div class="comment-body">${escapeHTML(comment.text)}</div>
+        `;
+        return card;
+      }
+
+      // ─────────────────────────────────────────────────────────
+      // FETCH LIKES FROM FIRESTORE
+      // ─────────────────────────────────────────────────────────
+      try {
+        const articleSnap = await getDoc(articleRef);
+        if (articleSnap.exists()) {
+          likeCountEl.textContent = articleSnap.data().likes || 0;
+        } else {
+          // Create the article document with 0 likes
+          await setDoc(articleRef, { likes: 0 });
+          likeCountEl.textContent = '0';
+        }
+        likeBtn.classList.toggle('liked', liked);
+      } catch (err) {
+        console.error('Firestore — failed to fetch likes:', err);
+        likeCountEl.textContent = '—';
+      }
+
+      // ─────────────────────────────────────────────────────────
+      // FETCH COMMENTS FROM FIRESTORE
+      // ─────────────────────────────────────────────────────────
+      try {
+        const commentsQuery = query(
+          collection(db, 'comments'),
+          where('article_id', '==', articleId)
+        );
+        const snapshot = await getDocs(commentsQuery);
+        const comments = [];
+        snapshot.forEach(d => {
+          comments.push({ id: d.id, ...d.data() });
+        });
+
+        // Sort newest-first by timestamp (client-side)
+        comments.sort((a, b) => {
+          const ta = a.timestamp?.toDate ? a.timestamp.toDate() : new Date(a.timestamp);
+          const tb = b.timestamp?.toDate ? b.timestamp.toDate() : new Date(b.timestamp);
+          return tb - ta;
+        });
+
         countBadge.textContent = comments.length;
+        commentsList.innerHTML = '';
 
         if (comments.length === 0) {
           commentsList.innerHTML = `
@@ -1255,54 +1260,111 @@
               Be the first to share your thoughts.
             </div>
           `;
-          return;
+        } else {
+          comments.forEach(c => {
+            const ts = c.timestamp?.toDate ? c.timestamp.toDate() : new Date(c.timestamp);
+            commentsList.appendChild(createCommentEl({
+              name: c.guest_name || 'Guest Reader',
+              text: c.comment_text,
+              date: ts.toISOString()
+            }, false));
+          });
         }
-
-        // Render newest first
-        comments.forEach(c => {
-          commentsList.appendChild(createCommentEl(c, false));
-        });
+      } catch (err) {
+        console.error('Firestore — failed to fetch comments:', err);
+        commentsList.innerHTML = '<p style="text-align:center;color:var(--stone);padding:2rem 1rem;">Comments unavailable at this time.</p>';
       }
 
-      // Initial render
-      renderComments();
+      // ─────────────────────────────────────────────────────────
+      // LIKE BUTTON
+      // ─────────────────────────────────────────────────────────
+      likeBtn.addEventListener('click', async () => {
+        if (liked) return; // Already liked from this browser
 
-      // ── POST COMMENT ──
-      postBtn.addEventListener('click', () => {
+        // Optimistic UI update
+        liked = true;
+        localStorage.setItem(likedKey, 'true');
+        likeBtn.classList.add('liked', 'pop');
+        setTimeout(() => likeBtn.classList.remove('pop'), 400);
+
+        try {
+          await updateDoc(articleRef, { likes: increment(1) });
+          const snap = await getDoc(articleRef);
+          if (snap.exists()) {
+            likeCountEl.textContent = snap.data().likes || 0;
+          }
+          triggerHaptic('success');
+        } catch (err) {
+          console.error('Firestore — failed to like:', err);
+          // Revert optimistic UI on failure
+          liked = false;
+          localStorage.removeItem(likedKey);
+          likeBtn.classList.remove('liked');
+        }
+      });
+
+      // ─────────────────────────────────────────────────────────
+      // COMMENT TEXTAREA — auto-expand
+      // ─────────────────────────────────────────────────────────
+      commentInput.addEventListener('input', () => {
+        commentInput.style.height = 'auto';
+        commentInput.style.height = Math.min(commentInput.scrollHeight, 200) + 'px';
+        const hasText = commentInput.value.trim().length > 0;
+        postBtn.classList.toggle('active', hasText);
+      });
+
+      // ─────────────────────────────────────────────────────────
+      // POST COMMENT
+      // ─────────────────────────────────────────────────────────
+      postBtn.addEventListener('click', async () => {
         const text = commentInput.value.trim();
         if (!text) return;
 
-        triggerHaptic('medium');
-
-        const comment = {
-          name: 'Guest User',
-          text: text,
-          date: new Date().toISOString()
-        };
-
-        const comments = getComments();
-        comments.unshift(comment); // newest first
-        saveComments(comments);
-
-        // Clear input
-        commentInput.value = '';
-        commentInput.style.height = 'auto';
+        // Disable button during submission
         postBtn.classList.remove('active');
+        postBtn.textContent = 'Posting…';
 
-        // Animate new comment in
-        countBadge.textContent = comments.length;
+        try {
+          await addDoc(collection(db, 'comments'), {
+            article_id: articleId,
+            guest_name: 'Guest Reader',
+            comment_text: text,
+            timestamp: new Date()
+          });
 
-        // Remove empty state if present
-        const empty = commentsList.querySelector('.no-comments');
-        if (empty) empty.remove();
+          triggerHaptic('medium');
 
-        const card = createCommentEl(comment, true);
-        commentsList.prepend(card);
+          // Clear input
+          commentInput.value = '';
+          commentInput.style.height = 'auto';
+          postBtn.textContent = 'Post';
 
-        // Trigger slide-in animation on next frame
-        setTimeout(() => {
-          card.classList.remove('entering');
-        }, 30);
+          // Update badge count
+          const currentCount = parseInt(countBadge.textContent || '0', 10);
+          countBadge.textContent = currentCount + 1;
+
+          // Remove empty state if present
+          const empty = commentsList.querySelector('.no-comments');
+          if (empty) empty.remove();
+
+          // Prepend new comment with slide-in animation
+          const card = createCommentEl({
+            name: 'Guest Reader',
+            text: text,
+            date: new Date().toISOString()
+          }, true);
+          commentsList.prepend(card);
+
+          // Trigger animation on next frame
+          setTimeout(() => {
+            card.classList.remove('entering');
+          }, 30);
+
+        } catch (err) {
+          console.error('Firestore — failed to post comment:', err);
+          postBtn.classList.add('active');
+          postBtn.textContent = 'Post';
+        }
       });
     }
   </script>
