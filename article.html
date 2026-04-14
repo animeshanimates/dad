@@ -105,18 +105,81 @@
       border-bottom: 1px solid var(--border);
       z-index: 1000;
     }
-    .nav-logo {
-      font-size: 1.125rem; font-weight: 600;
-      color: var(--text); text-decoration: none; letter-spacing: -0.01em;
+    .nav-brand {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: opacity 0.3s var(--ease);
+      -webkit-tap-highlight-color: transparent;
     }
-    .nav-back {
-      display: flex; align-items: center; gap: 0.4rem;
-      font-size: 0.875rem; font-weight: 500;
-      color: var(--stone); text-decoration: none;
-      transition: color 0.2s;
+
+    .nav-brand:hover {
+      opacity: 0.8;
     }
-    .nav-back:hover { color: var(--ink); }
-    .nav-back svg { width: 16px; height: 16px; }
+
+    .nav-links {
+      display: flex;
+      gap: 0.25rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-icon {
+      color: var(--stone);
+      transition: all 0.3s var(--spring);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      border-radius: 10px;
+    }
+
+    .nav-icon:hover {
+      color: var(--text);
+      transform: scale(1.1);
+      background: rgba(0, 0, 0, 0.03);
+    }
+    
+    html.dark-mode .nav-icon:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-icon:active {
+      transform: scale(0.92);
+      transition: transform 0.1s ease-out;
+    }
+
+    /* Tooltip */
+    .nav-icon::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: -28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      opacity: 0;
+      pointer-events: none;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--text);
+      padding: 3px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+      z-index: 10;
+    }
+
+    .nav-icon:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
 
     /* ────────────────────────────────────────────────────────────
        PAGE SHELL
@@ -717,18 +780,26 @@
 
   <div id="progress-bar"></div>
 
-  <nav>
-    <a href="/" class="nav-logo">Adv. S.K. Pal</a>
-    <div style="display: flex; align-items: center; gap: 1.25rem;">
-      <button id="theme-toggle" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer; color:var(--ink); padding:0; display:flex; align-items:center; transition: transform 0.2s;">
+  <nav id="navbar">
+    <a href="index.html" class="nav-brand">S.K. PAL</a>
+    <ul class="nav-links">
+      <li><button id="theme-toggle" class="nav-icon" data-tooltip="Theme" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer;">
         <svg id="theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         <svg id="theme-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-      </button>
-      <a href="insights.html" class="nav-back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        All Articles
-      </a>
-    </div>
+      </button></li>
+      <li><a href="index.html#practice" class="nav-icon" data-tooltip="Profile">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </a></li>
+      <li><a href="index.html#practice" class="nav-icon" data-tooltip="Practice Areas">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+      </a></li>
+      <li><a href="insights.html" class="nav-icon" data-tooltip="Insights">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+      </a></li>
+      <li><a href="index.html#approach" class="nav-icon" data-tooltip="My Approach">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+      </a></li>
+    </ul>
   </nav>
 
   <div class="page-shell">
