@@ -651,42 +651,32 @@
       color: var(--text-muted);
     }
 
-    /* ── ANIMATIONS ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s var(--ease), transform 1s var(--ease);
-      will-change: opacity, transform;
+    /* ── SCROLL REVEAL (CSS VIEW TIMELINES) ── */
+    section, header, footer {
+      view-timeline-name: --section-reveal;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes reveal {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
 
-    /* Cinematic scroll reveal — Apple-style exponential easing */
-    .reveal-up {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
-    }
+      .reveal-on-scroll {
+        opacity: 0;
+        animation: reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-timeline: --section-reveal;
+        animation-range: entry 5% cover 25%;
+      }
 
-    .reveal-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .delay-1 {
-      transition-delay: 0.1s;
-    }
-
-    .delay-2 {
-      transition-delay: 0.2s;
-    }
-
-    .delay-3 {
-      transition-delay: 0.3s;
+      /* Hero Section - Immediate on load */
+      header.hero .reveal-on-scroll {
+        animation-timeline: auto; /* not scroll-driven */
+        animation-range: normal;
+      }
+      
+      header.hero h1.reveal-on-scroll { animation-delay: 0s; }
+      header.hero p.reveal-on-scroll { animation-delay: 0.1s; }
     }
 
     /* ── CONNECT ICONS ── */
@@ -903,9 +893,9 @@
   </nav>
 
   <header class="hero">
-    <div class="reveal">
-      <h1>Advocate<br><span>Suresh Kumar Pal</span></h1>
-      <p>Practicing before the Hon'ble High Court of Judicature at Allahabad.</p>
+    <div>
+      <h1 class="reveal-on-scroll">Advocate<br><span>Suresh Kumar Pal</span></h1>
+      <p class="reveal-on-scroll">Practicing before the Hon'ble High Court of Judicature at Allahabad.</p>
     </div>
   </header>
 
@@ -913,7 +903,7 @@
 
   <section id="practice" class="section" style="background: var(--bg-color);">
     <div class="container">
-      <div class="text-center reveal-up">
+      <div class="text-center reveal-on-scroll">
         <span class="eyebrow">Expertise</span>
         <h2 class="section-title">Core areas of practice.</h2>
         <p class="section-subtitle">Comprehensive legal representation across civil, criminal, and corporate domains.
@@ -921,7 +911,7 @@
       </div>
 
       <div class="practice-grid">
-        <div class="practice-card reveal-up" style="transition-delay: 0.1s;">
+        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.1s;">
           <h3>Litigation & Dispute Resolution</h3>
           <ul>
             <li>Civil Disputes, Property & Contracts</li>
@@ -933,7 +923,7 @@
           </ul>
         </div>
 
-        <div class="practice-card reveal-up" style="transition-delay: 0.2s;">
+        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.2s;">
           <h3>Banking & Finance</h3>
           <ul>
             <li>DRT, DRAT & SARFAESI matters</li>
@@ -944,7 +934,7 @@
           </ul>
         </div>
 
-        <div class="practice-card reveal-up" style="transition-delay: 0.3s;">
+        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.3s;">
           <h3>Regulatory & Enforcement</h3>
           <ul>
             <li>Prevention of Corruption Act</li>
@@ -954,7 +944,7 @@
           </ul>
         </div>
 
-        <div class="practice-card reveal-up" style="transition-delay: 0.4s;">
+        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.4s;">
           <h3>Tribunals & Administration</h3>
           <ul>
             <li>CAT Matters (Service Law)</li>
@@ -964,7 +954,7 @@
           </ul>
         </div>
 
-        <div class="practice-card reveal-up" style="transition-delay: 0.5s;">
+        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.5s;">
           <h3>Taxation Law</h3>
           <ul>
             <li>Direct & Indirect Tax advisory</li>
@@ -979,7 +969,7 @@
   <!-- ── INSIGHTS / ARTICLES SECTION ── -->
   <section id="insights" class="section">
     <div class="container">
-      <div class="articles-header reveal-up">
+      <div class="articles-header reveal-on-scroll">
         <div>
           <span class="eyebrow">Insights & Updates</span>
           <h2 class="section-title" style="margin-bottom: 0;">Legal commentary<br>and latest rulings.</h2>
@@ -998,12 +988,12 @@
 
   <section id="approach" class="section approach-bg">
     <div class="container grid-2">
-      <div class="reveal-up">
+      <div class="reveal-on-scroll">
         <span class="eyebrow">Philosophy</span>
         <h2 class="section-title">A practice built on transparency.</h2>
         <p class="section-subtitle">My professional approach is grounded in legal clarity, procedural diligence, and strict client confidentiality.</p>
       </div>
-      <div class="reveal-up" style="transition-delay: 0.15s;">
+      <div class="reveal-on-scroll" style="animation-delay: 0.15s;">
         <div class="quote">
           "I believe legal representation must be objective, unbiased, and strictly adhere to statutory and constitutional rights. My primary duty is to assist the Hon'ble Courts in the administration and pursuit of justice."
         </div>
@@ -1014,7 +1004,7 @@
 
 
   <!-- ── CONNECT ICONS ── -->
-  <section class="section reveal-up" style="padding: 4rem 5%; text-align: center;">
+  <section class="section reveal-on-scroll" style="padding: 4rem 5%; text-align: center;">
     <span class="eyebrow" style="margin-bottom: 1.5rem;">Connect</span>
     <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem;">
       <a href="tel:+919140434453" aria-label="Call" class="connect-icon">
@@ -1037,7 +1027,7 @@
 
   <footer>
     <div class="container">
-      <div class="disclaimer-box reveal-up">
+      <div class="disclaimer-box reveal-on-scroll">
         <h4>Legal Disclaimer</h4>
         <p>As per Bar Council of India Rules, advocates are not permitted to advertise or solicit work in any form. By accessing this website, the user acknowledges that they are visiting the website voluntarily and seeking information of their own accord. It is clarified that there has been no solicitation, advertisement, or inducement by Adv. Suresh Kumar Pal. The content provided is for informational purposes only and should not be interpreted as rendering legal advice. No lawyer-client relationship is created by accessing or interacting with this website.</p>
       </div>
@@ -1059,38 +1049,16 @@
       navbar.classList.toggle('scrolled', window.scrollY > 50);
     }, { passive: true });
 
-    // ── Intersection Observer for scroll animations
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { root: null, threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-    revealElements.forEach(el => revealObserver.observe(el));
-
-    // ── Cinematic .reveal-up observer (Apple-style)
-    const revealUpElements = document.querySelectorAll('.reveal-up');
-    const revealUpObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { root: null, threshold: 0, rootMargin: "0px 0px -10% 0px" });
-    revealUpElements.forEach(el => revealUpObserver.observe(el));
+    // Scroll animations now handled exclusively by CSS View Timelines.
 
     // ── Hero Parallax & Blur effect
-    const heroText = document.querySelector('.hero .reveal');
+    const heroContent = document.querySelector('.hero div');
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
-      if (scrollY < 600 && heroText) {
-        heroText.style.transform = `translateY(${scrollY * 0.15}px)`;
-        heroText.style.opacity = 1 - (scrollY / 400);
-        heroText.style.filter = `blur(${scrollY * 0.015}px)`;
+      if (scrollY < 600 && heroContent) {
+        heroContent.style.transform = `translateY(${scrollY * 0.15}px)`;
+        heroContent.style.opacity = 1 - (scrollY / 400);
+        heroContent.style.filter = `blur(${scrollY * 0.015}px)`;
       }
     }, { passive: true });
 
@@ -1114,8 +1082,8 @@
         latest.forEach((article, i) => {
           const card = document.createElement('a');
           card.href = `article.html?id=${encodeURIComponent(article.id)}`;
-          card.className = 'article-card reveal-up';
-          card.style.transitionDelay = `${(i + 1) * 0.1}s`;
+          card.className = 'article-card reveal-on-scroll';
+          card.style.animationDelay = `${(i + 1) * 0.1}s`;
           card.innerHTML = `
             <span class="article-tag">${article.category || 'Insights'}</span>
             <h3 class="article-card-title">${article.title}</h3>
@@ -1127,9 +1095,6 @@
           `;
           grid.appendChild(card);
         });
-
-        // Re-observe new cards for animation
-        grid.querySelectorAll('.reveal-up').forEach(el => revealUpObserver.observe(el));
 
         // Show "All articles" link if more than 3 exist
         if (items.length > 3) {
