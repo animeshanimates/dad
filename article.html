@@ -1154,9 +1154,36 @@
     /* ══════════════════════════════════════════════════════════════
        HAPTIC ENGINE
        Robust implementation for cross-platform haptics.
-       Falls back to dummy audio context for iOS tap simulation.
+       Uses the "invisible switch toggle" fallback for iOS devices.
     ══════════════════════════════════════════════════════════════ */
+    let iosHapticNode = null;
+    let fallbackInitialised = false;
+
+    function initIosHaptics() {
+      if (fallbackInitialised) return;
+      fallbackInitialised = true;
+      
+      // Only set up the fallback if vibration API isn't natively supported
+      if (typeof navigator === 'undefined' || !navigator.vibrate) {
+        iosHapticNode = document.createElement('input');
+        iosHapticNode.type = 'checkbox';
+        iosHapticNode.setAttribute('switch', ''); // iOS 17.4+ trigger
+        iosHapticNode.style.position = 'fixed';
+        iosHapticNode.style.left = '-9999px';
+        iosHapticNode.style.opacity = '0';
+        document.body.appendChild(iosHapticNode);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initIosHaptics);
+    } else {
+      initIosHaptics();
+    }
+
     function triggerHaptic(type) {
+      if (!fallbackInitialised) initIosHaptics();
+
       const patterns = {
         'light': 10,
         'medium': 25,
@@ -1173,22 +1200,26 @@
         return;
       }
 
-      // iOS Fallback workaround: Dummy AudioContext tap sensation
-      try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContext) return;
-        const ctx = new AudioContext();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        // Extremely brief, low-frequency sound to trigger tap sensation
-        osc.frequency.value = 50; 
-        gain.gain.value = 0.05;
-        osc.start();
-        osc.stop(ctx.currentTime + 0.01);
-      } catch (e) {
-        // Silently fail if policy blocks
+      // iOS Fallback workaround: Invisible switch toggle
+      if (iosHapticNode) {
+        let ticks = 1;
+        let delayMs = 120;
+        
+        switch (type) {
+          case 'success': ticks = 2; break;
+          case 'error': ticks = 4; break;
+        }
+
+        // Programmatically toggle the switch to trigger iOS Taptic Engine
+        for (let i = 0; i < ticks; i++) {
+          if (i === 0) {
+            iosHapticNode.click();
+          } else {
+            setTimeout(() => {
+              if (iosHapticNode) iosHapticNode.click();
+            }, i * delayMs);
+          }
+        }
       }
     }
 
