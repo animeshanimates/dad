@@ -881,8 +881,7 @@
     updateThemeIcons();
 
     themeToggle.addEventListener('click', () => {
-      // Optional haptic
-      if (navigator.vibrate) navigator.vibrate(15);
+      triggerHaptic('light');
       
       document.documentElement.classList.toggle('dark-mode');
       const isDark = document.documentElement.classList.contains('dark-mode');
@@ -956,7 +955,10 @@
       const txt = encodeURIComponent(title);
 
       // Open Modal
-      modalTrigger.addEventListener('click', () => overlay.classList.add('active'));
+      modalTrigger.addEventListener('click', () => {
+        triggerHaptic('light');
+        overlay.classList.add('active');
+      });
 
       // Close Modal when clicking outside
       overlay.addEventListener('click', (e) => {
@@ -1151,14 +1153,42 @@
 
     /* ══════════════════════════════════════════════════════════════
        HAPTIC ENGINE
-       Fires on supported devices, silently fails on desktop.
+       Robust implementation for cross-platform haptics.
+       Falls back to dummy audio context for iOS tap simulation.
     ══════════════════════════════════════════════════════════════ */
     function triggerHaptic(type) {
-      if (!navigator.vibrate) return;
-      switch (type) {
-        case 'light':   navigator.vibrate(15); break;
-        case 'medium':  navigator.vibrate(30); break;
-        case 'success': navigator.vibrate([15, 50, 20]); break;
+      const patterns = {
+        'light': 10,
+        'medium': 25,
+        'success': [15, 30, 20],
+        'error': [50, 100, 50, 100, 50]
+      };
+      
+      const pattern = patterns[type];
+      if (!pattern) return;
+
+      // Primary Android / Native support
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        navigator.vibrate(pattern);
+        return;
+      }
+
+      // iOS Fallback workaround: Dummy AudioContext tap sensation
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        // Extremely brief, low-frequency sound to trigger tap sensation
+        osc.frequency.value = 50; 
+        gain.gain.value = 0.05;
+        osc.start();
+        osc.stop(ctx.currentTime + 0.01);
+      } catch (e) {
+        // Silently fail if policy blocks
       }
     }
 
@@ -1363,8 +1393,18 @@
       // ─────────────────────────────────────────────────────────
       // LIKE BUTTON
       // ─────────────────────────────────────────────────────────
+      let likeThrottle = false;
+
       likeBtn.addEventListener('click', async () => {
         if (liked) return; // Already liked from this browser
+
+        // Throttling to prevent buzzy vibrations if rapidly clicked
+        if (likeThrottle) return;
+        likeThrottle = true;
+        setTimeout(() => { likeThrottle = false; }, 800);
+
+        // Top-level synchronous haptic (comply with Sticky User Activation)
+        triggerHaptic('success');
 
         // Optimistic UI update
         liked = true;
@@ -1379,9 +1419,9 @@
             const updatedLikes = snap.data().likes || 0;
             likeCountEl.textContent = updatedLikes > 0 ? updatedLikes : '';
           }
-          triggerHaptic('success');
         } catch (err) {
           console.error('Firestore — failed to like:', err);
+          triggerHaptic('error'); // Error feedback
           // Revert optimistic UI on failure
           liked = false;
           localStorage.removeItem(likedKey);
@@ -1404,7 +1444,13 @@
       // ─────────────────────────────────────────────────────────
       postBtn.addEventListener('click', async () => {
         const text = commentInput.value.trim();
-        if (!text) return;
+        if (!text) {
+          triggerHaptic('error');
+          return;
+        }
+
+        // Top-level synchronous haptic (comply with Sticky User Activation)
+        triggerHaptic('medium');
 
         // Disable button during submission
         postBtn.classList.remove('active');
@@ -1417,8 +1463,6 @@
             comment_text: text,
             timestamp: new Date()
           });
-
-          triggerHaptic('medium');
 
           // Clear input
           commentInput.value = '';
@@ -1448,6 +1492,7 @@
 
         } catch (err) {
           console.error('Firestore — failed to post comment:', err);
+          triggerHaptic('error');
           postBtn.classList.add('active');
           postBtn.textContent = 'Post';
         }
