@@ -706,10 +706,16 @@
 
   <nav>
     <a href="/" class="nav-logo">Adv. S.K. Pal</a>
-    <a href="insights.html" class="nav-back">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-      All Articles
-    </a>
+    <div style="display: flex; align-items: center; gap: 1.25rem;">
+      <button id="theme-toggle" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer; color:var(--ink); padding:0; display:flex; align-items:center; transition: transform 0.2s;">
+        <svg id="theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg id="theme-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </button>
+      <a href="insights.html" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        All Articles
+      </a>
+    </div>
   </nav>
 
   <div class="page-shell">
@@ -737,6 +743,13 @@
         </div>
         
         <div class="meta-actions">
+          <div class="like-btn" style="cursor: default; pointer-events: none; opacity: 0.8;" title="Views">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <span class="like-count" id="view-count" style="font-size: 0.9rem;"></span>
+          </div>
           <button class="like-btn" id="like-btn" type="button">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -849,6 +862,34 @@
     const db = getFirestore(firebaseApp);
 
     
+    /* ── DARK MODE TOGGLE ────────────────────────────────────── */
+    const themeToggle = document.getElementById('theme-toggle');
+    const moonIcon = document.getElementById('theme-icon-moon');
+    const sunIcon = document.getElementById('theme-icon-sun');
+
+    function updateThemeIcons() {
+      if (document.documentElement.classList.contains('dark-mode')) {
+        moonIcon.style.display = 'none';
+        sunIcon.style.display = 'block';
+      } else {
+        moonIcon.style.display = 'block';
+        sunIcon.style.display = 'none';
+      }
+    }
+    
+    // Initial icon state
+    updateThemeIcons();
+
+    themeToggle.addEventListener('click', () => {
+      // Optional haptic
+      if (navigator.vibrate) navigator.vibrate(15);
+      
+      document.documentElement.classList.toggle('dark-mode');
+      const isDark = document.documentElement.classList.contains('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateThemeIcons();
+    });
+
 /* ── FETCH & RENDER ──────────────────────────────────────── */
     const urlParams = new URLSearchParams(window.location.search);
     const postId    = urlParams.get('id');
@@ -1194,6 +1235,7 @@
     ══════════════════════════════════════════════════════════════ */
     async function initEngagement(articleId) {
       // ── DOM refs ──
+      const viewCountEl  = document.getElementById('view-count');
       const likeBtn      = document.getElementById('like-btn');
       const likeCountEl  = document.getElementById('like-count');
       const commentInput = document.getElementById('comment-input');
@@ -1227,10 +1269,8 @@
       function createCommentEl(comment, animate) {
         const card = document.createElement('div');
         card.className = 'comment-card' + (animate ? ' entering' : '');
-        const initials = comment.name.split(' ').map(n => n[0]).join('').toUpperCase();
         card.innerHTML = `
           <div class="comment-card-header">
-            <div class="comment-avatar">${initials}</div>
             <span class="comment-author">${comment.name}</span>
             <span class="comment-date">${formatDate(comment.date)}</span>
           </div>
@@ -1240,21 +1280,35 @@
       }
 
       // ─────────────────────────────────────────────────────────
-      // FETCH LIKES FROM FIRESTORE
+      // UPDATE VIEWS & FETCH PREVIOUS STATS FROM FIRESTORE
       // ─────────────────────────────────────────────────────────
       try {
+        // Increment views safely
+        try {
+          await updateDoc(articleRef, { views: increment(1) });
+        } catch (updateErr) {
+          console.warn('Doc might not exist yet, skipping view increment.');
+        }
+
         const articleSnap = await getDoc(articleRef);
         if (articleSnap.exists()) {
-          const likeVal = articleSnap.data().likes || 0;
+          const data = articleSnap.data();
+          
+          const viewVal = data.views || 1;
+          viewCountEl.textContent = viewVal;
+          
+          const likeVal = data.likes || 0;
           likeCountEl.textContent = likeVal > 0 ? likeVal : '';
         } else {
-          // Create the article document with 0 likes
-          await setDoc(articleRef, { likes: 0 });
+          // Create the article doc if it didn't exist
+          await setDoc(articleRef, { likes: 0, views: 1 });
+          viewCountEl.textContent = '1';
           likeCountEl.textContent = '';
         }
         likeBtn.classList.toggle('liked', liked);
       } catch (err) {
-        console.error('Firestore — failed to fetch likes:', err);
+        console.error('Firestore — failed to fetch stats:', err);
+        viewCountEl.textContent = '';
         likeCountEl.textContent = '';
       }
 
