@@ -40,6 +40,16 @@
       --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
+    html.dark-mode {
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --text-main: #f5f5f7;
+      --text-muted: #a1a1a6;
+      --text-light: #1d1d1f;
+      --accent: #e5e5ea;
+      --border: rgba(255, 255, 255, 0.15);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -59,6 +69,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
     }
 
     /* ── TYPOGRAPHY ── */
