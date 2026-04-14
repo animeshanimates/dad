@@ -1224,16 +1224,17 @@
       try {
         const articleSnap = await getDoc(articleRef);
         if (articleSnap.exists()) {
-          likeCountEl.textContent = articleSnap.data().likes || 0;
+          const likeVal = articleSnap.data().likes || 0;
+          likeCountEl.textContent = likeVal > 0 ? likeVal : '';
         } else {
           // Create the article document with 0 likes
           await setDoc(articleRef, { likes: 0 });
-          likeCountEl.textContent = '0';
+          likeCountEl.textContent = '';
         }
         likeBtn.classList.toggle('liked', liked);
       } catch (err) {
         console.error('Firestore — failed to fetch likes:', err);
-        likeCountEl.textContent = '—';
+        likeCountEl.textContent = '';
       }
 
       // ─────────────────────────────────────────────────────────
@@ -1300,7 +1301,8 @@
           await updateDoc(articleRef, { likes: increment(1) });
           const snap = await getDoc(articleRef);
           if (snap.exists()) {
-            likeCountEl.textContent = snap.data().likes || 0;
+            const updatedLikes = snap.data().likes || 0;
+            likeCountEl.textContent = updatedLikes > 0 ? updatedLikes : '';
           }
           triggerHaptic('success');
         } catch (err) {
