@@ -1137,6 +1137,44 @@
       }
     });
   </script>
+
+  <!-- Shared Haptic Engine -->
+  <script src="haptics.js"></script>
+  <script>
+    // ── Haptic bindings via event delegation ──
+    // Catches all clicks including dynamically rendered cards & pills.
+    bindHaptics('body', {
+      // Navigation
+      '.nav-logo':        'light',
+      '.nav-links a':     'light',
+
+      // Category filter pills
+      '.pill':            'light',
+
+      // Article cards (dynamically created)
+      '.article-card':    'light',
+
+      // BCI proceed button
+      '.btn-bci-proceed': 'medium',
+    });
+
+    // Search input — subtle haptic on focus
+    document.getElementById('search-input').addEventListener('focus', function () {
+      triggerHaptic('light');
+    });
+
+    // BCI checkbox toggle tick
+    document.getElementById('bci-accept-checkbox').addEventListener('change', function () {
+      triggerHaptic('light');
+    });
+
+    // BCI proceed success
+    document.getElementById('bci-proceed-btn').addEventListener('click', function () {
+      if (document.getElementById('bci-accept-checkbox').checked) {
+        triggerHaptic('success');
+      }
+    });
+  </script>
 </body>
 
 </html>

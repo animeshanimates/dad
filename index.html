@@ -1179,48 +1179,40 @@
       }
     });
 
-    // ── Web Haptic Engine ──────────────────────────────────────
-    // Provides iOS-style haptic feedback on supported devices.
-    // Fails silently on desktop browsers that lack navigator.vibrate.
-    function triggerHaptic(type) {
-      if (!navigator.vibrate) return;
-      switch (type) {
-        case 'light':   navigator.vibrate(15); break;
-        case 'medium':  navigator.vibrate(30); break;
-        case 'success': navigator.vibrate([15, 50, 20]); break;
-      }
-    }
+    // ── Web Haptic Engine (shared) ──────────────────────────────
+    // Loaded via haptics.js — binds to all interactive elements
+    // using event delegation for performance + dynamic card support.
+  </script>
+  <script src="haptics.js"></script>
+  <script>
+    // ── Haptic bindings via event delegation on document.body ──
+    // This catches all clicks including dynamically injected cards.
+    bindHaptics('body', {
+      // Navigation
+      '.nav-icon':        'light',
+      '.nav-brand':       'light',
 
-    // ── Attach Haptic Feedback ─────────────────────────────────
-    // Light haptic: nav icons, brand, view-all link
-    document.querySelectorAll('.nav-icon, .nav-brand, .view-all-link').forEach(el => {
-      el.addEventListener('click', () => triggerHaptic('light'));
+      // Hero CTA & primary buttons
+      '.btn-primary':     'medium',
+
+      // Practice area cards (touch feedback)
+      '.practice-card':   'light',
+
+      // Article cards (including dynamically created)
+      '.article-card':    'light',
+
+      // "All articles →" link
+      '.view-all-link':   'light',
+
+      // Connect icons (social/contact — outbound action)
+      '.connect-icon':    'medium',
     });
 
-    // Medium haptic: primary buttons, BCI proceed button
-    document.querySelectorAll('.btn-primary, .btn-bci-proceed').forEach(el => {
-      el.addEventListener('click', () => triggerHaptic('medium'));
+    // BCI Disclaimer — checkbox gets a light tick, proceed gets success
+    acceptCheckbox.addEventListener('change', () => triggerHaptic('light'));
+    proceedBtn.addEventListener('click', () => {
+      if (acceptCheckbox.checked) triggerHaptic('success');
     });
-
-    // Light haptic: article cards (tapped on mobile)
-    document.querySelectorAll('.article-card').forEach(el => {
-      el.addEventListener('click', () => triggerHaptic('light'));
-    });
-
-    // Re-attach haptics to dynamically loaded article cards
-    const origFetch = window.fetch;
-    const articleGrid = document.getElementById('latest-articles');
-    if (articleGrid) {
-      const attachObserver = new MutationObserver(() => {
-        articleGrid.querySelectorAll('.article-card').forEach(el => {
-          if (!el.dataset.haptic) {
-            el.dataset.haptic = '1';
-            el.addEventListener('click', () => triggerHaptic('light'));
-          }
-        });
-      });
-      attachObserver.observe(articleGrid, { childList: true, subtree: true });
-    }
   </script>
 </body>
 
