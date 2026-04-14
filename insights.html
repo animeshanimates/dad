@@ -789,6 +789,7 @@
       }
     }
   </style>
+  <script src="theme.js"></script>
 </head>
 
 <body>
@@ -1247,38 +1248,6 @@
           if (mobileMenu.classList.contains('active')) toggleMenu();
         }));
       }
-
-      // Theme
-      const themeToggle = document.getElementById('global-theme-toggle');
-      const moonIcon = document.getElementById('fab-moon');
-      const sunIcon = document.getElementById('fab-sun');
-
-      function setTheme(isDark) {
-        if (isDark) {
-          document.documentElement.classList.add('dark-mode');
-          if(moonIcon && sunIcon) { moonIcon.style.display = 'none'; sunIcon.style.display = 'block'; }
-          localStorage.setItem('theme', 'dark');
-        } else {
-          document.documentElement.classList.remove('dark-mode');
-          if(moonIcon && sunIcon) { moonIcon.style.display = 'block'; sunIcon.style.display = 'none'; }
-          localStorage.setItem('theme', 'light');
-        }
-      }
-
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        setTheme(true);
-      } else {
-        setTheme(false);
-      }
-
-      if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-          const isDark = document.documentElement.classList.contains('dark-mode');
-          setTheme(!isDark);
-          if (typeof triggerHaptic === 'function') triggerHaptic('light');
-          else if (navigator.vibrate) navigator.vibrate(10);
-        });
       }
     });
   </script>

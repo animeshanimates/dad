@@ -10,12 +10,7 @@
     gtag('config', 'G-RV8HS48BCT');
   </script>
 
-  <script>
-    // Prevent flash of light mode by checking theme synchronously
-    if (localStorage.getItem('theme') === 'dark') {
-      document.documentElement.classList.add('dark-mode');
-    }
-  </script>
+  <script src="theme.js"></script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -1486,36 +1481,6 @@
       });
     }
 
-    // ── Global FAB Theme Logic ──
-    document.addEventListener('DOMContentLoaded', () => {
-      const globalThemeToggle = document.getElementById('global-theme-toggle');
-      const fabMoon = document.getElementById('fab-moon');
-      const fabSun = document.getElementById('fab-sun');
-
-      function setGlobalTheme(isDark) {
-        if (isDark) {
-          document.documentElement.classList.add('dark-mode');
-          if(fabMoon && fabSun) { fabMoon.style.display = 'none'; fabSun.style.display = 'block'; }
-          localStorage.setItem('theme', 'dark');
-        } else {
-          document.documentElement.classList.remove('dark-mode');
-          if(fabMoon && fabSun) { fabMoon.style.display = 'block'; fabSun.style.display = 'none'; }
-          localStorage.setItem('theme', 'light');
-        }
-      }
-
-      if (globalThemeToggle) {
-        // Initial setup on toggle icons based on current html class
-        setGlobalTheme(document.documentElement.classList.contains('dark-mode'));
-
-        globalThemeToggle.addEventListener('click', () => {
-          const isDark = document.documentElement.classList.contains('dark-mode');
-          setGlobalTheme(!isDark);
-          if (typeof triggerHaptic === 'function') triggerHaptic('light');
-          else if (navigator.vibrate) navigator.vibrate(10);
-        });
-      }
-    });
 
   </script>
 
