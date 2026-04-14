@@ -1184,33 +1184,35 @@
     function triggerHaptic(type) {
       if (!fallbackInitialised) initIosHaptics();
 
+      // Durations tuned for Android vibration motor minimum spin-up (~30ms)
       const patterns = {
-        'light': 10,
-        'medium': 25,
-        'success': [15, 30, 20],
-        'error': [50, 100, 50, 100, 50]
+        'light':   40,                          // Subtle tap
+        'medium':  60,                          // Firm press
+        'success': [40, 60, 50],                // Double-tap "bump bump"
+        'error':   [80, 80, 80, 80, 80]         // Staccato buzz
       };
       
       const pattern = patterns[type];
       if (!pattern) return;
 
-      // Primary Android / Native support
-      if (typeof navigator !== 'undefined' && navigator.vibrate) {
-        navigator.vibrate(pattern);
-        return;
-      }
+      // ── Primary: Android / browsers with Vibration API ──
+      try {
+        if (navigator.vibrate) {
+          navigator.vibrate(pattern);
+          return;
+        }
+      } catch (_) { /* swallow */ }
 
-      // iOS Fallback workaround: Invisible switch toggle
+      // ── Fallback: iOS invisible switch toggle ──
       if (iosHapticNode) {
         let ticks = 1;
         let delayMs = 120;
         
         switch (type) {
           case 'success': ticks = 2; break;
-          case 'error': ticks = 4; break;
+          case 'error':   ticks = 4; break;
         }
 
-        // Programmatically toggle the switch to trigger iOS Taptic Engine
         for (let i = 0; i < ticks; i++) {
           if (i === 0) {
             iosHapticNode.click();
