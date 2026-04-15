@@ -192,6 +192,9 @@
       opacity: 1;
       transform: translateY(-1px);
     }
+
+    /* ── RESTORED: selector was accidentally deleted ── */
+    .nav-icon:hover {
       color: var(--text-main);
       transform: scale(1.1);
       background: rgba(0, 0, 0, 0.03);
@@ -1184,9 +1187,12 @@
 
     // ── Load and render latest articles
     fetch('articles.json')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+      })
       .then(data => {
-        const grid = document.getElementById('latest-articles');
+        const grid  = document.getElementById('latest-articles');
         const items = data.items;
 
         if (!items || items.length === 0) {
@@ -1194,9 +1200,7 @@
           return;
         }
 
-        // Show newest 3 articles
         const latest = [...items].reverse().slice(0, 3);
-
         grid.innerHTML = '';
 
         latest.forEach((article, i) => {
@@ -1204,24 +1208,41 @@
           card.href = `article.html?id=${encodeURIComponent(article.id)}`;
           card.className = 'article-card reveal-on-scroll';
           card.style.animationDelay = `${(i + 1) * 0.1}s`;
-          card.innerHTML = `
-            <span class="article-tag">${article.category || 'Insights'}</span>
-            <h3 class="article-card-title">${article.title}</h3>
-            <p class="article-card-excerpt">${article.excerpt}</p>
-            <div class="article-card-footer">
-              <span class="article-card-date">${article.date}</span>
-              <span class="article-read-arrow">Read →</span>
-            </div>
-          `;
+
+          const tag = document.createElement('span');
+          tag.className = 'article-tag';
+          tag.textContent = article.category || 'Insights';
+
+          const title = document.createElement('h3');
+          title.className = 'article-card-title';
+          title.textContent = article.title;
+
+          const excerpt = document.createElement('p');
+          excerpt.className = 'article-card-excerpt';
+          excerpt.textContent = article.excerpt;
+
+          const footer = document.createElement('div');
+          footer.className = 'article-card-footer';
+
+          const date = document.createElement('span');
+          date.className = 'article-card-date';
+          date.textContent = article.date;
+
+          const arrow = document.createElement('span');
+          arrow.className = 'article-read-arrow';
+          arrow.textContent = 'Read →';
+
+          footer.append(date, arrow);
+          card.append(tag, title, excerpt, footer);
           grid.appendChild(card);
         });
 
-        // Show "All articles" link if more than 3 exist
         if (items.length > 3) {
           document.getElementById('view-all-btn').style.display = 'inline-flex';
         }
       })
       .catch(() => {
+        document.getElementById('view-all-btn').style.display = 'none';
         document.getElementById('latest-articles').innerHTML =
           '<div class="articles-empty">Could not load articles.</div>';
       });
@@ -1237,31 +1258,74 @@
       });
     }
 
-    // ── BCI Disclaimer Modal Logic
+    // ── BCI Disclaimer Modal with Focus Trap ──────────────────
     const disclaimerOverlay = document.getElementById('bci-disclaimer-overlay');
-    const acceptCheckbox = document.getElementById('bci-accept-checkbox');
-    const proceedBtn = document.getElementById('bci-proceed-btn');
+    const acceptCheckbox    = document.getElementById('bci-accept-checkbox');
+    const proceedBtn        = document.getElementById('bci-proceed-btn');
+    const modal             = disclaimerOverlay.querySelector('.bci-modal');
 
-    if (!localStorage.getItem('bciDisclaimerAccepted')) {
-      // Show modal and disable scrolling
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'bci-modal-heading');
+    document.querySelector('.bci-modal h2').id = 'bci-modal-heading';
+
+    const FOCUSABLE = 'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])';
+
+    function getFocusable() {
+      return [...modal.querySelectorAll(FOCUSABLE)];
+    }
+
+    function trapFocus(e) {
+      const focusable = getFocusable();
+      const first     = focusable[0];
+      const last      = focusable[focusable.length - 1];
+
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    }
+
+    function openModal() {
       document.body.style.overflow = 'hidden';
       disclaimerOverlay.classList.add('active');
+      modal.addEventListener('keydown', trapFocus);
+      setTimeout(() => acceptCheckbox.focus(), 50);
+    }
+
+    function closeModal() {
+      disclaimerOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+      modal.removeEventListener('keydown', trapFocus);
+    }
+
+    if (!localStorage.getItem('bciDisclaimerAccepted')) {
+      openModal();
     }
 
     acceptCheckbox.addEventListener('change', (e) => {
-      if (e.target.checked) {
-        proceedBtn.classList.add('active');
-      } else {
-        proceedBtn.classList.remove('active');
-      }
+      proceedBtn.classList.toggle('active', e.target.checked);
     });
 
     proceedBtn.addEventListener('click', () => {
       if (acceptCheckbox.checked) {
         localStorage.setItem('bciDisclaimerAccepted', 'true');
-        disclaimerOverlay.classList.remove('active');
-        document.body.style.overflow = '';
+        closeModal();
+        if (typeof triggerHaptic === 'function') triggerHaptic('success');
       }
+    });
+
+    acceptCheckbox.addEventListener('change', () => {
+      if (typeof triggerHaptic === 'function') triggerHaptic('light');
     });
 
     // ── Web Haptic Engine (shared) ──────────────────────────────
