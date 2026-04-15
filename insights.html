@@ -1318,26 +1318,7 @@
       updateResultsCount(visibleCount);
     }
 
-    // Reset law areas filter
-    const resetLawAreasBtn = document.getElementById('reset-law-areas');
-    if (resetLawAreasBtn) {
-      resetLawAreasBtn.addEventListener('click', () => {
-        applyAreaFilter(null);
-      });
-    }
 
-    // Reset topics filter
-    const resetTopicsBtn = document.getElementById('reset-topics');
-    if (resetTopicsBtn) {
-      resetTopicsBtn.addEventListener('click', () => {
-        applyTopicFilter(null);
-      });
-    }
-
-    // ══════════════════════════════════════════════════════════
-    // 6. DYNAMIC FOOTER YEAR
-    // ══════════════════════════════════════════════════════════
-    document.getElementById('year').textContent = new Date().getFullYear();
     /**
      * Renders article cards into the grid.
      * @param {Array}   articles   — Array of article objects to display
