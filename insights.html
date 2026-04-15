@@ -507,6 +507,63 @@
       color: #fff;
     }
 
+    /* New filter styles */
+    .filter-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .pill-container {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pill-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pill-btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+      user-select: none;
+    }
+
+    .pill-btn:hover {
+      color: var(--text-main);
+      border-color: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.02);
+    }
+
     /* ── Results count ── */
     .results-count {
       font-size: 0.8rem;
@@ -1057,7 +1114,7 @@
     // ── DOM REFERENCES ────────────────────────────────────────
     const grid         = document.getElementById('article-grid');
     const topicsPills  = document.getElementById('topics-pills');
-    const lawAreasPills = document.getElementById('law-areas-pills');
+    const lawAreasPills = document.getElementById('law-areas-container');
     const searchInput  = document.getElementById('search-input');
     const resultsCount = document.getElementById('results-count');
     const loadingState = document.getElementById('loading-state');
@@ -1385,6 +1442,22 @@
         pageHeader.style.opacity = 1 - (scrollY / 600);
       }
     }, { passive: true });
+
+    // Reset law areas filter
+    const resetLawAreasBtn = document.getElementById('reset-law-areas');
+    if (resetLawAreasBtn) {
+      resetLawAreasBtn.addEventListener('click', () => {
+        applyAreaFilter(null);
+      });
+    }
+
+    // Reset topics filter
+    const resetTopicsBtn = document.getElementById('reset-topics');
+    if (resetTopicsBtn) {
+      resetTopicsBtn.addEventListener('click', () => {
+        applyTopicFilter(null);
+      });
+    }
 
     // ══════════════════════════════════════════════════════════
     // 9. DYNAMIC FOOTER YEAR
