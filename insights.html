@@ -519,6 +519,7 @@
       margin-bottom: 1.5rem;
       display: -webkit-box;
       -webkit-line-clamp: 3;
+      line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
@@ -1322,7 +1323,6 @@
         mobileLinks.forEach(link => link.addEventListener('click', () => {
           if (mobileMenu.classList.contains('active')) toggleMenu();
         }));
-      }
       }
     });
   </script>
