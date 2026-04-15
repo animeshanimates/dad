@@ -61,6 +61,17 @@
       font-size: 16px;
     }
 
+    /* ── SCROLL PROGRESS ── */
+    @keyframes progress { 0% { width: 0; } 100% { width: 100%; } }
+    #progress-bar {
+      position: fixed; top: 0; left: 0;
+      height: 3px; width: 0%;
+      background: var(--text-main);
+      z-index: 2001;
+      animation: progress linear forwards;
+      animation-timeline: scroll(root);
+    }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg-color);
@@ -282,6 +293,20 @@
       padding-left: 5%;
       padding-right: 5%;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(251, 251, 253, 0.1) 0%, rgba(251, 251, 253, 0.05) 100%);
+      pointer-events: none;
+      z-index: -1;
     }
 
     .page-header h1 {
@@ -290,9 +315,6 @@
       line-height: 1.05;
       letter-spacing: -0.04em;
       margin-bottom: 1rem;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: headerReveal 0.8s var(--ease) 0.1s forwards;
     }
 
     .page-header p {
@@ -300,16 +322,6 @@
       color: var(--text-muted);
       max-width: 600px;
       margin: 0 auto;
-      opacity: 0;
-      transform: translateY(16px);
-      animation: headerReveal 0.8s var(--ease) 0.25s forwards;
-    }
-
-    @keyframes headerReveal {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
 
     /* ══════════════════════════════════════════════════════════════
@@ -324,9 +336,6 @@
       -webkit-backdrop-filter: saturate(180%) blur(20px);
       border-bottom: 1px solid var(--border);
       padding: 1.25rem 5%;
-      opacity: 0;
-      transform: translateY(10px);
-      animation: headerReveal 0.8s var(--ease) 0.4s forwards;
     }
 
     .control-bar-inner {
@@ -447,6 +456,7 @@
     ══════════════════════════════════════════════════════════════ */
     .archive-section {
       padding: 3rem 5% 8rem;
+      view-timeline-name: --section-reveal;
     }
 
     .article-grid {
@@ -665,6 +675,35 @@
       color: var(--text-muted);
     }
 
+    /* ── SCROLL REVEAL (CSS VIEW TIMELINES) ── */
+    section, header, footer {
+      view-timeline-name: --section-reveal;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes reveal {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+
+      .reveal-on-scroll {
+        opacity: 0;
+        animation: reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-timeline: --section-reveal;
+        animation-range: entry 5% cover 25%;
+      }
+
+      /* Page Header - Immediate on load */
+      header.page-header .reveal-on-scroll {
+        animation-timeline: auto; /* not scroll-driven */
+        animation-range: normal;
+      }
+      
+      header.page-header .eyebrow.reveal-on-scroll { animation-delay: 0s; }
+      header.page-header h1.reveal-on-scroll { animation-delay: 0.1s; }
+      header.page-header p.reveal-on-scroll { animation-delay: 0.2s; }
+    }
+
     /* ══════════════════════════════════════════════════════════════
        BCI DISCLAIMER MODAL — Exact copy from index.html
     ══════════════════════════════════════════════════════════════ */
@@ -819,6 +858,7 @@
 </head>
 
 <body>
+  <div id="progress-bar"></div>
 
   <!-- ═══ BCI DISCLAIMER MODAL ═══ -->
   <div id="bci-disclaimer-overlay">
@@ -859,13 +899,13 @@
 
   <!-- ═══ PAGE HEADER ═══ -->
   <header class="page-header">
-    <span class="eyebrow" style="opacity:0; animation: headerReveal 0.8s var(--ease) 0s forwards;">Archive</span>
-    <h1>Legal Insights &amp; Commentary</h1>
-    <p>Searchable archive of case analyses, commentaries, and legal guides authored by Adv. Suresh Kumar Pal.</p>
+    <span class="eyebrow reveal-on-scroll">Archive</span>
+    <h1 class="reveal-on-scroll">Legal Insights &amp; Commentary</h1>
+    <p class="reveal-on-scroll">Searchable archive of case analyses, commentaries, and legal guides authored by Adv. Suresh Kumar Pal.</p>
   </header>
 
   <!-- ═══ STICKY CONTROL BAR ═══ -->
-  <div class="control-bar" id="control-bar">
+  <div class="control-bar reveal-on-scroll" id="control-bar">
     <div class="control-bar-inner">
 
       <!-- Search Bar -->
@@ -900,7 +940,7 @@
   <!-- ═══ FOOTER — Exact from index.html ═══ -->
   <footer>
     <div class="container">
-      <div class="disclaimer-box">
+      <div class="disclaimer-box reveal-on-scroll">
         <h4>Legal Disclaimer</h4>
         <p>As per the rules of the Bar Council of India, advocates are not permitted to solicit work or advertise. By
           visiting this website, the user acknowledges that the information provided is solely available for
@@ -1120,7 +1160,7 @@
       articles.forEach((article, index) => {
         const card = document.createElement('a');
         card.href = `article.html?id=${encodeURIComponent(article.id)}`;
-        card.className = 'article-card' + (animate ? ' fade-in' : '');
+        card.className = 'article-card reveal-on-scroll fade-in';
         card.id = `card-${article.id}`;
 
         card.innerHTML = `
@@ -1168,8 +1208,17 @@
     // 8. NAV SCROLL EFFECT — adds border on scroll
     // ══════════════════════════════════════════════════════════
     const navbar = document.getElementById('navbar');
+    const pageHeader = document.querySelector('.page-header');
+    
     window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
+      const scrollY = window.scrollY;
+      navbar.classList.toggle('scrolled', scrollY > 50);
+      
+      // Subtle parallax effect on page header
+      if (pageHeader && scrollY < 400) {
+        pageHeader.style.transform = `translateY(${scrollY * 0.1}px)`;
+        pageHeader.style.opacity = 1 - (scrollY / 600);
+      }
     }, { passive: true });
 
     // ══════════════════════════════════════════════════════════

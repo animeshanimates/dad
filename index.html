@@ -63,6 +63,17 @@
       font-size: 16px;
     }
 
+    /* ── SCROLL PROGRESS ── */
+    @keyframes progress { 0% { width: 0; } 100% { width: 100%; } }
+    #progress-bar {
+      position: fixed; top: 0; left: 0;
+      height: 3px; width: 0%;
+      background: var(--text-main);
+      z-index: 2001;
+      animation: progress linear forwards;
+      animation-timeline: scroll(root);
+    }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg-color);
@@ -957,6 +968,7 @@
 </head>
 
 <body>
+  <div id="progress-bar"></div>
 
   <div id="bci-disclaimer-overlay">
     <div class="bci-modal">
@@ -1142,23 +1154,32 @@
     // ── Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ── Scroll Navbar effect
+    // ── Scroll effects
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
-    }, { passive: true });
-
-    // Scroll animations now handled exclusively by CSS View Timelines.
-
-    // ── Hero Parallax & Blur effect
     const heroContent = document.querySelector('.hero div');
+    const practiceCards = document.querySelectorAll('.practice-card');
+    
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
+      
+      // Navbar border
+      navbar.classList.toggle('scrolled', scrollY > 50);
+      
+      // Hero parallax
       if (scrollY < 600 && heroContent) {
         heroContent.style.transform = `translateY(${scrollY * 0.15}px)`;
         heroContent.style.opacity = 1 - (scrollY / 400);
         heroContent.style.filter = `blur(${scrollY * 0.015}px)`;
       }
+      
+      // Practice cards subtle parallax
+      practiceCards.forEach((card, index) => {
+        const cardTop = card.offsetTop - window.innerHeight;
+        if (scrollY > cardTop - 200 && scrollY < cardTop + 400) {
+          const progress = (scrollY - (cardTop - 200)) / 600;
+          card.style.transform = `translateY(${Math.sin(progress * Math.PI) * 10}px) scale(${1 + Math.sin(progress * Math.PI) * 0.02})`;
+        }
+      });
     }, { passive: true });
 
     // ── Load and render latest articles
