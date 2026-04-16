@@ -1,1260 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
   <title>Adv. Suresh Kumar Pal | High Court, Allahabad</title>
-  <meta name="description"
-    content="Advocate Suresh Kumar Pal - Delivering trusted legal expertise, civil litigation, and criminal defense at the High Court of Allahabad.">
-  <meta name="keywords"
-    content="Advocate Suresh Kumar Pal, High Court Allahabad, Lawyer Prayagraj, DRT, Civil Litigation, Criminal Defense">
-  <meta name="author" content="Adv. Suresh Kumar Pal">
-
-  <meta property="og:title" content="Advocate Suresh Kumar Pal">
-  <meta property="og:description"
-    content="Trusted legal expertise with integrity, precision, and unwavering commitment to justice.">
+  <meta name="description" content="Advocate Suresh Kumar Pal offers strategic representation in High Court, tribunal, banking, civil, criminal, and regulatory matters.">
+  <meta property="og:title" content="Adv. Suresh Kumar Pal">
+  <meta property="og:description" content="Strategic counsel, courtroom clarity, and disciplined legal representation from Prayagraj.">
   <meta property="og:type" content="website">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
-    rel="stylesheet">
-
-  <!-- Netlify Identity Widget -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <style>
-    /* ── BASE & VARIABLES ── */
-    :root {
-      --bg-color: #fbfbfd;
-      --card-bg: #ffffff;
-      --text-main: #1d1d1f;
-      --text-muted: #86868b;
-      --text-light: #f5f5f7;
-      --accent: #2c2c2e;
-      --border: rgba(0, 0, 0, 0.08);
-      --nav-bg: rgba(251, 251, 253, 0.8);
-      --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
-      --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    html.dark-mode {
-      --bg-color: #121212;
-      --card-bg: #1e1e1e;
-      --text-main: #f5f5f7;
-      --text-muted: #a1a1a6;
-      --text-light: #1d1d1f;
-      --accent: #e5e5ea;
-      --border: rgba(255, 255, 255, 0.15);
-      --nav-bg: rgba(18, 18, 18, 0.85);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
-    /* ── SCROLL PROGRESS ── */
-    @keyframes progress { 0% { width: 0; } 100% { width: 100%; } }
-    #progress-bar {
-      position: fixed; top: 0; left: 0;
-      height: 3px; width: 0%;
-      background: var(--text-main);
-      z-index: 2001;
-      animation: progress linear forwards;
-      animation-timeline: scroll(root);
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
-      transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
-    }
-
-    /* ── TYPOGRAPHY ── */
-    h1,
-    h2,
-    h3,
-    h4 {
-      letter-spacing: -0.02em;
-      font-weight: 600;
-    }
-
-    p {
-      font-weight: 400;
-      line-height: 1.6;
-    }
-
-    .eyebrow {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .section-title {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.03em;
-    }
-
-    .section-subtitle {
-      font-size: clamp(1.125rem, 2vw, 1.5rem);
-      color: var(--text-muted);
-      max-width: 700px;
-      font-weight: 400;
-      text-wrap: balance;
-    }
-
-    .text-center {
-      text-align: center;
-    }
-
-    .text-center .section-subtitle {
-      margin: 0 auto;
-    }
-
-    /* ── NAVIGATION (FROSTED GLASS) ── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 5%;
-      background: var(--nav-bg);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      border-bottom: 1px solid transparent;
-      z-index: 1000;
-      transition: border-bottom 0.3s var(--ease);
-    }
-
-    nav.scrolled {
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-brand {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-main);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      transition: opacity 0.3s var(--ease);
-      -webkit-tap-highlight-color: transparent;
-      position: relative;
-      z-index: 1001; /* Above mobile menu overlay */
-    }
-
-    .nav-brand:hover {
-      opacity: 0.8;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-      align-items: center;
-    }
-    
-    .nav-links a {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text-main);
-      text-decoration: none;
-      opacity: 0.8;
-      transition: opacity 0.3s var(--ease), transform 0.2s var(--ease);
-      padding-bottom: 2px;
-    }
-    
-    .nav-links a:hover {
-      opacity: 1;
-      transform: translateY(-1px);
-    }
-
-    /* ── RESTORED: selector was accidentally deleted ── */
-    .nav-icon:hover {
-      color: var(--text-main);
-      transform: scale(1.1);
-      background: rgba(0, 0, 0, 0.03);
-    }
-
-    .nav-icon:active {
-      transform: scale(0.92);
-      transition: transform 0.1s ease-out;
-    }
-
-    /* Tooltip */
-    .nav-icon::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: -28px;
-      left: 50%;
-      transform: translateX(-50%) translateY(6px);
-      opacity: 0;
-      pointer-events: none;
-      font-size: 0.6rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #fff;
-      background: var(--text-main);
-      padding: 3px 8px;
-      border-radius: 6px;
-      white-space: nowrap;
-      transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
-      z-index: 10;
-    }
-
-    .nav-icon:hover::after {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      padding: 0.5rem;
-      cursor: pointer;
-      color: var(--text-main);
-      z-index: 1001;
-    }
-    
-    .mobile-menu-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100vh;
-      background: rgba(251, 251, 253, 0.95);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: 999;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.3s var(--ease);
-    }
-    
-    .mobile-menu-overlay.active {
-      opacity: 1; pointer-events: auto;
-    }
-    
-    .mobile-menu-content {
-      display: flex; flex-direction: column; gap: 40px; text-align: center;
-      transform: translateY(20px); transition: transform 0.4s var(--spring);
-    }
-    
-    .mobile-menu-overlay.active .mobile-menu-content {
-      transform: translateY(0);
-    }
-    
-    .mobile-link {
-      font-size: 1.5rem; font-weight: 600; color: #1d1d1f; text-decoration: none;
-    }
-    
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .menu-toggle { display: block; }
-    }
-    
-    /* ── GLOBAL FAB ── */
-    .fab-btn {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      transition: transform 0.3s var(--spring), box-shadow 0.3s var(--ease);
-      color: var(--text-main);
-    }
-    .fab-btn:hover {
-      transform: scale(1.05) translateY(-2px);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
-    }
-    .fab-btn:active {
-      transform: scale(0.95);
-    }
-    html.dark-mode .fab-btn {
-      background: rgba(28, 28, 30, 0.9);
-      color: #fff;
-      border-color: rgba(255,255,255,0.15);
-      box-shadow: 0 4px 20px rgba(255,255,255,0.08);
-    }
-
-    /* ── HERO SECTION ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 5%;
-      padding-top: 64px;
-    }
-
-    .hero h1 {
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      max-width: 1000px;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 span {
-      color: var(--text-muted);
-    }
-
-    .hero p {
-      font-size: clamp(1.25rem, 3vw, 1.75rem);
-      color: var(--text-muted);
-      max-width: 700px;
-      margin: 0 auto 3rem auto;
-      font-weight: 400;
-      text-wrap: balance;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 1.75rem;
-      border-radius: 9999px;
-      font-size: 1rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.3s var(--ease), transform 0.25s var(--spring);
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn:active {
-      transform: scale(0.98);
-      transition: transform 0.1s ease-out;
-    }
-
-    .btn-primary {
-      background: var(--text-main);
-      color: #fff;
-      border: 1px solid var(--text-main);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 100%);
-      transform: skewX(-25deg);
-      transition: left 0.6s var(--ease);
-    }
-
-    .btn-primary:hover {
-      background: #424245;
-      border-color: #424245;
-      transform: scale(1.02);
-    }
-
-    .btn-primary:hover::before {
-      left: 150%;
-    }
-
-    /* ── LAYOUT CONTAINERS ── */
-    .section {
-      padding: 8rem 5%;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    /* ── ABOUT SECTION ── */
-    .about-text p {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .about-text p strong {
-      color: var(--text-main);
-    }
-
-    /* ── PRACTICE AREAS ── */
-    .practice-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      margin-top: 4rem;
-    }
-
-    .practice-card {
-      background: var(--card-bg);
-      padding: 2.5rem;
-      border-radius: 24px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
-      border: 1px solid var(--border);
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .practice-card:active {
-      transform: scale(0.97);
-      transition: transform 0.1s ease-out;
-    }
-
-    .practice-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-    }
-
-    .practice-card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-      color: var(--text-main);
-    }
-
-    .practice-card ul {
-      list-style: none;
-      color: #6e6e73;
-      font-size: 0.95rem;
-    }
-
-    .practice-card ul li {
-      margin-bottom: 0.5rem;
-      position: relative;
-      padding-left: 1.25rem;
-      transition: transform 0.4s var(--ease), color 0.4s var(--ease);
-    }
-
-    .practice-card:hover ul li {
-      transform: translateX(6px);
-      color: var(--text-main);
-    }
-
-    .practice-card ul li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: var(--text-main);
-      opacity: 0.3;
-      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
-    }
-
-    .practice-card:hover ul li::before {
-      opacity: 0.8;
-      transform: scale(1.2);
-    }
-
-    /* ── APPROACH SECTION ── */
-    .approach-bg {
-      background: var(--card-bg);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .quote {
-      font-size: clamp(1.5rem, 3vw, 2.25rem);
-      line-height: 1.4;
-      font-weight: 500;
-      color: var(--text-main);
-      position: relative;
-      padding-left: 2rem;
-      margin-top: 3rem;
-    }
-
-    .quote::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--text-main);
-      transform-origin: top;
-      transform: scaleY(0);
-      transition: transform 1.2s var(--ease) 0.3s;
-    }
-
-    .reveal.visible .quote::before {
-      transform: scaleY(1);
-    }
-
-    /* ── ARTICLES / INSIGHTS SECTION ── */
-    #insights {
-      background: var(--bg-color);
-    }
-
-    .articles-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 3.5rem;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-
-    .view-all-link {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: color 0.3s;
-      white-space: nowrap;
-      padding-bottom: 2px;
-      border-bottom: 1px solid transparent;
-      transition: color 0.3s, border-color 0.3s;
-    }
-
-    .view-all-link:hover {
-      color: var(--text-main);
-      border-bottom-color: var(--text-main);
-    }
-
-    .article-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-
-    /* Article Card */
-    .article-card {
-      display: flex;
-      flex-direction: column;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
-      cursor: pointer;
-      min-height: 240px;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .article-card:active {
-      transform: scale(0.97);
-      transition: transform 0.1s ease-out;
-    }
-
-    .article-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-      border-color: rgba(0, 0, 0, 0.14);
-    }
-
-    .article-tag {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-      border-radius: 980px;
-      padding: 0.25rem 0.75rem;
-      margin-bottom: 1.25rem;
-      align-self: flex-start;
-    }
-
-    .article-card-title {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      line-height: 1.35;
-      margin-bottom: 0.85rem;
-      color: var(--text-main);
-      flex-grow: 1;
-    }
-
-    .article-card-excerpt {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
-      overflow: hidden;
-    }
-
-    .article-card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-      margin-top: auto;
-    }
-
-    .article-card-date {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .article-read-arrow {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      opacity: 0;
-      transform: translateX(-4px);
-      transition: opacity 0.3s, transform 0.3s;
-    }
-
-    .article-card:hover .article-read-arrow {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    /* Empty state */
-    .articles-empty {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 4rem 0;
-      color: var(--text-muted);
-      font-size: 1rem;
-    }
-
-    /* ── CONTACT SECTION ── */
-    .contact-box {
-      background: var(--text-main);
-      color: var(--text-light);
-      border-radius: 32px;
-      padding: 5rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .contact-box h2 {
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-
-    .contact-box .section-subtitle {
-      color: #a1a1a6;
-      margin-bottom: 3rem;
-    }
-
-    .contact-info-item {
-      margin-bottom: 2rem;
-    }
-
-    .contact-info-item h4 {
-      font-size: 0.875rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #a1a1a6;
-      margin-bottom: 0.5rem;
-    }
-
-    .contact-info-item p,
-    .contact-info-item a {
-      font-size: 1.125rem;
-      color: #fff;
-      text-decoration: none;
-      line-height: 1.5;
-    }
-
-    .contact-info-item a:hover {
-      text-decoration: underline;
-    }
-
-    /* ── FOOTER & DISCLAIMER ── */
-    footer {
-      background: var(--bg-color);
-      padding: 4rem 5% 2rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .disclaimer-box {
-      background: #f9f9f9;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 3rem;
-      margin-bottom: 3rem;
-    }
-
-    .disclaimer-box h4 {
-      font-size: 0.875rem;
-      margin-bottom: 1rem;
-      color: var(--text-main);
-    }
-
-    .disclaimer-box p {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    /* ── SCROLL REVEAL (CSS VIEW TIMELINES) ── */
-    section, header, footer {
-      view-timeline-name: --section-reveal;
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-      @keyframes reveal {
-        0% { opacity: 0; transform: translateY(30px); }
-        100% { opacity: 1; transform: translateY(0); }
-      }
-
-      .reveal-on-scroll {
-        opacity: 0;
-        animation: reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        animation-timeline: --section-reveal;
-        animation-range: entry 5% cover 25%;
-      }
-
-      /* Hero Section - Immediate on load */
-      header.hero .reveal-on-scroll {
-        animation-timeline: auto; /* not scroll-driven */
-        animation-range: normal;
-      }
-      
-      header.hero h1.reveal-on-scroll { animation-delay: 0s; }
-      header.hero p.reveal-on-scroll { animation-delay: 0.1s; }
-    }
-
-    /* ── CONNECT ICONS ── */
-    .connect-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-main);
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .connect-icon:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-      background: var(--text-main);
-      color: var(--bg-color);
-      border-color: var(--text-main);
-    }
-
-    .connect-icon:active {
-      transform: translateY(0) scale(0.96);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-      transition: all 0.1s ease-out;
-    }
-
-    /* ── RESPONSIVE DESIGN ── */
-    @media (max-width: 900px) {
-      .grid-2 {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .contact-box {
-        grid-template-columns: 1fr;
-        padding: 3rem;
-      }
-
-      .articles-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-
-      .section {
-        padding: 5rem 5%;
-      }
-
-      .hero p {
-        font-size: 1.125rem;
-      }
-
-      .quote {
-        padding-left: 1rem;
-        font-size: 1.25rem;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-      }
-
-      .article-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ── BCI DISCLAIMER MODAL ── */
-    #bci-disclaimer-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.4s var(--ease), visibility 0.4s;
-      padding: 1rem;
-    }
-
-    #bci-disclaimer-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .bci-modal {
-      background: var(--card-bg);
-      width: 100%;
-      max-width: 600px;
-      border-radius: 24px;
-      padding: 2.5rem;
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
-      border: 1px solid var(--border);
-      transform: translateY(20px);
-      transition: transform 0.4s var(--ease);
-    }
-
-    #bci-disclaimer-overlay.active .bci-modal {
-      transform: translateY(0);
-    }
-
-    .bci-modal h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--text-main);
-    }
-
-    .bci-modal p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
-
-    .bci-checkbox-wrapper {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
-
-    .bci-checkbox-wrapper input[type="checkbox"] {
-      margin-top: 0.25rem;
-      width: 1.1rem;
-      height: 1.1rem;
-      cursor: pointer;
-    }
-
-    .bci-checkbox-wrapper label {
-      font-size: 0.9rem;
-      color: var(--text-main);
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .btn-bci-proceed {
-      width: 100%;
-      padding: 1rem;
-      background: var(--text-main);
-      color: #fff;
-      border: none;
-      border-radius: 980px;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s var(--ease), transform 0.25s var(--spring);
-      opacity: 0.5;
-      pointer-events: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn-bci-proceed.active:active {
-      transform: scale(0.96);
-      transition: transform 0.1s ease-out;
-    }
-
-    .btn-bci-proceed.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .btn-bci-proceed.active:hover {
-      background: #424245;
-    }
-  </style>
-  <style>
-    /* Dark Mode Global Specific Scopes */
-    html.dark-mode nav { background: rgba(18, 18, 18, 0.85) !important; }
-    html.dark-mode .nav-brand, html.dark-mode .nav-links a { color: #eaeaea !important; }
-    html.dark-mode .mobile-link { color: #f5f5f7 !important; }
-    html.dark-mode .connect-icon svg { fill: currentColor !important; stroke: currentColor !important; }
-    html.dark-mode .section-subtitle, html.dark-mode .eyebrow, html.dark-mode .article-tag, html.dark-mode .results-count, html.dark-mode .footer-bottom, html.dark-mode .post-meta { color: #a0a0a0 !important; }
-    html.dark-mode .disclaimer-box { background: #111111 !important; border: 1px solid #222222 !important; }
-  </style>
   <script src="theme.js"></script>
+  <link rel="stylesheet" href="site.css">
 </head>
-
-<body>
-  <div id="progress-bar"></div>
-
+<body data-page="home">
   <div id="bci-disclaimer-overlay">
     <div class="bci-modal">
-      <h2>Disclaimer</h2>
-      <p>As per Bar Council of India Rules, advocates are not permitted to advertise or solicit work in any form. By accessing this website, the user acknowledges that they are visiting the website voluntarily and seeking information of their own accord. It is clarified that there has been no solicitation, advertisement, or inducement by Adv. Suresh Kumar Pal. The content provided is for informational purposes only and should not be interpreted as rendering legal advice. No lawyer-client relationship is created.</p>
-      <div class="bci-checkbox-wrapper">
-        <input type="checkbox" id="bci-accept-checkbox">
-        <label for="bci-accept-checkbox">I accept the above.</label>
+      <span class="eyebrow">Notice</span>
+      <h2>Bar Council Compliance</h2>
+      <p>This website is intended only for informational purposes. By continuing, you confirm that you are seeking information voluntarily and that nothing on this website amounts to solicitation, advertisement, or formal legal advice.</p>
+      <div class="bci-check">
+        <input id="bci-accept-checkbox" type="checkbox">
+        <label for="bci-accept-checkbox">I understand and wish to proceed.</label>
       </div>
-      <button id="bci-proceed-btn" class="btn-bci-proceed">Proceed to Website</button>
+      <button id="bci-proceed-btn" class="btn-bci-proceed" type="button">Proceed to Website</button>
     </div>
   </div>
 
-  <nav id="navbar">
-    <a href="index.html" class="nav-brand">S.K. PAL</a>
-    <ul class="nav-links">
-      <li><a href="#practice">Practice Areas</a></li>
-      <li><a href="#insights">Insights</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Menu">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="hamburger-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="close-icon" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </button>
-  </nav>
+  <header class="topbar" id="topbar">
+    <div class="shell topbar-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">SK</span>
+        <span class="brand-copy">
+          <span class="brand-title">Suresh Kumar Pal</span>
+          <span class="brand-meta">Advocate, High Court of Judicature at Allahabad</span>
+        </span>
+      </a>
 
-  <div class="mobile-menu-overlay" id="mobile-menu">
-    <div class="mobile-menu-content">
-      <a href="#practice" class="mobile-link">Practice Areas</a>
-      <a href="#insights" class="mobile-link">Insights</a>
-      <a href="#contact" class="mobile-link">Contact</a>
-    </div>
-  </div>
+      <ul class="nav-links">
+        <li><a href="#practice">Practice</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-  <header class="hero">
-    <div>
-      <h1 class="reveal-on-scroll">Advocate<br><span>Suresh Kumar Pal</span></h1>
-      <p class="reveal-on-scroll">Practicing before the Hon'ble High Court of Judicature at Allahabad.</p>
+      <div class="nav-actions">
+        <a class="nav-action" href="tel:+919140434453">Call</a>
+        <button class="menu-toggle" id="mobile-menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>
+        </button>
+      </div>
     </div>
   </header>
 
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#practice" data-mobile-link>Practice Areas</a>
+    <a href="#approach" data-mobile-link>Approach</a>
+    <a href="insights.html" data-mobile-link>Insights</a>
+    <a href="#contact" data-mobile-link>Contact</a>
+  </div>
 
+  <main class="page">
+    <section class="hero">
+      <div class="shell hero-panel reveal">
+        <span class="eyebrow">Legal Counsel From Prayagraj</span>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1 class="display">Courtroom strategy with the calm of clear advice.</h1>
+            <p>Adv. Suresh Kumar Pal represents clients before the Allahabad High Court, tribunals, and regulatory forums with a practice shaped around procedural precision, disciplined drafting, and responsive counsel.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="tel:+919140434453">Book a Consultation</a>
+              <a class="btn btn-secondary" href="insights.html">Read Legal Insights</a>
+            </div>
+          </div>
 
-  <section id="practice" class="section" style="background: var(--bg-color);">
-    <div class="container">
-      <div class="text-center reveal-on-scroll">
-        <span class="eyebrow">Expertise</span>
-        <h2 class="section-title">Core areas of practice.</h2>
-        <p class="section-subtitle">Comprehensive legal representation across civil, criminal, and corporate domains.
-        </p>
-      </div>
+          <div class="hero-side">
+            <div class="metrics-card reveal">
+              <div class="metrics-title">Practice snapshot</div>
+              <div class="metrics-grid">
+                <div class="metric">
+                  <strong>High Court</strong>
+                  <span>Writs, appeals, revisions, constitutional remedies.</span>
+                </div>
+                <div class="metric">
+                  <strong>Tribunals</strong>
+                  <span>DRT, DRAT, RERA, CAT, and service-related proceedings.</span>
+                </div>
+                <div class="metric">
+                  <strong>Disputes</strong>
+                  <span>Civil, criminal, matrimonial, property, and commercial matters.</span>
+                </div>
+                <div class="metric">
+                  <strong>Banking</strong>
+                  <span>SARFAESI, recovery actions, enforcement, and borrower rights.</span>
+                </div>
+              </div>
+            </div>
 
-      <div class="practice-grid">
-        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.1s;">
-          <h3>Litigation & Dispute Resolution</h3>
-          <ul>
-            <li>Civil Disputes, Property & Contracts</li>
-            <li>Criminal Law – Appeals, Quashing, Revision & Bail</li>
-            <li>Cheque Bounce (NI Act Sec. 138)</li>
-            <li>Matrimonial, Family & Divorce</li>
-            <li>Consumer Protection</li>
-            <li>Writs & Constitutional Law</li>
-            <li>Review Petitions & Writ Jurisdictions</li>
-          </ul>
-        </div>
-
-        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.2s;">
-          <h3>Banking & Finance</h3>
-          <ul>
-            <li>DRT, DRAT & SARFAESI matters</li>
-            <li>Debt Recovery & Enforcement</li>
-            <li>Insolvency & Bankruptcy (IBC)</li>
-            <li>NCLT & Corporate Disputes</li>
-            <li>Shareholder & Management issues</li>
-          </ul>
-        </div>
-
-        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.3s;">
-          <h3>Regulatory & Enforcement</h3>
-          <ul>
-            <li>Prevention of Corruption Act</li>
-            <li>CBI Investigated Cases</li>
-            <li>NCB Matters (NDPS Act)</li>
-            <li>ED Matters & PMLA Proceedings</li>
-          </ul>
-        </div>
-
-        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.4s;">
-          <h3>Tribunals & Administration</h3>
-          <ul>
-            <li>CAT Matters (Service Law)</li>
-            <li>Civil Service & Education disputes</li>
-            <li>Recruitment & Appointment matters</li>
-            <li>RERA Disputes (Buyers & Builders)</li>
-          </ul>
-        </div>
-
-        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.5s;">
-          <h3>Taxation Law</h3>
-          <ul>
-            <li>Direct & Indirect Tax advisory</li>
-            <li>Income Tax Litigation</li>
-            <li>GST Disputes & Representation</li>
-          </ul>
+            <div class="insight-highlight reveal" id="hero-highlight">
+              <span class="tag">Featured insight</span>
+              <h3>Loading latest commentary…</h3>
+              <p>The latest article will appear here automatically from the published insights archive.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── INSIGHTS / ARTICLES SECTION ── -->
-  <section id="insights" class="section">
-    <div class="container">
-      <div class="articles-header reveal-on-scroll">
-        <div>
-          <span class="eyebrow">Insights & Updates</span>
-          <h2 class="section-title" style="margin-bottom: 0;">Legal commentary<br>and latest rulings.</h2>
+    <section class="section" id="practice">
+      <div class="shell section-panel reveal">
+        <div class="section-header">
+          <div>
+            <span class="eyebrow">Practice Areas</span>
+            <h2 class="section-title">Built for serious disputes and urgent decisions.</h2>
+          </div>
+          <p class="section-lead">The practice spans litigation, recovery, regulatory action, and high-stakes advisory work where timing, filings, and court strategy all matter.</p>
         </div>
-        <a href="insights.html" class="view-all-link" id="view-all-btn" style="display:none;">
-          All articles →
-        </a>
-      </div>
 
-      <div class="article-grid" id="latest-articles">
-        <!-- Cards are injected here by JS -->
-        <div class="articles-empty">Loading articles…</div>
-      </div>
-    </div>
-  </section>
+        <div class="practice-grid">
+          <article class="practice-card reveal">
+            <h3>Litigation &amp; Constitutional Remedies</h3>
+            <ul>
+              <li>Civil disputes, contracts, injunctions, and property litigation</li>
+              <li>Criminal matters including bail, revision, quashing, and appeals</li>
+              <li>Writ petitions and constitutional challenges before the High Court</li>
+            </ul>
+          </article>
 
-  <section id="approach" class="section approach-bg">
-    <div class="container grid-2">
-      <div class="reveal-on-scroll">
-        <span class="eyebrow">Philosophy</span>
-        <h2 class="section-title">A practice built on transparency.</h2>
-        <p class="section-subtitle">My professional approach is grounded in legal clarity, procedural diligence, and strict client confidentiality.</p>
-      </div>
-      <div class="reveal-on-scroll" style="animation-delay: 0.15s;">
-        <div class="quote">
-          "I believe legal representation must be objective, unbiased, and strictly adhere to statutory and constitutional rights. My primary duty is to assist the Hon'ble Courts in the administration and pursuit of justice."
+          <article class="practice-card reveal">
+            <h3>Banking, Recovery &amp; Corporate Stress</h3>
+            <ul>
+              <li>SARFAESI notices, DRT proceedings, and borrower protections</li>
+              <li>IBC-linked disputes, debt enforcement, and lender actions</li>
+              <li>NCLT and corporate conflict matters with procedural depth</li>
+            </ul>
+          </article>
+
+          <article class="practice-card reveal">
+            <h3>Regulatory, Service &amp; Tribunal Matters</h3>
+            <ul>
+              <li>RERA complaints, homebuyer disputes, and builder non-compliance</li>
+              <li>CAT, recruitment, education, and public service issues</li>
+              <li>PMLA, NDPS, anti-corruption, and investigative proceedings</li>
+            </ul>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <section class="section" id="approach">
+      <div class="shell section-panel reveal">
+        <div class="section-header">
+          <div>
+            <span class="eyebrow">Approach</span>
+            <h2 class="section-title">Modern representation still rests on fundamentals.</h2>
+          </div>
+          <p class="section-lead">Clarity, preparation, and disciplined communication are what clients feel first, long before a matter reaches final hearing.</p>
+        </div>
 
+        <div class="principles-grid">
+          <article class="principle-card reveal">
+            <h3>Clarity Before Action</h3>
+            <p>Every matter begins with a grounded read of the order, notice, record, or transaction so the next legal move is deliberate rather than reactive.</p>
+          </article>
+          <article class="principle-card reveal">
+            <h3>Procedural Discipline</h3>
+            <p>Relief often depends on dates, filings, forum choice, and statutory timelines. The practice is structured around getting those details right.</p>
+          </article>
+          <article class="principle-card reveal">
+            <h3>Confidential, Direct Counsel</h3>
+            <p>Clients get communication that is sober, factual, and aligned with the ethics and confidentiality standards expected of the profession.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <!-- ── CONNECT ICONS ── -->
-  <section id="contact" class="section reveal-on-scroll" style="padding: 7rem 5%; display: flex; flex-direction: column; align-items: center; text-align: center;">
-    <span class="eyebrow" style="margin-bottom: 2rem;">Connect</span>
-    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem;">
-      <a href="tel:+919140434453" aria-label="Call" class="connect-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-      </a>
-      <a href="mailto:advsureshpal.co.in@gmail.com" aria-label="Email" class="connect-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-      </a>
-      <a href="https://wa.me/919140434453" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="connect-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-      </a>
-      <a href="https://in.linkedin.com/in/advocate-suresh-kumar-pal-47a599375" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="connect-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-      </a>
-      <a href="https://www.facebook.com/people/Suresh-Kumar-Pal/100025955770753/#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="connect-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-      </a>
-    </div>
-  </section>
+    <section class="section" id="insights">
+      <div class="shell section-panel reveal">
+        <div class="section-header">
+          <div>
+            <span class="eyebrow">Insights</span>
+            <h2 class="section-title">Articles that explain the legal position and the practical next step.</h2>
+          </div>
+          <a class="btn btn-secondary" href="insights.html">View Full Archive</a>
+        </div>
 
-  <footer>
-    <div class="container">
-      <div class="disclaimer-box reveal-on-scroll">
-        <h4>Legal Disclaimer</h4>
-        <p>As per Bar Council of India Rules, advocates are not permitted to advertise or solicit work in any form. By accessing this website, the user acknowledges that they are visiting the website voluntarily and seeking information of their own accord. It is clarified that there has been no solicitation, advertisement, or inducement by Adv. Suresh Kumar Pal. The content provided is for informational purposes only and should not be interpreted as rendering legal advice. No lawyer-client relationship is created by accessing or interacting with this website.</p>
+        <div class="article-grid" id="latest-articles">
+          <div class="loading-state">Loading latest insights…</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="shell contact-panel reveal">
+        <div class="contact-grid">
+          <div>
+            <span class="eyebrow">Contact</span>
+            <h2 class="section-title">Reach out when the matter needs quick, careful attention.</h2>
+            <p class="page-lead">Whether you are responding to a legal notice, preparing to file, or reviewing the best forum for relief, initial contact can begin by phone, email, or WhatsApp.</p>
+            <div class="contact-actions">
+              <a class="btn btn-primary" href="mailto:advsureshpal.co.in@gmail.com">Send an Email</a>
+              <a class="btn btn-secondary" href="https://wa.me/919140434453" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+            </div>
+          </div>
+
+          <div class="contact-cards">
+            <a class="contact-card reveal" href="tel:+919140434453">
+              <strong>Phone</strong>
+              <p>+91 91404 34453</p>
+            </a>
+            <a class="contact-card reveal" href="mailto:advsureshpal.co.in@gmail.com">
+              <strong>Email</strong>
+              <p>advsureshpal.co.in@gmail.com</p>
+            </a>
+            <a class="contact-card reveal" href="https://in.linkedin.com/in/advocate-suresh-kumar-pal-47a599375" target="_blank" rel="noopener noreferrer">
+              <strong>LinkedIn</strong>
+              <p>Professional updates and profile.</p>
+            </a>
+            <div class="contact-card reveal">
+              <strong>Location</strong>
+              <p>Prayagraj, Uttar Pradesh, India</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="disclaimer-card reveal">
+        <span class="eyebrow">Disclaimer</span>
+        <p>As required by the Bar Council of India rules, advocates are not permitted to solicit or advertise. This website is made available only to share general information for those who access it on their own initiative. Nothing here creates a lawyer-client relationship or substitutes for formal legal advice on specific facts.</p>
       </div>
 
-      <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> Adv. Suresh Kumar Pal. All rights reserved.</p>
-        <p>Prayagraj, Uttar Pradesh, India</p>
+      <div class="footer-row">
+        <p>&copy; <span data-year></span> Adv. Suresh Kumar Pal. All rights reserved.</p>
+        <p>Designed as a calm, modern informational website for legal practice.</p>
       </div>
     </div>
   </footer>
 
+  <button id="global-theme-toggle" class="fab-btn" type="button" aria-label="Toggle dark mode">
+    <svg id="fab-moon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <svg id="fab-sun" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2"></path><path d="M12 21v2"></path><path d="M4.22 4.22l1.42 1.42"></path><path d="M18.36 18.36l1.42 1.42"></path><path d="M1 12h2"></path><path d="M21 12h2"></path><path d="M4.22 19.78l1.42-1.42"></path><path d="M18.36 5.64l1.42-1.42"></path></svg>
+  </button>
+
+  <script src="haptics.js"></script>
+  <script src="site.js"></script>
   <script>
-    // ── Dynamic year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ── Scroll effects
-    const navbar = document.getElementById('navbar');
-    const heroContent = document.querySelector('.hero div');
-    const practiceCards = document.querySelectorAll('.practice-card');
-    
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      
-      // Navbar border
-      navbar.classList.toggle('scrolled', scrollY > 50);
-      
-      // Hero parallax
-      if (scrollY < 600 && heroContent) {
-        heroContent.style.transform = `translateY(${scrollY * 0.15}px)`;
-        heroContent.style.opacity = 1 - (scrollY / 400);
-        heroContent.style.filter = `blur(${scrollY * 0.015}px)`;
-      }
-      
-      // Practice cards subtle parallax
-      practiceCards.forEach((card, index) => {
-        const cardTop = card.offsetTop - window.innerHeight;
-        if (scrollY > cardTop - 200 && scrollY < cardTop + 400) {
-          const progress = (scrollY - (cardTop - 200)) / 600;
-          card.style.transform = `translateY(${Math.sin(progress * Math.PI) * 10}px) scale(${1 + Math.sin(progress * Math.PI) * 0.02})`;
-        }
-      });
-    }, { passive: true });
-
-    // ── Load and render latest articles
-    fetch('articles.json')
-      .then(res => {
-        if (!res.ok) throw new Error('Network response was not ok');
-        return res.json();
-      })
-      .then(data => {
-        const grid  = document.getElementById('latest-articles');
-        const items = data.items;
-
-        if (!items || items.length === 0) {
-          grid.innerHTML = '<div class="articles-empty">Articles coming soon.</div>';
-          return;
-        }
-
-        const latest = [...items].reverse().slice(0, 3);
-        grid.innerHTML = '';
-
-        latest.forEach((article, i) => {
-          const card = document.createElement('a');
-          card.href = `article.html?id=${encodeURIComponent(article.id)}`;
-          card.className = 'article-card reveal-on-scroll';
-          card.style.animationDelay = `${(i + 1) * 0.1}s`;
-
-          const tag = document.createElement('span');
-          tag.className = 'article-tag';
-          tag.textContent = article.category || 'Insights';
-
-          const title = document.createElement('h3');
-          title.className = 'article-card-title';
-          title.textContent = article.title;
-
-          const excerpt = document.createElement('p');
-          excerpt.className = 'article-card-excerpt';
-          excerpt.textContent = article.excerpt;
-
-          const footer = document.createElement('div');
-          footer.className = 'article-card-footer';
-
-          const date = document.createElement('span');
-          date.className = 'article-card-date';
-          date.textContent = article.date;
-
-          const arrow = document.createElement('span');
-          arrow.className = 'article-read-arrow';
-          arrow.textContent = 'Read →';
-
-          footer.append(date, arrow);
-          card.append(tag, title, excerpt, footer);
-          grid.appendChild(card);
-        });
-
-        if (items.length > 3) {
-          document.getElementById('view-all-btn').style.display = 'inline-flex';
-        }
-      })
-      .catch(() => {
-        document.getElementById('view-all-btn').style.display = 'none';
-        document.getElementById('latest-articles').innerHTML =
-          '<div class="articles-empty">Could not load articles.</div>';
-      });
-
-    // ── Netlify Identity routing
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
+      window.netlifyIdentity.on("init", (user) => {
         if (!user) {
           window.netlifyIdentity.on("login", () => {
             document.location.href = "/admin/";
@@ -1262,175 +260,6 @@
         }
       });
     }
-
-    // ── BCI Disclaimer Modal with Focus Trap ──────────────────
-    const disclaimerOverlay = document.getElementById('bci-disclaimer-overlay');
-    const acceptCheckbox    = document.getElementById('bci-accept-checkbox');
-    const proceedBtn        = document.getElementById('bci-proceed-btn');
-    const modal             = disclaimerOverlay.querySelector('.bci-modal');
-
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-modal', 'true');
-    modal.setAttribute('aria-labelledby', 'bci-modal-heading');
-    document.querySelector('.bci-modal h2').id = 'bci-modal-heading';
-
-    const FOCUSABLE = 'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])';
-
-    function getFocusable() {
-      return [...modal.querySelectorAll(FOCUSABLE)];
-    }
-
-    function trapFocus(e) {
-      const focusable = getFocusable();
-      const first     = focusable[0];
-      const last      = focusable[focusable.length - 1];
-
-      if (e.key === 'Tab') {
-        if (e.shiftKey) {
-          if (document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          }
-        } else {
-          if (document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-          }
-        }
-      }
-    }
-
-    function openModal() {
-      document.body.style.overflow = 'hidden';
-      disclaimerOverlay.classList.add('active');
-      modal.addEventListener('keydown', trapFocus);
-      setTimeout(() => acceptCheckbox.focus(), 50);
-    }
-
-    function closeModal() {
-      disclaimerOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-      modal.removeEventListener('keydown', trapFocus);
-    }
-
-    if (!localStorage.getItem('bciDisclaimerAccepted')) {
-      openModal();
-    }
-
-    acceptCheckbox.addEventListener('change', (e) => {
-      proceedBtn.classList.toggle('active', e.target.checked);
-    });
-
-    proceedBtn.addEventListener('click', () => {
-      if (acceptCheckbox.checked) {
-        localStorage.setItem('bciDisclaimerAccepted', 'true');
-        closeModal();
-        if (typeof triggerHaptic === 'function') triggerHaptic('success');
-        scrollToHash();
-      }
-    });
-
-    acceptCheckbox.addEventListener('change', () => {
-      if (typeof triggerHaptic === 'function') triggerHaptic('light');
-    });
-
-    // ── Hash Smoothing ───────────────────────────────────────────
-    // Ensures clicking anchor links ALWAYS scrolls, even if hash is already in URL
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          e.preventDefault();
-          history.pushState(null, null, targetId);
-          targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-
-    function scrollToHash() {
-      if (window.location.hash) {
-        const target = document.querySelector(window.location.hash);
-        if (target) {
-          setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 100);
-        }
-      }
-    }
-
-    if (localStorage.getItem('bciDisclaimerAccepted')) {
-      scrollToHash();
-    }
   </script>
-  <script src="haptics.js"></script>
-  <script>
-    // ── Haptic bindings via event delegation on document.body ──
-    // This catches all clicks including dynamically injected cards.
-    bindHaptics('body', {
-      // Navigation
-      '.nav-icon':        'light',
-      '.nav-brand':       'light',
-
-      // Hero CTA & primary buttons
-      '.btn-primary':     'medium',
-
-      // Practice area cards (touch feedback)
-      '.practice-card':   'light',
-
-      // Article cards (including dynamically created)
-      '.article-card':    'light',
-
-      // "All articles →" link
-      '.view-all-link':   'light',
-
-      // Connect icons (social/contact — outbound action)
-      '.connect-icon':    'medium',
-    });
-
-    // BCI Disclaimer — checkbox gets a light tick, proceed gets success
-    acceptCheckbox.addEventListener('change', () => triggerHaptic('light'));
-    proceedBtn.addEventListener('click', () => {
-      if (acceptCheckbox.checked) triggerHaptic('success');
-    });
-
-    // ── Mobile Menu & Theme Logic ──
-    document.addEventListener('DOMContentLoaded', () => {
-      // Mobile Menu
-      const mobileBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const hamburgerIcon = document.getElementById('hamburger-icon');
-      const closeIcon = document.getElementById('close-icon');
-      const mobileLinks = document.querySelectorAll('.mobile-link');
-
-      if(mobileBtn && mobileMenu) {
-        function toggleMenu() {
-          const isActive = mobileMenu.classList.contains('active');
-          mobileMenu.classList.toggle('active');
-          if (isActive) {
-            hamburgerIcon.style.display = 'block';
-            closeIcon.style.display = 'none';
-            document.body.style.overflow = '';
-          } else {
-            hamburgerIcon.style.display = 'none';
-            closeIcon.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-          }
-        }
-        mobileBtn.addEventListener('click', toggleMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', () => {
-          if (mobileMenu.classList.contains('active')) toggleMenu();
-        }));
-      }
-    });
-  </script>
-
-  <!-- Global FAB -->
-  <button id="global-theme-toggle" class="fab-btn" aria-label="Toggle Dark Mode">
-    <svg id="fab-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-    <svg id="fab-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-  </button>
 </body>
-
-</html>
-
 </html>
