@@ -434,11 +434,14 @@
     .practice-stack-stage {
       position: relative;
       margin-top: 4rem;
-      padding: 1.25rem 0 8.5rem;
+      min-height: 1450px;
+      padding: 0 0 10rem;
       perspective: 1600px;
       perspective-origin: center top;
       --stack-progress: 0;
       --folder-open: 0;
+      --folder-preview: 0;
+      --folder-stack-back: 0;
       --stored-progress: 0;
     }
 
@@ -479,12 +482,12 @@
     }
 
     .practice-folder-component {
-      position: absolute;
-      left: 50%;
-      bottom: 0;
+      position: sticky;
+      top: 198px;
       width: min(100%, 920px);
-      transform: translateX(-50%) translateY(calc(34px - (var(--stored-progress) * 30px)));
-      opacity: calc(0.15 + (var(--stored-progress) * 0.95));
+      margin: 0 auto -240px;
+      transform: translateY(calc(34px - (var(--stored-progress) * 30px)));
+      opacity: calc(0.24 + (var(--folder-preview) * 0.3) + (var(--stored-progress) * 0.55));
       pointer-events: none;
       z-index: 0;
       transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
@@ -540,6 +543,92 @@
       box-shadow: 0 12px 18px rgba(0, 0, 0, 0.05);
     }
 
+    .practice-folder-preview {
+      position: absolute;
+      left: 50%;
+      bottom: 66px;
+      width: 360px;
+      height: 180px;
+      transform: translateX(-50%);
+      transform-style: preserve-3d;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .practice-preview-file {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 170px;
+      height: 118px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 244, 247, 0.98));
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow:
+        0 16px 36px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      transform-origin: center bottom;
+      transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+    }
+
+    .practice-preview-file::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      top: 20px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.06);
+      box-shadow:
+        0 18px 0 rgba(0, 0, 0, 0.05),
+        0 36px 0 rgba(0, 0, 0, 0.04);
+    }
+
+    .practice-preview-file::after {
+      content: '';
+      position: absolute;
+      left: 18px;
+      bottom: 16px;
+      width: 54%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(82, 39, 255, 0.1);
+    }
+
+    .practice-preview-file.left {
+      transform:
+        translateX(calc(-50% - (var(--folder-preview) * 82px) + (var(--folder-stack-back) * 38px)))
+        translateY(calc(-24px - (var(--folder-preview) * 80px) + (var(--folder-stack-back) * 68px)))
+        rotate(calc(-16deg * var(--folder-preview) + 14deg * var(--folder-stack-back)))
+        scale(calc(0.76 + (var(--folder-preview) * 0.24) - (var(--folder-stack-back) * 0.22)))
+        translateZ(calc(var(--folder-stack-back) * -70px));
+      opacity: calc(0.3 + (var(--folder-preview) * 0.7));
+      z-index: 1;
+    }
+
+    .practice-preview-file.center {
+      transform:
+        translateX(-50%)
+        translateY(calc(-20px - (var(--folder-preview) * 122px) + (var(--folder-stack-back) * 84px)))
+        rotate(calc(-1deg + (var(--folder-stack-back) * 3deg)))
+        scale(calc(0.82 + (var(--folder-preview) * 0.26) - (var(--folder-stack-back) * 0.25)))
+        translateZ(calc(28px - (var(--folder-stack-back) * 110px)));
+      opacity: calc(0.36 + (var(--folder-preview) * 0.72));
+      z-index: 3;
+    }
+
+    .practice-preview-file.right {
+      transform:
+        translateX(calc(-50% + (var(--folder-preview) * 82px) - (var(--folder-stack-back) * 38px)))
+        translateY(calc(-24px - (var(--folder-preview) * 80px) + (var(--folder-stack-back) * 68px)))
+        rotate(calc(16deg * var(--folder-preview) - 14deg * var(--folder-stack-back)))
+        scale(calc(0.76 + (var(--folder-preview) * 0.24) - (var(--folder-stack-back) * 0.22)))
+        translateZ(calc(var(--folder-stack-back) * -70px));
+      opacity: calc(0.3 + (var(--folder-preview) * 0.7));
+      z-index: 2;
+    }
+
     .practice-folder-tracks {
       position: absolute;
       inset: 24px 26px 18px;
@@ -566,10 +655,9 @@
     .practice-folder-file:nth-child(5) { width: 84%; }
 
     .practice-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      position: relative;
+      position: sticky;
+      top: 108px;
+      min-height: 760px;
       z-index: 1;
       transform-style: preserve-3d;
     }
@@ -592,10 +680,17 @@
       overflow: hidden;
       transform-style: preserve-3d;
       will-change: transform;
+      width: min(100%, 352px);
+      min-height: 240px;
+      position: absolute;
+      left: 50%;
+      top: 270px;
+      margin-left: -176px;
       transform:
         translate3d(var(--card-shift-x, 0px), calc(var(--card-shift-y, 0px) + var(--pointer-shift-y, 0px)), calc(var(--card-depth, 0px) + var(--pointer-depth, 0px)))
         rotateX(var(--card-tilt-x, 0deg))
         rotateY(var(--card-tilt-y, 0deg))
+        rotateZ(var(--card-rotate-z, 0deg))
         scale(calc(var(--card-scale, 1) * var(--press-scale, 1)));
     }
 
@@ -672,11 +767,11 @@
       transform: scale(1.2);
     }
 
-    .practice-card:nth-child(1) { z-index: 5; }
-    .practice-card:nth-child(2) { z-index: 4; }
-    .practice-card:nth-child(3) { z-index: 3; }
-    .practice-card:nth-child(4) { z-index: 2; }
-    .practice-card:nth-child(5) { z-index: 1; }
+    .practice-card:nth-child(1) { z-index: 8; }
+    .practice-card:nth-child(2) { z-index: 7; }
+    .practice-card:nth-child(3) { z-index: 6; }
+    .practice-card:nth-child(4) { z-index: 5; }
+    .practice-card:nth-child(5) { z-index: 4; }
 
     /* ── APPROACH SECTION ── */
     .approach-bg {
@@ -1043,6 +1138,7 @@
       }
 
       .practice-stack-stage {
+        min-height: auto;
         padding-bottom: 4rem;
         perspective: none;
       }
@@ -1054,10 +1150,9 @@
 
       .practice-folder-component {
         position: relative;
-        left: auto;
-        bottom: auto;
+        top: auto;
         width: 100%;
-        margin-top: 1.25rem;
+        margin: 1.25rem auto 0;
         transform: none;
         opacity: 1;
       }
@@ -1072,11 +1167,39 @@
         width: 148px;
       }
 
+      .practice-folder-preview {
+        width: 270px;
+        height: 140px;
+        bottom: 64px;
+      }
+
+      .practice-preview-file {
+        width: 124px;
+        height: 90px;
+        border-radius: 18px;
+      }
+
+      .practice-grid {
+        position: relative;
+        top: auto;
+        min-height: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
       .practice-card {
+        width: 100%;
+        min-height: 0;
+        position: relative;
+        left: auto;
+        top: auto;
+        margin-left: 0;
         transform:
-          translate3d(0, calc(var(--card-shift-y, 0px) * 0.35), 0)
+          translate3d(0, calc(var(--card-shift-y, 0px) * 0.12), 0)
           rotateX(0deg)
           rotateY(0deg)
+          rotateZ(0deg)
           scale(1) !important;
       }
     }
@@ -1215,6 +1338,17 @@
     html.dark-mode .practice-folder-file {
       background: linear-gradient(90deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.03));
     }
+    html.dark-mode .practice-preview-file {
+      background: linear-gradient(180deg, rgba(244, 244, 247, 0.98), rgba(226, 226, 232, 0.98));
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+    html.dark-mode .practice-preview-file::before {
+      background: rgba(0, 0, 0, 0.12);
+      box-shadow:
+        0 18px 0 rgba(0, 0, 0, 0.1),
+        0 36px 0 rgba(0, 0, 0, 0.08);
+    }
     html.dark-mode .practice-card::after {
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
     }
@@ -1277,6 +1411,27 @@
       </div>
 
       <div class="practice-stack-stage">
+      <div class="practice-folder-component" aria-hidden="true">
+        <div class="practice-folder-meta">
+          <span>Filed Section</span>
+          <strong>Practice Areas</strong>
+          <span>5 cards stored</span>
+        </div>
+        <div class="practice-folder-shell">
+          <div class="practice-folder-preview">
+            <span class="practice-preview-file left"></span>
+            <span class="practice-preview-file center"></span>
+            <span class="practice-preview-file right"></span>
+          </div>
+          <div class="practice-folder-tracks">
+            <span class="practice-folder-file"></span>
+            <span class="practice-folder-file"></span>
+            <span class="practice-folder-file"></span>
+            <span class="practice-folder-file"></span>
+            <span class="practice-folder-file"></span>
+          </div>
+        </div>
+      </div>
       <div class="practice-grid">
         <div class="practice-card reveal-on-scroll" style="animation-delay: 0.1s;" data-stack-index="0">
           <h3>Litigation & Dispute Resolution</h3>
@@ -1329,22 +1484,6 @@
             <li>Income Tax Litigation</li>
             <li>GST Disputes & Representation</li>
           </ul>
-        </div>
-      </div>
-      <div class="practice-folder-component" aria-hidden="true">
-        <div class="practice-folder-meta">
-          <span>Filed Section</span>
-          <strong>Practice Areas</strong>
-          <span>5 cards stored</span>
-        </div>
-        <div class="practice-folder-shell">
-          <div class="practice-folder-tracks">
-            <span class="practice-folder-file"></span>
-            <span class="practice-folder-file"></span>
-            <span class="practice-folder-file"></span>
-            <span class="practice-folder-file"></span>
-            <span class="practice-folder-file"></span>
-          </div>
         </div>
       </div>
       </div>
@@ -1444,29 +1583,44 @@
       const sectionDistance = practiceSection.offsetHeight + window.innerHeight * 0.5;
       const rawProgress = (scrollY - sectionStart) / sectionDistance;
       const progress = Math.max(0, Math.min(1, rawProgress));
+      const folderPreview = Math.max(0, Math.min(1, (progress - 0.08) / 0.24));
+      const folderStackBack = Math.max(0, Math.min(1, (progress - 0.34) / 0.24));
       const folderOpen = Math.max(0, Math.min(1, (progress - 0.54) / 0.32));
       const storedProgress = Math.max(0, Math.min(1, (progress - 0.7) / 0.22));
 
       practiceStage.style.setProperty('--stack-progress', progress.toFixed(3));
+      practiceStage.style.setProperty('--folder-preview', folderPreview.toFixed(3));
+      practiceStage.style.setProperty('--folder-stack-back', folderStackBack.toFixed(3));
       practiceStage.style.setProperty('--folder-open', folderOpen.toFixed(3));
       practiceStage.style.setProperty('--stored-progress', storedProgress.toFixed(3));
 
       practiceCards.forEach((card, index) => {
         const spread = index - (practiceCards.length - 1) / 2;
-        const stackShift = Math.sin(progress * Math.PI) * (spread * 10);
-        const frontLift = Math.sin(progress * Math.PI) * (20 + (practiceCards.length - index) * 9);
-        const depth = (progress * -60 * index) + Math.sin(progress * Math.PI) * (index * -18);
-        const stackScale = 1 - (progress * index * 0.018);
-        const storeProgress = Math.max(0, Math.min(1, (progress - (0.56 + index * 0.045)) / 0.28));
-        const storeDrop = storeProgress * (138 + index * 10);
-        const storeCompress = storeProgress * 0.12;
-        const finalY = -frontLift + stackShift + storeDrop;
-        const finalX = spread * 10 - storeProgress * spread * 18;
+        const emergeProgress = Math.max(0, Math.min(1, (progress - index * 0.035) / 0.22));
+        const fanSpread = folderPreview * 128 * Math.sign(spread) * Math.min(Math.abs(spread), 1.4);
+        const fanLift = folderPreview * (110 + index * 14);
+        const fanRotate = folderPreview * spread * 9;
+        const pushBackX = folderStackBack * spread * -34;
+        const pushBackY = folderStackBack * (68 + index * 10);
+        const pushBackDepth = folderStackBack * (index * -130 - 40);
+        const storeProgress = Math.max(0, Math.min(1, (progress - (0.62 + index * 0.035)) / 0.22));
+        const storeX = storeProgress * spread * -10;
+        const storeY = storeProgress * (120 + index * 18);
+        const storeDepth = storeProgress * (index * -90 - 30);
+        const scaleBase = 0.88 + emergeProgress * 0.12;
+        const scaleBack = folderStackBack * (index * 0.03);
+        const scaleStore = storeProgress * 0.11;
+        const finalX = fanSpread + pushBackX + storeX;
+        const finalY = -(fanLift * emergeProgress) + pushBackY + storeY;
+        const finalDepth = pushBackDepth + storeDepth;
+        const finalRotate = fanRotate - folderStackBack * spread * 12 - storeProgress * spread * 4;
+        const finalScale = scaleBase - scaleBack - scaleStore;
 
         card.style.setProperty('--card-shift-x', `${finalX.toFixed(2)}px`);
         card.style.setProperty('--card-shift-y', `${finalY.toFixed(2)}px`);
-        card.style.setProperty('--card-depth', `${depth.toFixed(2)}px`);
-        card.style.setProperty('--card-scale', (stackScale - storeCompress).toFixed(3));
+        card.style.setProperty('--card-depth', `${finalDepth.toFixed(2)}px`);
+        card.style.setProperty('--card-rotate-z', `${finalRotate.toFixed(2)}deg`);
+        card.style.setProperty('--card-scale', finalScale.toFixed(3));
       });
     }
 
