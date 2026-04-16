@@ -1321,6 +1321,7 @@
         localStorage.setItem('bciDisclaimerAccepted', 'true');
         closeModal();
         if (typeof triggerHaptic === 'function') triggerHaptic('success');
+        scrollToHash();
       }
     });
 
@@ -1328,9 +1329,33 @@
       if (typeof triggerHaptic === 'function') triggerHaptic('light');
     });
 
-    // ── Web Haptic Engine (shared) ──────────────────────────────
-    // Loaded via haptics.js — binds to all interactive elements
-    // using event delegation for performance + dynamic card support.
+    // ── Hash Smoothing ───────────────────────────────────────────
+    // Ensures clicking anchor links ALWAYS scrolls, even if hash is already in URL
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          history.pushState(null, null, targetId);
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    function scrollToHash() {
+      if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 100);
+        }
+      }
+    }
+
+    if (localStorage.getItem('bciDisclaimerAccepted')) {
+      scrollToHash();
+    }
   </script>
   <script src="haptics.js"></script>
   <script>
