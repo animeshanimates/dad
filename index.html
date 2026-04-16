@@ -321,6 +321,114 @@
       text-align: center;
       padding: 0 5%;
       padding-top: 64px;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      --hero-shift-x: 0px;
+      --hero-shift-y: 0px;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.8;
+      transition: transform 0.5s var(--ease), opacity 0.4s var(--ease);
+    }
+
+    .hero::before {
+      width: 320px;
+      height: 320px;
+      top: 14%;
+      left: max(2%, calc(50% - 620px));
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.92) 0%, rgba(240, 240, 245, 0.5) 42%, transparent 72%);
+      transform: translate3d(calc(var(--hero-shift-x) * -0.18), calc(var(--hero-shift-y) * -0.12), 0);
+      filter: blur(8px);
+    }
+
+    .hero::after {
+      width: 420px;
+      height: 420px;
+      right: max(2%, calc(50% - 660px));
+      bottom: 10%;
+      background: radial-gradient(circle, rgba(220, 220, 226, 0.28) 0%, rgba(245, 245, 247, 0.08) 52%, transparent 78%);
+      transform: translate3d(calc(var(--hero-shift-x) * 0.14), calc(var(--hero-shift-y) * 0.1), 0);
+      filter: blur(10px);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 920px);
+      padding: clamp(2rem, 4vw, 3rem);
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.44), rgba(255, 255, 255, 0.16));
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transform-style: preserve-3d;
+      will-change: transform;
+      transform: perspective(1200px) rotateX(var(--hero-tilt-x, 0deg)) rotateY(var(--hero-tilt-y, 0deg));
+      transition: transform 0.18s linear, box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+    }
+
+    .hero-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at var(--hero-glow-x, 50%) var(--hero-glow-y, 18%), rgba(255, 255, 255, 0.62), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 60%);
+      opacity: calc(0.4 + var(--hero-active, 0) * 0.5);
+      pointer-events: none;
+      transition: opacity 0.3s var(--ease);
+    }
+
+    .hero-inner:hover {
+      box-shadow: 0 32px 76px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.86);
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .hero-orbit {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.8;
+      will-change: transform;
+    }
+
+    .hero-orbit.one {
+      width: 110px;
+      height: 110px;
+      top: 19%;
+      left: 16%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.76), rgba(235, 235, 240, 0.08) 62%, transparent 75%);
+      animation: heroFloat 8s ease-in-out infinite;
+    }
+
+    .hero-orbit.two {
+      width: 16px;
+      height: 16px;
+      top: 31%;
+      right: 18%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.16) 65%, transparent 78%);
+      box-shadow: 0 0 24px rgba(255, 255, 255, 0.28);
+      animation: heroFloat 6s ease-in-out infinite reverse;
+    }
+
+    .hero-orbit.three {
+      width: 220px;
+      height: 220px;
+      bottom: 14%;
+      left: 11%;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      animation: heroPulse 7s ease-in-out infinite;
     }
 
     .hero h1 {
@@ -330,10 +438,14 @@
       letter-spacing: -0.04em;
       max-width: 1000px;
       margin-bottom: 1.5rem;
+      text-shadow: 0 10px 22px rgba(255, 255, 255, 0.34);
     }
 
     .hero h1 span {
       color: var(--text-muted);
+      display: inline-block;
+      transform: translateZ(36px);
+      transition: transform 0.45s var(--spring), color 0.35s var(--ease);
     }
 
     .hero p {
@@ -343,6 +455,63 @@
       margin: 0 auto 3rem auto;
       font-weight: 400;
       text-wrap: balance;
+      transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
+    }
+
+    .hero:hover h1 span {
+      transform: translateZ(56px) translateY(-2px);
+      color: #5c5c63;
+    }
+
+    .hero-scroll-cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.42);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform 0.3s var(--ease), background 0.3s var(--ease), border-color 0.3s var(--ease);
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .hero-scroll-cue::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--text-main);
+      box-shadow: 0 0 0 0 rgba(29, 29, 31, 0.2);
+      animation: cuePulse 1.8s ease-in-out infinite;
+    }
+
+    .hero-scroll-cue:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.6);
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+
+    @keyframes heroFloat {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, -12px, 0); }
+    }
+
+    @keyframes heroPulse {
+      0%, 100% { transform: scale(0.96); opacity: 0.22; }
+      50% { transform: scale(1.02); opacity: 0.38; }
+    }
+
+    @keyframes cuePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(29, 29, 31, 0.16); }
+      50% { box-shadow: 0 0 0 10px rgba(29, 29, 31, 0); }
     }
 
     .btn {
@@ -1184,6 +1353,16 @@
         font-size: 1.125rem;
       }
 
+      .hero-inner {
+        padding: 1.75rem 1.25rem;
+        border-radius: 26px;
+      }
+
+      .hero-orbit.one,
+      .hero-orbit.three {
+        display: none;
+      }
+
       .quote {
         padding-left: 1rem;
         font-size: 1.25rem;
@@ -1406,6 +1585,24 @@
     html.dark-mode .practice-card::after {
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
     }
+    html.dark-mode .hero::before {
+      background: radial-gradient(circle, rgba(66, 66, 72, 0.9) 0%, rgba(36, 36, 42, 0.35) 42%, transparent 74%);
+    }
+    html.dark-mode .hero::after {
+      background: radial-gradient(circle, rgba(120, 120, 136, 0.2) 0%, rgba(28, 28, 32, 0.06) 48%, transparent 76%);
+    }
+    html.dark-mode .hero-inner {
+      background: linear-gradient(180deg, rgba(28, 28, 32, 0.62), rgba(18, 18, 20, 0.36));
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+    html.dark-mode .hero-scroll-cue {
+      background: rgba(28, 28, 30, 0.5);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    html.dark-mode .hero-scroll-cue::before {
+      background: #f5f5f7;
+    }
   </style>
   <script src="theme.js"></script>
 </head>
@@ -1447,9 +1644,13 @@
   </div>
 
   <header class="hero">
-    <div>
+    <span class="hero-orbit one"></span>
+    <span class="hero-orbit two"></span>
+    <span class="hero-orbit three"></span>
+    <div class="hero-inner">
       <h1 class="reveal-on-scroll">Advocate<br><span>Suresh Kumar Pal</span></h1>
       <p class="reveal-on-scroll">Practicing before the Hon'ble High Court of Judicature at Allahabad.</p>
+      <div class="hero-scroll-cue reveal-on-scroll">Scroll to Explore</div>
     </div>
   </header>
 
@@ -1619,7 +1820,8 @@
 
     // ── Scroll effects
     const navbar = document.getElementById('navbar');
-    const heroContent = document.querySelector('.hero div');
+    const hero = document.querySelector('.hero');
+    const heroContent = document.querySelector('.hero-inner');
     const practiceSection = document.getElementById('practice');
     const practiceStage = document.querySelector('.practice-stack-stage');
     const practiceCards = document.querySelectorAll('.practice-card');
@@ -1697,6 +1899,34 @@
     window.addEventListener('resize', () => updatePracticeStack(window.scrollY), { passive: true });
     handleScroll();
 
+    if (hero && heroContent && !prefersReducedMotion) {
+      hero.addEventListener('pointermove', (event) => {
+        const rect = hero.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        const tiltY = (x - 0.5) * 7;
+        const tiltX = (0.5 - y) * 6;
+
+        hero.style.setProperty('--hero-shift-x', `${(x - 0.5) * 42}px`);
+        hero.style.setProperty('--hero-shift-y', `${(y - 0.5) * 34}px`);
+        heroContent.style.setProperty('--hero-tilt-x', `${tiltX.toFixed(2)}deg`);
+        heroContent.style.setProperty('--hero-tilt-y', `${tiltY.toFixed(2)}deg`);
+        heroContent.style.setProperty('--hero-glow-x', `${(x * 100).toFixed(2)}%`);
+        heroContent.style.setProperty('--hero-glow-y', `${(y * 100).toFixed(2)}%`);
+        heroContent.style.setProperty('--hero-active', '1');
+      });
+
+      hero.addEventListener('pointerleave', () => {
+        hero.style.setProperty('--hero-shift-x', '0px');
+        hero.style.setProperty('--hero-shift-y', '0px');
+        heroContent.style.setProperty('--hero-tilt-x', '0deg');
+        heroContent.style.setProperty('--hero-tilt-y', '0deg');
+        heroContent.style.setProperty('--hero-glow-x', '50%');
+        heroContent.style.setProperty('--hero-glow-y', '18%');
+        heroContent.style.setProperty('--hero-active', '0');
+      });
+    }
+
     if (!prefersReducedMotion) {
       practiceCards.forEach((card) => {
         card.addEventListener('pointermove', (event) => {
@@ -1724,6 +1954,34 @@
           card.style.setProperty('--glow-x', '50%');
           card.style.setProperty('--glow-y', '20%');
         });
+      });
+    }
+
+    if (hero && heroContent && !prefersReducedMotion) {
+      hero.addEventListener('pointermove', (event) => {
+        const rect = hero.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        const tiltY = (x - 0.5) * 7;
+        const tiltX = (0.5 - y) * 6;
+
+        hero.style.setProperty('--hero-shift-x', `${(x - 0.5) * 42}px`);
+        hero.style.setProperty('--hero-shift-y', `${(y - 0.5) * 34}px`);
+        heroContent.style.setProperty('--hero-tilt-x', `${tiltX.toFixed(2)}deg`);
+        heroContent.style.setProperty('--hero-tilt-y', `${tiltY.toFixed(2)}deg`);
+        heroContent.style.setProperty('--hero-glow-x', `${(x * 100).toFixed(2)}%`);
+        heroContent.style.setProperty('--hero-glow-y', `${(y * 100).toFixed(2)}%`);
+        heroContent.style.setProperty('--hero-active', '1');
+      });
+
+      hero.addEventListener('pointerleave', () => {
+        hero.style.setProperty('--hero-shift-x', '0px');
+        hero.style.setProperty('--hero-shift-y', '0px');
+        heroContent.style.setProperty('--hero-tilt-x', '0deg');
+        heroContent.style.setProperty('--hero-tilt-y', '0deg');
+        heroContent.style.setProperty('--hero-glow-x', '50%');
+        heroContent.style.setProperty('--hero-glow-y', '18%');
+        heroContent.style.setProperty('--hero-active', '0');
       });
     }
 
