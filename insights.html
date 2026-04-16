@@ -288,8 +288,8 @@
        PAGE HEADER
     ══════════════════════════════════════════════════════════════ */
     .page-header {
-      padding-top: calc(64px + 5rem);
-      padding-bottom: 3rem;
+      padding-top: calc(64px + 3rem);
+      padding-bottom: 1.5rem;
       padding-left: 5%;
       padding-right: 5%;
       text-align: center;
@@ -343,17 +343,20 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     /* ── Search Bar ── */
     .search-wrapper {
       position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     .search-icon {
       position: absolute;
-      left: 0;
+      left: 12px;
       top: 50%;
       transform: translateY(-50%);
       width: 18px;
@@ -369,12 +372,12 @@
       font-size: 1rem;
       font-weight: 400;
       color: var(--text-main);
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid var(--border);
-      padding: 0.75rem 0 0.75rem 2rem;
+      background: rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
       outline: none;
-      transition: border-color 0.3s var(--ease), border-width 0.3s var(--ease);
+      transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
     }
 
     #search-input::placeholder {
@@ -383,7 +386,8 @@
     }
 
     #search-input:focus {
-      border-bottom: 2px solid var(--text-main);
+      border-color: var(--text-main);
+      box-shadow: 0 0 0 1px var(--text-main);
     }
 
     #search-input:focus ~ .search-icon {
@@ -440,12 +444,14 @@
       border-color: #424245;
     }
 
-    /* New filter styles */
+    /* Filter styles */
     .filter-container {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 0.75rem;
       flex-wrap: wrap;
+      width: 100%;
     }
 
     .filter-label {
@@ -464,113 +470,27 @@
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       padding-bottom: 4px;
-      flex: 1;
-      min-width: 0;
+      justify-content: center;
+      flex: 0 1 auto;
     }
 
     .pill-container::-webkit-scrollbar {
       display: none;
-    }
-
-    .pill-btn {
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      background: transparent;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      transition: all 0.3s var(--ease);
-      user-select: none;
-    }
-
-    .pill-btn:hover {
-      color: var(--text-main);
-      border-color: rgba(0, 0, 0, 0.2);
-      background: rgba(0, 0, 0, 0.02);
-    }
-
-    .pill-x {
-      color: #ff3b30;
-      border-color: #ff3b30;
-    }
-
-    .pill-x:hover {
-      background: #ff3b30;
-      color: #fff;
-    }
-
-    /* New filter styles */
-    .filter-container {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .filter-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .pill-container {
-      display: flex;
-      gap: 0.5rem;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding-bottom: 4px;
-      flex: 1;
-      min-width: 0;
-    }
-
-    .pill-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    .pill-btn {
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      background: transparent;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      transition: all 0.3s var(--ease);
-      user-select: none;
-    }
-
-    .pill-btn:hover {
-      color: var(--text-main);
-      border-color: rgba(0, 0, 0, 0.2);
-      background: rgba(0, 0, 0, 0.02);
     }
 
     /* ── Results count ── */
+    .results-count-container {
+      max-width: 1200px;
+      margin: 0 auto 16px auto;
+      padding: 0;
+      text-align: left;
+    }
+
     .results-count {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
       font-weight: 500;
       letter-spacing: 0.02em;
-      margin-top: 0.25rem;
       min-height: 1.2em;
       transition: opacity 0.3s var(--ease);
     }
@@ -579,7 +499,7 @@
        ARTICLE GRID — Exact styles from index.html
     ══════════════════════════════════════════════════════════════ */
     .archive-section {
-      padding: 3rem 5% 8rem;
+      padding: 2rem 5% 8rem;
       view-timeline-name: --section-reveal;
     }
 
@@ -1026,7 +946,7 @@
   <header class="page-header">
     <span class="eyebrow reveal-on-scroll">Archive</span>
     <h1 class="reveal-on-scroll">Legal Insights &amp; Commentary</h1>
-    <p class="reveal-on-scroll">Searchable archive of case analyses, commentaries, and legal guides authored by Adv. Suresh Kumar Pal.</p>
+    <p class="reveal-on-scroll">Searchable archive of case analyses, commentaries, and legal guides.</p>
   </header>
 
   <!-- ═══ STICKY CONTROL BAR ═══ -->
@@ -1044,30 +964,20 @@
 
       <!-- Law Areas Filter -->
       <div id="law-areas-container" class="filter-container">
-        <span class="filter-label">Areas of Law:</span>
+        <span class="filter-label">Filter by:</span>
         <div id="law-areas-pills" class="pill-container">
           <!-- Law area pills will be dynamically generated -->
         </div>
-        <button id="reset-law-areas" class="pill-btn pill-x">✕</button>
       </div>
-
-      <!-- Topics Filter -->
-      <div id="topics-filter-container" class="filter-container">
-        <span class="filter-label">Topics:</span>
-        <div id="topics-pills" class="pill-container">
-          <!-- Topic pills will be dynamically generated -->
-        </div>
-        <button id="reset-topics" class="pill-btn pill-x">✕</button>
-      </div>
-
-      <!-- Results Count -->
-      <div class="results-count" id="results-count"></div>
 
     </div>
   </div>
 
   <!-- ═══ ARTICLES GRID ═══ -->
   <main class="archive-section">
+    <div class="results-count-container">
+      <div class="results-count" id="results-count"></div>
+    </div>
     <div class="article-grid" id="article-grid">
       <!-- Loading state shown initially -->
       <div class="loading-state" id="loading-state">
@@ -1105,15 +1015,13 @@
     // ── STATE ──────────────────────────────────────────────────
     let allArticles = [];        // Full article list from JSON
     let filterState = {
-      topic: null,
-      area: null,
+      area: 'all',
       search: ''
     };
     let isTransitioning = false; // Prevents rapid re-renders
 
     // ── DOM REFERENCES ────────────────────────────────────────
     const grid         = document.getElementById('article-grid');
-    const topicsPills  = document.getElementById('topics-pills');
     const lawAreasPills = document.getElementById('law-areas-pills');
     const searchInput  = document.getElementById('search-input');
     const resultsCount = document.getElementById('results-count');
@@ -1133,9 +1041,6 @@
 
         // Remove loading spinner
         loadingState.remove();
-
-        // Build topic pills from unique categories in data
-        buildTopicPills(allArticles);
 
         // Build law area pills
         buildLawAreaPills();
@@ -1158,43 +1063,6 @@
       });
 
     // ══════════════════════════════════════════════════════════
-    // 2. BUILD TOPIC PILLS dynamically from JSON data
-    // ══════════════════════════════════════════════════════════
-    function buildTopicPills(articles) {
-      // Extract every unique category string
-      const categories = [...new Set(articles.map(a => a.category).filter(Boolean))];
-
-      // Always lead with an "All" pill
-      const allPill = createTopicPill('All', true);
-      topicsPills.appendChild(allPill);
-
-      // Append one pill per unique category
-      categories.forEach(cat => {
-        topicsPills.appendChild(createTopicPill(cat, false));
-      });
-    }
-
-    /**
-     * Creates a single topic pill <button> element.
-     * @param {string} label   — The pill text
-     * @param {boolean} active — Whether it starts active
-     * @returns {HTMLButtonElement}
-     */
-    function createTopicPill(label, active) {
-      const btn = document.createElement('button');
-      btn.className = 'pill' + (active ? ' active' : '');
-      btn.textContent = label;
-      btn.setAttribute('data-topic', label.toLowerCase().replace(/\s+/g, '-'));
-      btn.setAttribute('type', 'button');
-
-      btn.addEventListener('click', () => {
-        applyTopicFilter(btn.dataset.topic);
-      });
-
-      return btn;
-    }
-
-    // ══════════════════════════════════════════════════════════
     // 3. BUILD LAW AREAS PILLS
     // ══════════════════════════════════════════════════════════
     const lawAreas = [
@@ -1215,6 +1083,18 @@
     ];
 
     function buildLawAreaPills() {
+      // Add All pill
+      const allPill = document.createElement('button');
+      allPill.className = 'pill active';
+      allPill.dataset.area = 'all';
+      allPill.textContent = 'All';
+      allPill.setAttribute('type', 'button');
+      allPill.addEventListener('click', (e) => {
+        e.stopPropagation();
+        applyAreaFilter('all');
+      });
+      lawAreasPills.appendChild(allPill);
+
       lawAreas.forEach((area) => {
         const pill = document.createElement('button');
         pill.className = 'pill';
@@ -1242,24 +1122,7 @@
       }
 
       // Update filter state
-      filterState.area = selectedArea;
-
-      // Apply filtering
-      filterArticles();
-    }
-
-    function applyTopicFilter(selectedTopic) {
-      // Remove active class from all pills
-      topicsPills.querySelectorAll('.pill.active').forEach(p => p.classList.remove('active'));
-
-      if (selectedTopic) {
-        // Add active class to clicked pill
-        const pill = topicsPills.querySelector(`[data-topic="${selectedTopic}"]`);
-        if (pill) pill.classList.add('active');
-      }
-
-      // Update filter state
-      filterState.topic = selectedTopic;
+      filterState.area = selectedArea || 'all';
 
       // Apply filtering
       filterArticles();
@@ -1280,14 +1143,13 @@
     });
 
     // ══════════════════════════════════════════════════════════
-    // 5. FILTER ARTICLES — combines search + topic + area
+    // 5. FILTER ARTICLES — combines search + area
     // ══════════════════════════════════════════════════════════
     function filterArticles() {
       const articles = grid.querySelectorAll('.article-card');
       let visibleCount = 0;
 
       articles.forEach(card => {
-        const cardTopic = card.dataset.topic;
         const cardArea = card.dataset.area;
         const title = card.querySelector('.article-card-title').textContent.toLowerCase();
         const excerpt = card.querySelector('.article-card-excerpt').textContent.toLowerCase();
@@ -1297,16 +1159,12 @@
           title.includes(filterState.search) ||
           excerpt.includes(filterState.search);
 
-        // Topic filter
-        const topicMatch = !filterState.topic ||
-          filterState.topic === 'all' ||
-          cardTopic === filterState.topic;
-
         // Area filter
         const areaMatch = !filterState.area ||
+          filterState.area === 'all' ||
           cardArea === filterState.area;
 
-        if (searchMatch && topicMatch && areaMatch) {
+        if (searchMatch && areaMatch) {
           card.style.display = 'block';
           visibleCount++;
         } else {
@@ -1364,7 +1222,12 @@
         card.className = 'article-card reveal-on-scroll fade-in';
         card.id = `card-${article.id}`;
         card.dataset.topic = (article.category || 'insights').toLowerCase().replace(/\s+/g, '-');
-        card.dataset.area = (article.lawArea || 'general').toLowerCase().replace(/\s+/g, '-');
+        
+        let normalizedArea = article.lawArea || 'General';
+        if (['Banking & Finance Law', 'Banking Law', 'Banking & Finance'].includes(normalizedArea)) {
+          normalizedArea = 'Banking & Finance';
+        }
+        card.dataset.area = normalizedArea.toLowerCase().replace(/\s+/g, '-');
 
         card.innerHTML = `
           <span class="article-tag">${article.category || 'Insights'}</span>
@@ -1398,7 +1261,7 @@
     // 6. RESULTS COUNT — updates the text below the pills
     // ══════════════════════════════════════════════════════════
     function updateResultsCount(count) {
-      if (filterState.search || filterState.topic || filterState.area) {
+      if (filterState.search || (filterState.area && filterState.area !== 'all')) {
         // Show count only when a filter/search is active
         resultsCount.textContent = `${count} article${count !== 1 ? 's' : ''} found`;
       } else {
@@ -1423,22 +1286,6 @@
         pageHeader.style.opacity = 1 - (scrollY / 600);
       }
     }, { passive: true });
-
-    // Reset law areas filter
-    const resetLawAreasBtn = document.getElementById('reset-law-areas');
-    if (resetLawAreasBtn) {
-      resetLawAreasBtn.addEventListener('click', () => {
-        applyAreaFilter(null);
-      });
-    }
-
-    // Reset topics filter
-    const resetTopicsBtn = document.getElementById('reset-topics');
-    if (resetTopicsBtn) {
-      resetTopicsBtn.addEventListener('click', () => {
-        applyTopicFilter(null);
-      });
-    }
 
     // ══════════════════════════════════════════════════════════
     // 9. DYNAMIC FOOTER YEAR
