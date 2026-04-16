@@ -162,7 +162,7 @@
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 32px;
       list-style: none;
       align-items: center;
     }
@@ -208,16 +208,16 @@
     
     .fab-btn {
       position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px;
-      border-radius: 50%; background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%; background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12); display: flex; align-items: center; justify-content: center;
       z-index: 9999; border: 1px solid var(--border); cursor: pointer;
       transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
       color: var(--text-main);
     }
-    .fab-btn:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+    .fab-btn:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.18); }
     .fab-btn:active { transform: scale(0.95); }
-    html.dark-mode .fab-btn { background: rgba(44, 44, 46, 0.8); color: #fff; border-color: rgba(255,255,255,0.1); }
+    html.dark-mode .fab-btn { background: rgba(28, 28, 30, 0.9); color: #fff; border-color: rgba(255,255,255,0.15); box-shadow: 0 4px 20px rgba(255,255,255,0.08); }
 
     .btn {
       display: inline-flex;
@@ -691,10 +691,10 @@
     }
 
     .disclaimer-box {
-      background: var(--card-bg);
+      background: #f9f9f9;
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 2rem;
+      padding: 3rem;
       margin-bottom: 3rem;
     }
 
@@ -705,7 +705,7 @@
     }
 
     .disclaimer-box p {
-      font-size: 0.75rem;
+      font-size: 13px;
       color: var(--text-muted);
       line-height: 1.6;
     }
@@ -891,10 +891,9 @@
     html.dark-mode nav { background: rgba(18, 18, 18, 0.85) !important; }
     html.dark-mode .control-bar { background: rgba(18, 18, 18, 0.85) !important; }
     html.dark-mode .nav-brand, html.dark-mode .nav-links a { color: #eaeaea !important; }
-    html.dark-mode .connect-icon { background-color: transparent !important; border: 1px solid #444 !important; color: #ffffff !important; }
-    html.dark-mode .connect-icon svg { fill: #ffffff !important; stroke: #ffffff !important; }
-    html.dark-mode .connect-icon:hover { background-color: #333 !important; }
+    html.dark-mode .connect-icon svg { fill: currentColor !important; stroke: currentColor !important; }
     html.dark-mode .section-subtitle, html.dark-mode .eyebrow, html.dark-mode .article-tag, html.dark-mode .results-count, html.dark-mode .footer-bottom, html.dark-mode .post-meta { color: #a0a0a0 !important; }
+    html.dark-mode .disclaimer-box { background: #111111 !important; border: 1px solid #222222 !important; }
     
     html.dark-mode #search-input { background: #1e1e1e !important; border: 1px solid #333 !important; color: #ffffff !important; }
     html.dark-mode #search-input::placeholder { color: #888 !important; }
