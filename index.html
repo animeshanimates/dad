@@ -427,31 +427,123 @@
     }
 
     /* ── PRACTICE AREAS ── */
+    #practice {
+      overflow: clip;
+    }
+
+    .practice-stack-stage {
+      position: relative;
+      margin-top: 4rem;
+      padding: 1.25rem 0 7rem;
+      perspective: 1600px;
+      perspective-origin: center top;
+      --stack-progress: 0;
+      --folder-open: 0;
+    }
+
+    .practice-stack-stage::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 2.4rem;
+      width: min(100%, 880px);
+      height: 68px;
+      transform: translateX(-50%);
+      border-radius: 26px 26px 30px 30px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(240, 240, 245, 0.98));
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        0 26px 50px rgba(0, 0, 0, 0.08);
+      z-index: 0;
+      transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+    }
+
+    .practice-stack-stage::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: calc(2.4rem + 52px);
+      width: 188px;
+      height: 26px;
+      transform: translateX(calc(-50% + (var(--folder-open) * 14px)));
+      border-radius: 16px 16px 0 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 246, 249, 0.98));
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: none;
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.05);
+      z-index: 0;
+      transition: transform 0.5s var(--ease);
+    }
+
     .practice-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.5rem;
-      margin-top: 4rem;
+      position: relative;
+      z-index: 1;
+      transform-style: preserve-3d;
     }
 
     .practice-card {
       background: var(--card-bg);
       padding: 2.5rem;
       border-radius: 24px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+      box-shadow:
+        0 18px 44px rgba(0, 0, 0, 0.08),
+        0 4px 16px rgba(0, 0, 0, 0.03);
+      transition:
+        transform 0.18s linear,
+        box-shadow 0.35s var(--ease),
+        border-color 0.35s var(--ease),
+        background-color 0.35s var(--ease);
       border: 1px solid var(--border);
       -webkit-tap-highlight-color: transparent;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transform:
+        translate3d(var(--card-shift-x, 0px), calc(var(--card-shift-y, 0px) + var(--pointer-shift-y, 0px)), calc(var(--card-depth, 0px) + var(--pointer-depth, 0px)))
+        rotateX(var(--card-tilt-x, 0deg))
+        rotateY(var(--card-tilt-y, 0deg))
+        scale(calc(var(--card-scale, 1) * var(--press-scale, 1)));
     }
 
     .practice-card:active {
-      transform: scale(0.97);
+      --press-scale: 0.97;
       transition: transform 0.1s ease-out;
     }
 
     .practice-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+      box-shadow:
+        0 30px 56px rgba(0, 0, 0, 0.12),
+        0 10px 24px rgba(0, 0, 0, 0.06);
+      border-color: rgba(0, 0, 0, 0.14);
+    }
+
+    .practice-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 20%), rgba(255, 255, 255, 0.45), transparent 38%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 48%);
+      opacity: calc(0.2 + var(--pointer-active, 0) * 0.65);
+      pointer-events: none;
+      transition: opacity 0.3s var(--ease);
+    }
+
+    .practice-card::after {
+      content: '';
+      position: absolute;
+      inset: auto 22px 14px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.12), transparent);
+      opacity: calc(0.2 + var(--stack-progress) * 0.6);
+      transform: translateY(calc(var(--stack-progress) * -3px));
+      pointer-events: none;
     }
 
     .practice-card h3 {
@@ -491,6 +583,12 @@
       opacity: 0.8;
       transform: scale(1.2);
     }
+
+    .practice-card:nth-child(1) { z-index: 5; }
+    .practice-card:nth-child(2) { z-index: 4; }
+    .practice-card:nth-child(3) { z-index: 3; }
+    .practice-card:nth-child(4) { z-index: 2; }
+    .practice-card:nth-child(5) { z-index: 1; }
 
     /* ── APPROACH SECTION ── */
     .approach-bg {
@@ -855,6 +953,24 @@
       .article-grid {
         grid-template-columns: 1fr;
       }
+
+      .practice-stack-stage {
+        padding-bottom: 4rem;
+        perspective: none;
+      }
+
+      .practice-stack-stage::before,
+      .practice-stack-stage::after {
+        display: none;
+      }
+
+      .practice-card {
+        transform:
+          translate3d(0, calc(var(--card-shift-y, 0px) * 0.35), 0)
+          rotateX(0deg)
+          rotateY(0deg)
+          scale(1) !important;
+      }
     }
 
     /* ── BCI DISCLAIMER MODAL ── */
@@ -970,6 +1086,18 @@
     html.dark-mode .connect-icon svg { fill: currentColor !important; stroke: currentColor !important; }
     html.dark-mode .section-subtitle, html.dark-mode .eyebrow, html.dark-mode .article-tag, html.dark-mode .results-count, html.dark-mode .footer-bottom, html.dark-mode .post-meta { color: #a0a0a0 !important; }
     html.dark-mode .disclaimer-box { background: #111111 !important; border: 1px solid #222222 !important; }
+    html.dark-mode .practice-stack-stage::before {
+      background: linear-gradient(180deg, rgba(52, 52, 56, 0.98), rgba(28, 28, 32, 0.98));
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 26px 50px rgba(0, 0, 0, 0.28);
+    }
+    html.dark-mode .practice-stack-stage::after {
+      background: linear-gradient(180deg, rgba(62, 62, 68, 0.98), rgba(38, 38, 42, 0.98));
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    html.dark-mode .practice-card::after {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+    }
   </style>
   <script src="theme.js"></script>
 </head>
@@ -1028,8 +1156,9 @@
         </p>
       </div>
 
+      <div class="practice-stack-stage">
       <div class="practice-grid">
-        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.1s;">
+        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.1s;" data-stack-index="0">
           <h3>Litigation & Dispute Resolution</h3>
           <ul>
             <li>Civil Disputes, Property & Contracts</li>
@@ -1042,7 +1171,7 @@
           </ul>
         </div>
 
-        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.2s;">
+        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.2s;" data-stack-index="1">
           <h3>Banking & Finance</h3>
           <ul>
             <li>DRT, DRAT & SARFAESI matters</li>
@@ -1053,7 +1182,7 @@
           </ul>
         </div>
 
-        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.3s;">
+        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.3s;" data-stack-index="2">
           <h3>Regulatory & Enforcement</h3>
           <ul>
             <li>Prevention of Corruption Act</li>
@@ -1063,7 +1192,7 @@
           </ul>
         </div>
 
-        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.4s;">
+        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.4s;" data-stack-index="3">
           <h3>Tribunals & Administration</h3>
           <ul>
             <li>CAT Matters (Service Law)</li>
@@ -1073,7 +1202,7 @@
           </ul>
         </div>
 
-        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.5s;">
+        <div class="practice-card reveal-on-scroll" style="animation-delay: 0.5s;" data-stack-index="4">
           <h3>Taxation Law</h3>
           <ul>
             <li>Direct & Indirect Tax advisory</li>
@@ -1081,6 +1210,7 @@
             <li>GST Disputes & Representation</li>
           </ul>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -1165,9 +1295,44 @@
     // ── Scroll effects
     const navbar = document.getElementById('navbar');
     const heroContent = document.querySelector('.hero div');
+    const practiceSection = document.getElementById('practice');
+    const practiceStage = document.querySelector('.practice-stack-stage');
     const practiceCards = document.querySelectorAll('.practice-card');
-    
-    window.addEventListener('scroll', () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function updatePracticeStack(scrollY) {
+      if (!practiceSection || !practiceStage || prefersReducedMotion) return;
+
+      const sectionRect = practiceSection.getBoundingClientRect();
+      const sectionStart = scrollY + sectionRect.top - window.innerHeight * 0.72;
+      const sectionDistance = practiceSection.offsetHeight + window.innerHeight * 0.5;
+      const rawProgress = (scrollY - sectionStart) / sectionDistance;
+      const progress = Math.max(0, Math.min(1, rawProgress));
+      const folderOpen = Math.max(0, Math.min(1, (progress - 0.54) / 0.32));
+
+      practiceStage.style.setProperty('--stack-progress', progress.toFixed(3));
+      practiceStage.style.setProperty('--folder-open', folderOpen.toFixed(3));
+
+      practiceCards.forEach((card, index) => {
+        const spread = index - (practiceCards.length - 1) / 2;
+        const stackShift = Math.sin(progress * Math.PI) * (spread * 10);
+        const frontLift = Math.sin(progress * Math.PI) * (20 + (practiceCards.length - index) * 9);
+        const depth = (progress * -60 * index) + Math.sin(progress * Math.PI) * (index * -18);
+        const stackScale = 1 - (progress * index * 0.018);
+        const storeProgress = Math.max(0, Math.min(1, (progress - (0.56 + index * 0.045)) / 0.28));
+        const storeDrop = storeProgress * (138 + index * 10);
+        const storeCompress = storeProgress * 0.12;
+        const finalY = -frontLift + stackShift + storeDrop;
+        const finalX = spread * 10 - storeProgress * spread * 18;
+
+        card.style.setProperty('--card-shift-x', `${finalX.toFixed(2)}px`);
+        card.style.setProperty('--card-shift-y', `${finalY.toFixed(2)}px`);
+        card.style.setProperty('--card-depth', `${depth.toFixed(2)}px`);
+        card.style.setProperty('--card-scale', (stackScale - storeCompress).toFixed(3));
+      });
+    }
+
+    function handleScroll() {
       const scrollY = window.scrollY;
       
       // Navbar border
@@ -1179,16 +1344,43 @@
         heroContent.style.opacity = 1 - (scrollY / 400);
         heroContent.style.filter = `blur(${scrollY * 0.015}px)`;
       }
-      
-      // Practice cards subtle parallax
-      practiceCards.forEach((card, index) => {
-        const cardTop = card.offsetTop - window.innerHeight;
-        if (scrollY > cardTop - 200 && scrollY < cardTop + 400) {
-          const progress = (scrollY - (cardTop - 200)) / 600;
-          card.style.transform = `translateY(${Math.sin(progress * Math.PI) * 10}px) scale(${1 + Math.sin(progress * Math.PI) * 0.02})`;
-        }
+
+      updatePracticeStack(scrollY);
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', () => updatePracticeStack(window.scrollY), { passive: true });
+    handleScroll();
+
+    if (!prefersReducedMotion) {
+      practiceCards.forEach((card) => {
+        card.addEventListener('pointermove', (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width;
+          const y = (event.clientY - rect.top) / rect.height;
+          const tiltY = (x - 0.5) * 10;
+          const tiltX = (0.5 - y) * 10;
+
+          card.style.setProperty('--card-tilt-x', `${tiltX.toFixed(2)}deg`);
+          card.style.setProperty('--card-tilt-y', `${tiltY.toFixed(2)}deg`);
+          card.style.setProperty('--pointer-shift-y', `${((0.5 - y) * -10).toFixed(2)}px`);
+          card.style.setProperty('--pointer-depth', `18px`);
+          card.style.setProperty('--glow-x', `${(x * 100).toFixed(2)}%`);
+          card.style.setProperty('--glow-y', `${(y * 100).toFixed(2)}%`);
+          card.style.setProperty('--pointer-active', '1');
+        });
+
+        card.addEventListener('pointerleave', () => {
+          card.style.setProperty('--card-tilt-x', '0deg');
+          card.style.setProperty('--card-tilt-y', '0deg');
+          card.style.setProperty('--pointer-shift-y', '0px');
+          card.style.setProperty('--pointer-depth', '0px');
+          card.style.setProperty('--pointer-active', '0');
+          card.style.setProperty('--glow-x', '50%');
+          card.style.setProperty('--glow-y', '20%');
+        });
       });
-    }, { passive: true });
+    }
 
     // ── Load and render latest articles
     fetch('articles.json')
@@ -1430,7 +1622,5 @@
     <svg id="fab-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
   </button>
 </body>
-
-</html>
 
 </html>
