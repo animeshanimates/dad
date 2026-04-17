@@ -595,414 +595,284 @@
       color: var(--text-main);
     }
 
-    <!-- ── PRACTICE AREAS SECTION ── -->
-<section id="practice">
-  <div class="practice-stack-stage" id="practiceStage">
-    <div class="practice-folder-component" id="folderComp">
-      <div class="practice-folder-meta">
-        <span>Specialties</span>
-        <strong>5 Practice Areas</strong>
-      </div>
-      <div class="practice-folder-shell">
-        <div class="practice-grid">
-          <div class="practice-card">
-            <h3>Corporate Law</h3>
-            <ul>
-              <li>M&A Advisory</li>
-              <li>Shareholder Agreements</li>
-              <li>Corporate Governance</li>
-            </ul>
-          </div>
-          <div class="practice-card">
-            <h3>Litigation</h3>
-            <ul>
-              <li>Commercial Disputes</li>
-              <li>Arbitration</li>
-              <li>Appeals</li>
-            </ul>
-          </div>
-          <div class="practice-card">
-            <h3>Real Estate</h3>
-            <ul>
-              <li>Property Transactions</li>
-              <li>Zoning & Land Use</li>
-              <li>Lease Negotiation</li>
-            </ul>
-          </div>
-          <div class="practice-card">
-            <h3>Employment</h3>
-            <ul>
-              <li>Workplace Policy</li>
-              <li>Discrimination Claims</li>
-              <li>Executive Contracts</li>
-            </ul>
-          </div>
-          <div class="practice-card">
-            <h3>Intellectual Property</h3>
-            <ul>
-              <li>Patent Prosecution</li>
-              <li>Trademark Registration</li>
-              <li>IP Litigation</li>
-            </ul>
-          </div>
-        </div>
-        <div class="practice-folder-tracks">
-          <div class="practice-folder-file"></div>
-          <div class="practice-folder-file"></div>
-          <div class="practice-folder-file"></div>
-          <div class="practice-folder-file"></div>
-          <div class="practice-folder-file"></div>
-        </div>
-        <div class="practice-folder-front"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ── CSS ── -->
-<style>
-  :root {
-    --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --card-bg: #fff;
-    --border: rgba(0, 0, 0, 0.08);
-    --text-main: #1d1d1f;
-    --text-muted: #6e6e73;
-  }
-
-  #practice {
-    overflow: clip;
-  }
-
-  .practice-stack-stage {
-    position: relative;
-    margin-top: 4rem;
-    min-height: 1500px;
-    padding: 0 0 10rem;
-    perspective: 1600px;
-    perspective-origin: center top;
-    --stack-progress: 0;
-    --folder-open: 0;
-    --stored-progress: 0;
-  }
-
-  .practice-stack-stage::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 2.4rem;
-    width: min(100%, 880px);
-    height: 68px;
-    transform: translateX(-50%);
-    border-radius: 26px 26px 30px 30px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(240, 240, 245, 0.98));
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.95),
-      0 26px 50px rgba(0, 0, 0, 0.08);
-    z-index: 0;
-    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
-  }
-
-  .practice-stack-stage::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: calc(2.4rem + 52px);
-    width: 188px;
-    height: 26px;
-    transform: translateX(calc(-50% + (var(--folder-open) * 14px)));
-    border-radius: 16px 16px 0 0;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 246, 249, 0.98));
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-bottom: none;
-    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.05);
-    z-index: 0;
-    transition: transform 0.5s var(--ease);
-  }
-
-  .practice-folder-component {
-    position: sticky;
-    top: 140px;
-    width: min(100%, 1080px);
-    margin: 0 auto;
-    transform: translateY(calc(18px - (var(--stored-progress) * 22px)));
-    pointer-events: auto;
-    z-index: 1;
-    transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
-  }
-
-  .practice-folder-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin: 0 auto 0.75rem;
-    width: min(100%, 760px);
-    padding: 0 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    opacity: calc(0.4 + (var(--stored-progress) * 0.6));
-  }
-
-  .practice-folder-meta strong {
-    color: var(--text-main);
-    font-size: 0.88rem;
-    letter-spacing: 0.04em;
-  }
-
-  .practice-folder-shell {
-    position: relative;
-    width: min(100%, 1080px);
-    min-height: 760px;
-    margin: 0 auto;
-    padding: 2.5rem 2rem 5.5rem;
-    border-radius: 34px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(242, 242, 247, 0.98));
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.95),
-      0 30px 48px rgba(0, 0, 0, 0.08);
-    overflow: visible;
-  }
-
-  .practice-folder-shell::before {
-    content: '';
-    position: absolute;
-    left: 28px;
-    top: -1px;
-    width: 260px;
-    height: 38px;
-    border-radius: 18px 18px 0 0;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(246, 246, 249, 0.98));
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-bottom: none;
-    box-shadow: 0 12px 18px rgba(0, 0, 0, 0.05);
-  }
-
-  .practice-folder-tracks {
-    position: absolute;
-    inset: auto 34px 26px;
-    height: 74px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: flex-end;
-    pointer-events: none;
-  }
-
-  .practice-folder-file {
-    height: 13px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.02));
-    transform-origin: left center;
-    transform: scaleX(calc(0.35 + var(--stored-progress) * 0.65));
-    opacity: calc(0.15 + var(--stored-progress) * 0.75);
-    transition: transform 0.4s var(--ease), opacity 0.4s var(--ease);
-  }
-
-  .practice-folder-file:nth-child(1) { width: 88%; }
-  .practice-folder-file:nth-child(2) { width: 80%; }
-  .practice-folder-file:nth-child(3) { width: 92%; }
-  .practice-folder-file:nth-child(4) { width: 74%; }
-  .practice-folder-file:nth-child(5) { width: 84%; }
-
-  .practice-grid {
-    position: relative;
-    min-height: 610px;
-    z-index: 1;
-    transform-style: preserve-3d;
-  }
-
-  .practice-folder-front {
-    position: absolute;
-    left: -1px;
-    right: -1px;
-    bottom: -1px;
-    height: 190px;
-    border-radius: 34px 34px 34px 34px;
-    background: linear-gradient(180deg, #5f2dff 0%, #4e25ff 50%, #4520ee 100%);
-    border: 1px solid rgba(77, 36, 238, 0.9);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.18),
-      0 24px 32px rgba(69, 32, 238, 0.18);
-    clip-path: polygon(0 28%, 100% 28%, 92% 100%, 8% 100%);
-    z-index: 9;
-    pointer-events: none;
-  }
-
-  /* FIX: removed duplicate `position: relative` — only `position: absolute` remains */
-  .practice-card {
-    background: var(--card-bg);
-    padding: 2.5rem;
-    border-radius: 24px;
-    box-shadow:
-      0 18px 44px rgba(0, 0, 0, 0.08),
-      0 4px 16px rgba(0, 0, 0, 0.03);
-    transition:
-      transform 0.18s linear,
-      box-shadow 0.35s var(--ease),
-      border-color 0.35s var(--ease),
-      background-color 0.35s var(--ease);
-    border: 1px solid var(--border);
-    -webkit-tap-highlight-color: transparent;
-    overflow: hidden;
-    transform-style: preserve-3d;
-    will-change: transform;
-    width: min(100%, 352px);
-    min-height: 240px;
-    position: absolute;
-    left: 50%;
-    top: 210px;
-    margin-left: -176px;
-    opacity: var(--card-opacity, 1);
-    pointer-events: auto;
-    transform:
-      translate3d(
-        var(--card-shift-x, 0px),
-        calc(var(--card-shift-y, 0px) + var(--pointer-shift-y, 0px)),
-        calc(var(--card-depth, 0px) + var(--pointer-depth, 0px))
-      )
-      rotateX(var(--card-tilt-x, 0deg))
-      rotateY(var(--card-tilt-y, 0deg))
-      rotateZ(var(--card-rotate-z, 0deg))
-      scale(calc(var(--card-scale, 1) * var(--press-scale, 1)));
-  }
-
-  .practice-card:active {
-    --press-scale: 0.97;
-    transition: transform 0.1s ease-out;
-  }
-
-  .practice-card:hover {
-    box-shadow:
-      0 30px 56px rgba(0, 0, 0, 0.12),
-      0 10px 24px rgba(0, 0, 0, 0.06);
-    border-color: rgba(0, 0, 0, 0.14);
-  }
-
-  .practice-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 20%), rgba(255, 255, 255, 0.45), transparent 38%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 48%);
-    opacity: calc(0.2 + var(--pointer-active, 0) * 0.65);
-    pointer-events: none;
-    transition: opacity 0.3s var(--ease);
-  }
-
-  .practice-card::after {
-    content: '';
-    position: absolute;
-    inset: auto 22px 14px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.12), transparent);
-    opacity: calc(0.2 + var(--stack-progress) * 0.6);
-    transform: translateY(calc(var(--stack-progress) * -3px));
-    pointer-events: none;
-  }
-
-  .practice-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    color: var(--text-main);
-  }
-
-  .practice-card ul {
-    list-style: none;
-    color: #6e6e73;
-    font-size: 0.95rem;
-  }
-
-  .practice-card ul li {
-    margin-bottom: 0.5rem;
-    position: relative;
-    padding-left: 1.25rem;
-    transition: transform 0.4s var(--ease), color 0.4s var(--ease);
-  }
-
-  .practice-card:hover ul li {
-    transform: translateX(6px);
-    color: var(--text-main);
-  }
-
-  .practice-card ul li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--text-main);
-    opacity: 0.3;
-    transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
-  }
-
-  .practice-card:hover ul li::before {
-    opacity: 0.8;
-    transform: scale(1.2);
-  }
-
-  .practice-card:nth-child(1) { z-index: 8; }
-  .practice-card:nth-child(2) { z-index: 7; }
-  .practice-card:nth-child(3) { z-index: 6; }
-  .practice-card:nth-child(4) { z-index: 5; }
-  .practice-card:nth-child(5) { z-index: 4; }
-</style>
-
-
-<!-- ── JS ── -->
-<script>
-  (() => {
-    // Spread targets per card: [shiftX, shiftY, depth, rotateZ, scale]
-    // Tweak these to adjust the fan layout
-    const SPREAD = [
-      [-360,  80, -30, -7, 0.88],
-      [-190,  20, -10, -3, 0.94],
-      [   0, -60,  20,  0, 1.00],
-      [ 190,  20, -10,  3, 0.94],
-      [ 360,  80, -30,  7, 0.88],
-    ];
-
-    const stage  = document.getElementById('practiceStage');
-    const cards  = [...document.querySelectorAll('.practice-card')];
-
-    function lerp(a, b, t) { return a + (b - a) * t; }
-    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
-    function easeInOut(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
-
-    function update() {
-      const rect   = stage.getBoundingClientRect();
-      const stageH = stage.offsetHeight;
-      const viewH  = window.innerHeight;
-
-      const raw = clamp(-rect.top / (stageH - viewH), 0, 1);
-      const p   = easeInOut(raw);
-
-      // Phase 1 (p 0→0.3): folder opens + file tracks animate
-      const openP   = clamp(p / 0.3, 0, 1);
-      // Phase 2 (p 0.2→1): cards spread out
-      const spreadP = clamp((p - 0.2) / 0.8, 0, 1);
-
-      stage.style.setProperty('--stack-progress',   p);
-      stage.style.setProperty('--folder-open',      openP);
-      stage.style.setProperty('--stored-progress',  openP);
-
-      cards.forEach((card, i) => {
-        const [tx, ty, tz, rz, sc] = SPREAD[i];
-        card.style.setProperty('--card-shift-x',  lerp(0, tx, spreadP) + 'px');
-        card.style.setProperty('--card-shift-y',  lerp(0, ty, spreadP) + 'px');
-        card.style.setProperty('--card-depth',    lerp(0, tz, spreadP) + 'px');
-        card.style.setProperty('--card-rotate-z', lerp(0, rz, spreadP) + 'deg');
-        card.style.setProperty('--card-scale',    lerp(1, sc, spreadP));
-      });
+ /* ── PRACTICE AREAS ── */
+    #practice {
+      overflow: clip;
     }
 
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-  })();
-</script>
+    .practice-stack-stage {
+      position: relative;
+      margin-top: 4rem;
+      min-height: 1500px;
+      padding: 0 0 10rem;
+      perspective: 1600px;
+      perspective-origin: center top;
+      --stack-progress: 0;
+      --folder-open: 0;
+      --stored-progress: 0;
+    }
+
+    .practice-stack-stage::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 2.4rem;
+      width: min(100%, 880px);
+      height: 68px;
+      transform: translateX(-50%);
+      border-radius: 26px 26px 30px 30px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(240, 240, 245, 0.98));
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        0 26px 50px rgba(0, 0, 0, 0.08);
+      z-index: 0;
+      transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+    }
+
+    .practice-stack-stage::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: calc(2.4rem + 52px);
+      width: 188px;
+      height: 26px;
+      transform: translateX(calc(-50% + (var(--folder-open) * 14px)));
+      border-radius: 16px 16px 0 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 246, 249, 0.98));
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: none;
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.05);
+      z-index: 0;
+      transition: transform 0.5s var(--ease);
+    }
+
+    .practice-folder-component {
+      position: sticky;
+      top: 140px;
+      width: min(100%, 1080px);
+      margin: 0 auto;
+      transform: translateY(calc(18px - (var(--stored-progress) * 22px)));
+      pointer-events: auto;
+      z-index: 1;
+      transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
+    }
+
+    .practice-folder-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 0 auto 0.75rem;
+      width: min(100%, 760px);
+      padding: 0 0.4rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: calc(0.4 + (var(--stored-progress) * 0.6));
+    }
+
+    .practice-folder-meta strong {
+      color: var(--text-main);
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+    }
+
+    .practice-folder-shell {
+      position: relative;
+      width: min(100%, 1080px);
+      min-height: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 5.5rem;
+      border-radius: 34px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(242, 242, 247, 0.98));
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        0 30px 48px rgba(0, 0, 0, 0.08);
+      overflow: visible;
+    }
+
+    .practice-folder-shell::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: -1px;
+      width: 260px;
+      height: 38px;
+      border-radius: 18px 18px 0 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(246, 246, 249, 0.98));
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: none;
+      box-shadow: 0 12px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .practice-folder-tracks {
+      position: absolute;
+      inset: auto 34px 26px;
+      height: 74px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: flex-end;
+      pointer-events: none;
+    }
+
+    .practice-folder-file {
+      height: 13px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.02));
+      transform-origin: left center;
+      transform: scaleX(calc(0.35 + var(--stored-progress) * 0.65));
+      opacity: calc(0.15 + var(--stored-progress) * 0.75);
+      transition: transform 0.4s var(--ease), opacity 0.4s var(--ease);
+    }
+
+    .practice-folder-file:nth-child(1) { width: 88%; }
+    .practice-folder-file:nth-child(2) { width: 80%; }
+    .practice-folder-file:nth-child(3) { width: 92%; }
+    .practice-folder-file:nth-child(4) { width: 74%; }
+    .practice-folder-file:nth-child(5) { width: 84%; }
+
+    .practice-grid {
+      position: relative;
+      min-height: 610px;
+      z-index: 1;
+      transform-style: preserve-3d;
+    }
+
+    .practice-folder-front {
+      position: absolute;
+      left: -1px;
+      right: -1px;
+      bottom: -1px;
+      height: 190px;
+      border-radius: 34px 34px 34px 34px;
+      background: linear-gradient(180deg, #5f2dff 0%, #4e25ff 50%, #4520ee 100%);
+      border: 1px solid rgba(77, 36, 238, 0.9);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        0 24px 32px rgba(69, 32, 238, 0.18);
+      clip-path: polygon(0 28%, 100% 28%, 92% 100%, 8% 100%);
+      z-index: 9;
+      pointer-events: none;
+    }
+
+    .practice-card {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: 24px;
+      box-shadow:
+        0 18px 44px rgba(0, 0, 0, 0.08),
+        0 4px 16px rgba(0, 0, 0, 0.03);
+      transition:
+        transform 0.18s linear,
+        box-shadow 0.35s var(--ease),
+        border-color 0.35s var(--ease),
+        background-color 0.35s var(--ease);
+      border: 1px solid var(--border);
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      will-change: transform;
+      width: min(100%, 352px);
+      min-height: 240px;
+      position: absolute;
+      left: 50%;
+      top: 210px;
+      margin-left: -176px;
+      opacity: var(--card-opacity, 1);
+      pointer-events: auto;
+      transform:
+        translate3d(var(--card-shift-x, 0px), calc(var(--card-shift-y, 0px) + var(--pointer-shift-y, 0px)), calc(var(--card-depth, 0px) + var(--pointer-depth, 0px)))
+        rotateX(var(--card-tilt-x, 0deg))
+        rotateY(var(--card-tilt-y, 0deg))
+        rotateZ(var(--card-rotate-z, 0deg))
+        scale(calc(var(--card-scale, 1) * var(--press-scale, 1)));
+    }
+
+    .practice-card:active {
+      --press-scale: 0.97;
+      transition: transform 0.1s ease-out;
+    }
+
+    .practice-card:hover {
+      box-shadow:
+        0 30px 56px rgba(0, 0, 0, 0.12),
+        0 10px 24px rgba(0, 0, 0, 0.06);
+      border-color: rgba(0, 0, 0, 0.14);
+    }
+
+    .practice-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 20%), rgba(255, 255, 255, 0.45), transparent 38%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 48%);
+      opacity: calc(0.2 + var(--pointer-active, 0) * 0.65);
+      pointer-events: none;
+      transition: opacity 0.3s var(--ease);
+    }
+
+    .practice-card::after {
+      content: '';
+      position: absolute;
+      inset: auto 22px 14px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.12), transparent);
+      opacity: calc(0.2 + var(--stack-progress) * 0.6);
+      transform: translateY(calc(var(--stack-progress) * -3px));
+      pointer-events: none;
+    }
+
+    .practice-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .practice-card ul {
+      list-style: none;
+      color: #6e6e73;
+      font-size: 0.95rem;
+    }
+
+    .practice-card ul li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.25rem;
+      transition: transform 0.4s var(--ease), color 0.4s var(--ease);
+    }
+
+    .practice-card:hover ul li {
+      transform: translateX(6px);
+      color: var(--text-main);
+    }
+
+    .practice-card ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--text-main);
+      opacity: 0.3;
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    }
+
+    .practice-card:hover ul li::before {
+      opacity: 0.8;
+      transform: scale(1.2);
+    }
+
+    .practice-card:nth-child(1) { z-index: 8; }
+    .practice-card:nth-child(2) { z-index: 7; }
+    .practice-card:nth-child(3) { z-index: 6; }
+    .practice-card:nth-child(4) { z-index: 5; }
+    .practice-card:nth-child(5) { z-index: 4; }
 
     /* ── APPROACH SECTION ── */
     .approach-bg {
