@@ -1999,7 +1999,7 @@
       });
     }
 
-    }    if (hero && heroContent && !prefersReducedMotion) {
+    if (hero && heroContent && !prefersReducedMotion) {
       hero.addEventListener('pointermove', (event) => {
         const rect = hero.getBoundingClientRect();
         const x = (event.clientX - rect.left) / rect.width;
