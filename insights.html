@@ -524,12 +524,43 @@
       transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
       cursor: pointer;
       min-height: 240px;
+      -webkit-tap-highlight-color: transparent;
+      
+      /* 3D Properties */
+      transform-style: preserve-3d;
+      will-change: transform;
+      position: relative;
+      transform: perspective(1200px) rotateX(var(--card-tilt-x, 0deg)) rotateY(var(--card-tilt-y, 0deg)) translateZ(var(--pointer-depth, 0px)) translateY(var(--base-shift-y, 0px)) scale(var(--press-scale, 1));
+    }
+
+    .article-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 20%), rgba(255, 255, 255, 0.45), transparent 38%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 48%);
+      opacity: calc(0.2 + var(--pointer-active, 0) * 0.65);
+      pointer-events: none;
+      transition: opacity 0.3s var(--ease);
+      z-index: 10;
+    }
+
+    .article-card:active {
+      --press-scale: 0.97;
+      transition: transform 0.1s ease-out;
     }
 
     .article-card:hover {
-      transform: translateY(-4px);
+      --base-shift-y: -4px;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
       border-color: rgba(0, 0, 0, 0.14);
+    }
+    
+    .article-tag, .article-card-title, .article-card-excerpt, .article-card-footer {
+      transform: translateZ(calc(var(--pointer-active, 0) * 24px));
+      transition: transform 0.4s var(--ease);
     }
 
     .article-tag {
@@ -1418,6 +1449,7 @@
     <svg id="fab-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
     <svg id="fab-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
   </button>
+  <script src="tilt.js"></script>
 </body>
 
 </html>

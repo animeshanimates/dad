@@ -1044,17 +1044,42 @@
       cursor: pointer;
       min-height: 240px;
       -webkit-tap-highlight-color: transparent;
+      
+      /* 3D Properties */
+      transform-style: preserve-3d;
+      will-change: transform;
+      position: relative;
+      transform: perspective(1200px) rotateX(var(--card-tilt-x, 0deg)) rotateY(var(--card-tilt-y, 0deg)) translateZ(var(--pointer-depth, 0px)) translateY(var(--base-shift-y, 0px)) scale(var(--press-scale, 1));
+    }
+
+    .article-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 20%), rgba(255, 255, 255, 0.45), transparent 38%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 48%);
+      opacity: calc(0.2 + var(--pointer-active, 0) * 0.65);
+      pointer-events: none;
+      transition: opacity 0.3s var(--ease);
+      z-index: 10;
     }
 
     .article-card:active {
-      transform: scale(0.97);
+      --press-scale: 0.97;
       transition: transform 0.1s ease-out;
     }
 
     .article-card:hover {
-      transform: translateY(-4px);
+      --base-shift-y: -4px;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
       border-color: rgba(0, 0, 0, 0.14);
+    }
+    
+    .article-tag, .article-card-title, .article-card-excerpt, .article-card-footer {
+      transform: translateZ(calc(var(--pointer-active, 0) * 24px));
+      transition: transform 0.4s var(--ease);
     }
 
     .article-tag {
@@ -1974,37 +1999,7 @@
       });
     }
 
-    if (!prefersReducedMotion) {
-      practiceCards.forEach((card) => {
-        card.addEventListener('pointermove', (event) => {
-          const rect = card.getBoundingClientRect();
-          const x = (event.clientX - rect.left) / rect.width;
-          const y = (event.clientY - rect.top) / rect.height;
-          const tiltY = (x - 0.5) * 10;
-          const tiltX = (0.5 - y) * 10;
-
-          card.style.setProperty('--card-tilt-x', `${tiltX.toFixed(2)}deg`);
-          card.style.setProperty('--card-tilt-y', `${tiltY.toFixed(2)}deg`);
-          card.style.setProperty('--pointer-shift-y', `${((0.5 - y) * -10).toFixed(2)}px`);
-          card.style.setProperty('--pointer-depth', `18px`);
-          card.style.setProperty('--glow-x', `${(x * 100).toFixed(2)}%`);
-          card.style.setProperty('--glow-y', `${(y * 100).toFixed(2)}%`);
-          card.style.setProperty('--pointer-active', '1');
-        });
-
-        card.addEventListener('pointerleave', () => {
-          card.style.setProperty('--card-tilt-x', '0deg');
-          card.style.setProperty('--card-tilt-y', '0deg');
-          card.style.setProperty('--pointer-shift-y', '0px');
-          card.style.setProperty('--pointer-depth', '0px');
-          card.style.setProperty('--pointer-active', '0');
-          card.style.setProperty('--glow-x', '50%');
-          card.style.setProperty('--glow-y', '20%');
-        });
-      });
-    }
-
-    if (hero && heroContent && !prefersReducedMotion) {
+    }    if (hero && heroContent && !prefersReducedMotion) {
       hero.addEventListener('pointermove', (event) => {
         const rect = hero.getBoundingClientRect();
         const x = (event.clientX - rect.left) / rect.width;
@@ -2285,6 +2280,7 @@
       <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
     </svg>
   </button>
+  <script src="tilt.js"></script>
 </body>
 
 </html>
