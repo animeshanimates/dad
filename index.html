@@ -64,10 +64,22 @@
     }
 
     /* ── SCROLL PROGRESS ── */
-    @keyframes progress { 0% { width: 0; } 100% { width: 100%; } }
+    @keyframes progress {
+      0% {
+        width: 0;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+
     #progress-bar {
-      position: fixed; top: 0; left: 0;
-      height: 3px; width: 0%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
       background: var(--text-main);
       z-index: 2001;
       animation: progress linear forwards;
@@ -164,7 +176,8 @@
       transition: opacity 0.3s var(--ease);
       -webkit-tap-highlight-color: transparent;
       position: relative;
-      z-index: 1001; /* Above mobile menu overlay */
+      z-index: 1001;
+      /* Above mobile menu overlay */
     }
 
     .nav-brand:hover {
@@ -177,7 +190,7 @@
       list-style: none;
       align-items: center;
     }
-    
+
     .nav-links a {
       font-size: 0.875rem;
       font-weight: 500;
@@ -187,7 +200,7 @@
       transition: opacity 0.3s var(--ease), transform 0.2s var(--ease);
       padding-bottom: 2px;
     }
-    
+
     .nav-links a:hover {
       opacity: 1;
       transform: translateY(-1px);
@@ -241,41 +254,60 @@
       color: var(--text-main);
       z-index: 1001;
     }
-    
+
     .mobile-menu-overlay {
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100vh;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
       background: rgba(251, 251, 253, 0.95);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       z-index: 999;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
       transition: opacity 0.3s var(--ease);
     }
-    
+
     .mobile-menu-overlay.active {
-      opacity: 1; pointer-events: auto;
+      opacity: 1;
+      pointer-events: auto;
     }
-    
+
     .mobile-menu-content {
-      display: flex; flex-direction: column; gap: 40px; text-align: center;
-      transform: translateY(20px); transition: transform 0.4s var(--spring);
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      text-align: center;
+      transform: translateY(20px);
+      transition: transform 0.4s var(--spring);
     }
-    
+
     .mobile-menu-overlay.active .mobile-menu-content {
       transform: translateY(0);
     }
-    
+
     .mobile-link {
-      font-size: 1.5rem; font-weight: 600; color: #1d1d1f; text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1d1d1f;
+      text-decoration: none;
     }
-    
+
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .menu-toggle { display: block; }
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
     }
-    
+
     /* ── GLOBAL FAB ── */
     .fab-btn {
       position: fixed;
@@ -287,7 +319,7 @@
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -297,18 +329,21 @@
       transition: transform 0.3s var(--spring), box-shadow 0.3s var(--ease);
       color: var(--text-main);
     }
+
     .fab-btn:hover {
       transform: scale(1.05) translateY(-2px);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
     }
+
     .fab-btn:active {
       transform: scale(0.95);
     }
+
     html.dark-mode .fab-btn {
       background: rgba(28, 28, 30, 0.9);
       color: #fff;
-      border-color: rgba(255,255,255,0.15);
-      box-shadow: 0 4px 20px rgba(255,255,255,0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.08);
     }
 
     /* ── HERO SECTION ── */
@@ -500,18 +535,41 @@
     }
 
     @keyframes heroFloat {
-      0%, 100% { transform: translate3d(0, 0, 0); }
-      50% { transform: translate3d(0, -12px, 0); }
+
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+
+      50% {
+        transform: translate3d(0, -12px, 0);
+      }
     }
 
     @keyframes heroPulse {
-      0%, 100% { transform: scale(0.96); opacity: 0.22; }
-      50% { transform: scale(1.02); opacity: 0.38; }
+
+      0%,
+      100% {
+        transform: scale(0.96);
+        opacity: 0.22;
+      }
+
+      50% {
+        transform: scale(1.02);
+        opacity: 0.38;
+      }
     }
 
     @keyframes cuePulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(29, 29, 31, 0.16); }
-      50% { box-shadow: 0 0 0 10px rgba(29, 29, 31, 0); }
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(29, 29, 31, 0.16);
+      }
+
+      50% {
+        box-shadow: 0 0 0 10px rgba(29, 29, 31, 0);
+      }
     }
 
     .btn {
@@ -595,7 +653,7 @@
       color: var(--text-main);
     }
 
-        /* ── PRACTICE AREAS ── */
+    /* ── PRACTICE AREAS ── */
     #practice {
       overflow: clip;
     }
@@ -621,13 +679,14 @@
       height: 68px;
       transform: translateX(-50%);
       border-radius: 26px 26px 30px 30px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(240, 240, 245, 0.98));
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(240, 240, 245, 0.98));
       border: 1px solid rgba(0, 0, 0, 0.08);
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.95),
         0 26px 50px rgba(0, 0, 0, 0.08);
       z-index: 0;
-      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
     }
 
     .practice-stack-stage::after {
@@ -644,7 +703,7 @@
       border-bottom: none;
       box-shadow: 0 12px 22px rgba(0, 0, 0, 0.05);
       z-index: 0;
-      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.5s var(--ease);
     }
 
     .practice-folder-component {
@@ -655,7 +714,7 @@
       transform: translateY(calc(18px - (var(--stored-progress) * 22px)));
       pointer-events: auto;
       z-index: 1;
-      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
     }
 
     .practice-folder-meta {
@@ -686,7 +745,8 @@
       margin: 0 auto;
       padding: 2.5rem 2rem 5.5rem;
       border-radius: 34px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(242, 242, 247, 0.98));
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(242, 242, 247, 0.98));
       border: 1px solid rgba(0, 0, 0, 0.08);
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.95),
@@ -726,14 +786,28 @@
       transform-origin: left center;
       transform: scaleX(calc(0.35 + var(--stored-progress) * 0.65));
       opacity: calc(0.15 + var(--stored-progress) * 0.75);
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.4s var(--ease), opacity 0.4s var(--ease);
     }
 
-    .practice-folder-file:nth-child(1) { width: 88%; }
-    .practice-folder-file:nth-child(2) { width: 80%; }
-    .practice-folder-file:nth-child(3) { width: 92%; }
-    .practice-folder-file:nth-child(4) { width: 74%; }
-    .practice-folder-file:nth-child(5) { width: 84%; }
+    .practice-folder-file:nth-child(1) {
+      width: 88%;
+    }
+
+    .practice-folder-file:nth-child(2) {
+      width: 80%;
+    }
+
+    .practice-folder-file:nth-child(3) {
+      width: 92%;
+    }
+
+    .practice-folder-file:nth-child(4) {
+      width: 74%;
+    }
+
+    .practice-folder-file:nth-child(5) {
+      width: 84%;
+    }
 
     .practice-grid {
       position: relative;
@@ -768,32 +842,25 @@
         0 4px 16px rgba(0, 0, 0, 0.03);
       transition:
         transform 0.18s linear,
-        box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        border-color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        background-color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        box-shadow 0.35s var(--ease),
+        border-color 0.35s var(--ease),
+        background-color 0.35s var(--ease);
       border: 1px solid var(--border);
       -webkit-tap-highlight-color: transparent;
-      position: absolute;
+      position: relative;
       overflow: hidden;
       transform-style: preserve-3d;
       will-change: transform;
       width: min(100%, 352px);
       min-height: 240px;
+      position: absolute;
       left: 50%;
       top: 210px;
       margin-left: -176px;
       opacity: var(--card-opacity, 1);
       pointer-events: auto;
       transform:
-        translate3d(
-          var(--card-shift-x, 0px),
-          calc(var(--card-shift-y, 0px) + var(--pointer-shift-y, 0px)),
-          calc(var(--card-depth, 0px) + var(--pointer-depth, 0px))
-        )
-        rotateX(var(--card-tilt-x, 0deg))
-        rotateY(var(--card-tilt-y, 0deg))
-        rotateZ(var(--card-rotate-z, 0deg))
-        scale(calc(var(--card-scale, 1) * var(--press-scale, 1)));
+        translate3d(var(--card-shift-x, 0px), calc(var(--card-shift-y, 0px) + var(--pointer-shift-y, 0px)), calc(var(--card-depth, 0px) + var(--pointer-depth, 0px))) rotateX(var(--card-tilt-x, 0deg)) rotateY(var(--card-tilt-y, 0deg)) rotateZ(var(--card-rotate-z, 0deg)) scale(calc(var(--card-scale, 1) * var(--press-scale, 1)));
     }
 
     .practice-card:active {
@@ -809,7 +876,7 @@
     }
 
     .practice-card::before {
-      content: "";
+      content: '';
       position: absolute;
       inset: 0;
       background:
@@ -817,11 +884,11 @@
         linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 48%);
       opacity: calc(0.2 + var(--pointer-active, 0) * 0.65);
       pointer-events: none;
-      transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: opacity 0.3s var(--ease);
     }
 
     .practice-card::after {
-      content: "";
+      content: '';
       position: absolute;
       inset: auto 22px 14px;
       height: 1px;
@@ -847,7 +914,7 @@
       margin-bottom: 0.5rem;
       position: relative;
       padding-left: 1.25rem;
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.4s var(--ease), color 0.4s var(--ease);
     }
 
     .practice-card:hover ul li {
@@ -856,12 +923,12 @@
     }
 
     .practice-card ul li::before {
-      content: "•";
+      content: '•';
       position: absolute;
       left: 0;
       color: var(--text-main);
       opacity: 0.3;
-      transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
     }
 
     .practice-card:hover ul li::before {
@@ -869,11 +936,25 @@
       transform: scale(1.2);
     }
 
-    .practice-card:nth-child(1) { z-index: 8; }
-    .practice-card:nth-child(2) { z-index: 7; }
-    .practice-card:nth-child(3) { z-index: 6; }
-    .practice-card:nth-child(4) { z-index: 5; }
-    .practice-card:nth-child(5) { z-index: 4; }
+    .practice-card:nth-child(1) {
+      z-index: 8;
+    }
+
+    .practice-card:nth-child(2) {
+      z-index: 7;
+    }
+
+    .practice-card:nth-child(3) {
+      z-index: 6;
+    }
+
+    .practice-card:nth-child(4) {
+      z-index: 5;
+    }
+
+    .practice-card:nth-child(5) {
+      z-index: 4;
+    }
 
     /* ── APPROACH SECTION ── */
     .approach-bg {
@@ -1136,14 +1217,23 @@
     }
 
     /* ── SCROLL REVEAL (CSS VIEW TIMELINES) ── */
-    section, header, footer {
+    section,
+    header,
+    footer {
       view-timeline-name: --section-reveal;
     }
 
     @media (prefers-reduced-motion: no-preference) {
       @keyframes reveal {
-        0% { opacity: 0; transform: translateY(30px); }
-        100% { opacity: 1; transform: translateY(0); }
+        0% {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .reveal-on-scroll {
@@ -1155,12 +1245,18 @@
 
       /* Hero Section - Immediate on load */
       header.hero .reveal-on-scroll {
-        animation-timeline: auto; /* not scroll-driven */
+        animation-timeline: auto;
+        /* not scroll-driven */
         animation-range: normal;
       }
-      
-      header.hero h1.reveal-on-scroll { animation-delay: 0s; }
-      header.hero p.reveal-on-scroll { animation-delay: 0.1s; }
+
+      header.hero h1.reveal-on-scroll {
+        animation-delay: 0s;
+      }
+
+      header.hero p.reveal-on-scroll {
+        animation-delay: 0.1s;
+      }
     }
 
     /* ── CONNECT ICONS ── */
@@ -1306,11 +1402,7 @@
         top: auto;
         margin-left: 0;
         transform:
-          translate3d(0, calc(var(--card-shift-y, 0px) * 0.12), 0)
-          rotateX(0deg)
-          rotateY(0deg)
-          rotateZ(0deg)
-          scale(1) !important;
+          translate3d(0, calc(var(--card-shift-y, 0px) * 0.12), 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1) !important;
       }
     }
 
@@ -1421,56 +1513,93 @@
   </style>
   <style>
     /* Dark Mode Global Specific Scopes */
-    html.dark-mode nav { background: rgba(18, 18, 18, 0.85) !important; }
-    html.dark-mode .nav-brand, html.dark-mode .nav-links a { color: #eaeaea !important; }
-    html.dark-mode .mobile-link { color: #f5f5f7 !important; }
-    html.dark-mode .connect-icon svg { fill: currentColor !important; stroke: currentColor !important; }
-    html.dark-mode .section-subtitle, html.dark-mode .eyebrow, html.dark-mode .article-tag, html.dark-mode .results-count, html.dark-mode .footer-bottom, html.dark-mode .post-meta { color: #a0a0a0 !important; }
-    html.dark-mode .disclaimer-box { background: #111111 !important; border: 1px solid #222222 !important; }
+    html.dark-mode nav {
+      background: rgba(18, 18, 18, 0.85) !important;
+    }
+
+    html.dark-mode .nav-brand,
+    html.dark-mode .nav-links a {
+      color: #eaeaea !important;
+    }
+
+    html.dark-mode .mobile-link {
+      color: #f5f5f7 !important;
+    }
+
+    html.dark-mode .connect-icon svg {
+      fill: currentColor !important;
+      stroke: currentColor !important;
+    }
+
+    html.dark-mode .section-subtitle,
+    html.dark-mode .eyebrow,
+    html.dark-mode .article-tag,
+    html.dark-mode .results-count,
+    html.dark-mode .footer-bottom,
+    html.dark-mode .post-meta {
+      color: #a0a0a0 !important;
+    }
+
+    html.dark-mode .disclaimer-box {
+      background: #111111 !important;
+      border: 1px solid #222222 !important;
+    }
+
     html.dark-mode .practice-stack-stage::before {
       background: linear-gradient(180deg, rgba(52, 52, 56, 0.98), rgba(28, 28, 32, 0.98));
       border-color: rgba(255, 255, 255, 0.1);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 26px 50px rgba(0, 0, 0, 0.28);
     }
+
     html.dark-mode .practice-stack-stage::after {
       background: linear-gradient(180deg, rgba(62, 62, 68, 0.98), rgba(38, 38, 42, 0.98));
       border-color: rgba(255, 255, 255, 0.1);
     }
+
     html.dark-mode .practice-folder-shell {
       background: linear-gradient(180deg, rgba(42, 42, 48, 0.98), rgba(28, 28, 32, 0.98));
       border-color: rgba(255, 255, 255, 0.1);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 30px 48px rgba(0, 0, 0, 0.3);
     }
+
     html.dark-mode .practice-folder-shell::before {
       background: linear-gradient(180deg, rgba(58, 58, 64, 1), rgba(42, 42, 48, 0.98));
       border-color: rgba(255, 255, 255, 0.1);
     }
+
     html.dark-mode .practice-folder-file {
       background: linear-gradient(90deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.03));
     }
+
     html.dark-mode .practice-folder-front {
       background: linear-gradient(180deg, #6338ff 0%, #4c26ff 46%, #3a1fcf 100%);
       border-color: rgba(133, 102, 255, 0.56);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 24px 32px rgba(38, 21, 129, 0.34);
     }
+
     html.dark-mode .practice-card::after {
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
     }
+
     html.dark-mode .hero::before {
       background: radial-gradient(circle, rgba(66, 66, 72, 0.9) 0%, rgba(36, 36, 42, 0.35) 42%, transparent 74%);
     }
+
     html.dark-mode .hero::after {
       background: radial-gradient(circle, rgba(120, 120, 136, 0.2) 0%, rgba(28, 28, 32, 0.06) 48%, transparent 76%);
     }
+
     html.dark-mode .hero-inner {
       background: linear-gradient(180deg, rgba(28, 28, 32, 0.62), rgba(18, 18, 20, 0.36));
       border-color: rgba(255, 255, 255, 0.08);
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     }
+
     html.dark-mode .hero-scroll-cue {
       background: rgba(28, 28, 30, 0.5);
       border-color: rgba(255, 255, 255, 0.08);
     }
+
     html.dark-mode .hero-scroll-cue::before {
       background: #f5f5f7;
     }
@@ -1484,7 +1613,11 @@
   <div id="bci-disclaimer-overlay">
     <div class="bci-modal">
       <h2>Disclaimer</h2>
-      <p>As per Bar Council of India Rules, advocates are not permitted to advertise or solicit work in any form. By accessing this website, the user acknowledges that they are visiting the website voluntarily and seeking information of their own accord. It is clarified that there has been no solicitation, advertisement, or inducement by Adv. Suresh Kumar Pal. The content provided is for informational purposes only and should not be interpreted as rendering legal advice. No lawyer-client relationship is created.</p>
+      <p>As per Bar Council of India Rules, advocates are not permitted to advertise or solicit work in any form. By
+        accessing this website, the user acknowledges that they are visiting the website voluntarily and seeking
+        information of their own accord. It is clarified that there has been no solicitation, advertisement, or
+        inducement by Adv. Suresh Kumar Pal. The content provided is for informational purposes only and should not be
+        interpreted as rendering legal advice. No lawyer-client relationship is created.</p>
       <div class="bci-checkbox-wrapper">
         <input type="checkbox" id="bci-accept-checkbox">
         <label for="bci-accept-checkbox">I accept the above.</label>
@@ -1501,8 +1634,17 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Menu">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="hamburger-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="close-icon" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" id="hamburger-icon">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" id="close-icon" style="display:none;">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
     </button>
   </nav>
 
@@ -1537,77 +1679,77 @@
       </div>
 
       <div class="practice-stack-stage">
-      <div class="practice-folder-component">
-        <div class="practice-folder-meta">
-          <span>Filed Section</span>
-          <strong>Practice Areas</strong>
-          <span>5 cards stored</span>
-        </div>
-        <div class="practice-folder-shell">
-          <div class="practice-grid">
-            <div class="practice-card" style="animation-delay: 0.1s;" data-stack-index="0">
-              <h3>Litigation & Dispute Resolution</h3>
-              <ul>
-                <li>Civil Disputes, Property & Contracts</li>
-                <li>Criminal Law – Appeals, Quashing, Revision & Bail</li>
-                <li>Cheque Bounce (NI Act Sec. 138)</li>
-                <li>Matrimonial, Family & Divorce</li>
-                <li>Consumer Protection</li>
-                <li>Writs & Constitutional Law</li>
-                <li>Review Petitions & Writ Jurisdictions</li>
-              </ul>
-            </div>
-
-            <div class="practice-card" style="animation-delay: 0.2s;" data-stack-index="1">
-              <h3>Banking & Finance</h3>
-              <ul>
-                <li>DRT, DRAT & SARFAESI matters</li>
-                <li>Debt Recovery & Enforcement</li>
-                <li>Insolvency & Bankruptcy (IBC)</li>
-                <li>NCLT & Corporate Disputes</li>
-                <li>Shareholder & Management issues</li>
-              </ul>
-            </div>
-
-            <div class="practice-card" style="animation-delay: 0.3s;" data-stack-index="2">
-              <h3>Regulatory & Enforcement</h3>
-              <ul>
-                <li>Prevention of Corruption Act</li>
-                <li>CBI Investigated Cases</li>
-                <li>NCB Matters (NDPS Act)</li>
-                <li>ED Matters & PMLA Proceedings</li>
-              </ul>
-            </div>
-
-            <div class="practice-card" style="animation-delay: 0.4s;" data-stack-index="3">
-              <h3>Tribunals & Administration</h3>
-              <ul>
-                <li>CAT Matters (Service Law)</li>
-                <li>Civil Service & Education disputes</li>
-                <li>Recruitment & Appointment matters</li>
-                <li>RERA Disputes (Buyers & Builders)</li>
-              </ul>
-            </div>
-
-            <div class="practice-card" style="animation-delay: 0.5s;" data-stack-index="4">
-              <h3>Taxation Law</h3>
-              <ul>
-                <li>Direct & Indirect Tax advisory</li>
-                <li>Income Tax Litigation</li>
-                <li>GST Disputes & Representation</li>
-              </ul>
-            </div>
+        <div class="practice-folder-component">
+          <div class="practice-folder-meta">
+            <span>Filed Section</span>
+            <strong>Practice Areas</strong>
+            <span>5 cards stored</span>
           </div>
-          <div class="practice-folder-tracks">
-            <span class="practice-folder-file"></span>
-            <span class="practice-folder-file"></span>
-            <span class="practice-folder-file"></span>
-            <span class="practice-folder-file"></span>
-            <span class="practice-folder-file"></span>
+          <div class="practice-folder-shell">
+            <div class="practice-grid">
+              <div class="practice-card reveal-on-scroll" style="animation-delay: 0.1s;" data-stack-index="0">
+                <h3>Litigation & Dispute Resolution</h3>
+                <ul>
+                  <li>Civil Disputes, Property & Contracts</li>
+                  <li>Criminal Law – Appeals, Quashing, Revision & Bail</li>
+                  <li>Cheque Bounce (NI Act Sec. 138)</li>
+                  <li>Matrimonial, Family & Divorce</li>
+                  <li>Consumer Protection</li>
+                  <li>Writs & Constitutional Law</li>
+                  <li>Review Petitions & Writ Jurisdictions</li>
+                </ul>
+              </div>
+
+              <div class="practice-card reveal-on-scroll" style="animation-delay: 0.2s;" data-stack-index="1">
+                <h3>Banking & Finance</h3>
+                <ul>
+                  <li>DRT, DRAT & SARFAESI matters</li>
+                  <li>Debt Recovery & Enforcement</li>
+                  <li>Insolvency & Bankruptcy (IBC)</li>
+                  <li>NCLT & Corporate Disputes</li>
+                  <li>Shareholder & Management issues</li>
+                </ul>
+              </div>
+
+              <div class="practice-card reveal-on-scroll" style="animation-delay: 0.3s;" data-stack-index="2">
+                <h3>Regulatory & Enforcement</h3>
+                <ul>
+                  <li>Prevention of Corruption Act</li>
+                  <li>CBI Investigated Cases</li>
+                  <li>NCB Matters (NDPS Act)</li>
+                  <li>ED Matters & PMLA Proceedings</li>
+                </ul>
+              </div>
+
+              <div class="practice-card reveal-on-scroll" style="animation-delay: 0.4s;" data-stack-index="3">
+                <h3>Tribunals & Administration</h3>
+                <ul>
+                  <li>CAT Matters (Service Law)</li>
+                  <li>Civil Service & Education disputes</li>
+                  <li>Recruitment & Appointment matters</li>
+                  <li>RERA Disputes (Buyers & Builders)</li>
+                </ul>
+              </div>
+
+              <div class="practice-card reveal-on-scroll" style="animation-delay: 0.5s;" data-stack-index="4">
+                <h3>Taxation Law</h3>
+                <ul>
+                  <li>Direct & Indirect Tax advisory</li>
+                  <li>Income Tax Litigation</li>
+                  <li>GST Disputes & Representation</li>
+                </ul>
+              </div>
+            </div>
+            <div class="practice-folder-tracks">
+              <span class="practice-folder-file"></span>
+              <span class="practice-folder-file"></span>
+              <span class="practice-folder-file"></span>
+              <span class="practice-folder-file"></span>
+              <span class="practice-folder-file"></span>
+            </div>
+            <div class="practice-folder-front"></div>
           </div>
-          <div class="practice-folder-front"></div>
         </div>
-      </div>
       </div>
     </div>
   </section>
@@ -1637,11 +1779,14 @@
       <div class="reveal-on-scroll">
         <span class="eyebrow">Philosophy</span>
         <h2 class="section-title">A practice built on transparency.</h2>
-        <p class="section-subtitle">My professional approach is grounded in legal clarity, procedural diligence, and strict client confidentiality.</p>
+        <p class="section-subtitle">My professional approach is grounded in legal clarity, procedural diligence, and
+          strict client confidentiality.</p>
       </div>
       <div class="reveal-on-scroll" style="animation-delay: 0.15s;">
         <div class="quote">
-          "I believe legal representation must be objective, unbiased, and strictly adhere to statutory and constitutional rights. My primary duty is to assist the Hon'ble Courts in the administration and pursuit of justice."
+          "I believe legal representation must be objective, unbiased, and strictly adhere to statutory and
+          constitutional rights. My primary duty is to assist the Hon'ble Courts in the administration and pursuit of
+          justice."
         </div>
       </div>
     </div>
@@ -1650,23 +1795,49 @@
 
 
   <!-- ── CONNECT ICONS ── -->
-  <section id="contact" class="section reveal-on-scroll" style="padding: 7rem 5%; display: flex; flex-direction: column; align-items: center; text-align: center;">
+  <section id="contact" class="section reveal-on-scroll"
+    style="padding: 7rem 5%; display: flex; flex-direction: column; align-items: center; text-align: center;">
     <span class="eyebrow" style="margin-bottom: 2rem;">Connect</span>
     <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem;">
       <a href="tel:+919140434453" aria-label="Call" class="connect-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+          </path>
+        </svg>
       </a>
       <a href="mailto:advsureshpal.co.in@gmail.com" aria-label="Email" class="connect-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
       </a>
-      <a href="https://wa.me/919140434453" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="connect-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+      <a href="https://wa.me/919140434453" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+        class="connect-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+          </path>
+        </svg>
       </a>
-      <a href="https://in.linkedin.com/in/advocate-suresh-kumar-pal-47a599375" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="connect-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+      <a href="https://in.linkedin.com/in/advocate-suresh-kumar-pal-47a599375" target="_blank" rel="noopener noreferrer"
+        aria-label="LinkedIn" class="connect-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+          <rect x="2" y="9" width="4" height="12"></rect>
+          <circle cx="4" cy="4" r="2"></circle>
+        </svg>
       </a>
-      <a href="https://www.facebook.com/people/Suresh-Kumar-Pal/100025955770753/#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="connect-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+      <a href="https://www.facebook.com/people/Suresh-Kumar-Pal/100025955770753/#" target="_blank"
+        rel="noopener noreferrer" aria-label="Facebook" class="connect-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+        </svg>
       </a>
     </div>
   </section>
@@ -1675,7 +1846,12 @@
     <div class="container">
       <div class="disclaimer-box reveal-on-scroll">
         <h4>Legal Disclaimer</h4>
-        <p>As per Bar Council of India Rules, advocates are not permitted to advertise or solicit work in any form. By accessing this website, the user acknowledges that they are visiting the website voluntarily and seeking information of their own accord. It is clarified that there has been no solicitation, advertisement, or inducement by Adv. Suresh Kumar Pal. The content provided is for informational purposes only and should not be interpreted as rendering legal advice. No lawyer-client relationship is created by accessing or interacting with this website.</p>
+        <p>As per Bar Council of India Rules, advocates are not permitted to advertise or solicit work in any form. By
+          accessing this website, the user acknowledges that they are visiting the website voluntarily and seeking
+          information of their own accord. It is clarified that there has been no solicitation, advertisement, or
+          inducement by Adv. Suresh Kumar Pal. The content provided is for informational purposes only and should not be
+          interpreted as rendering legal advice. No lawyer-client relationship is created by accessing or interacting
+          with this website.</p>
       </div>
 
       <div class="footer-bottom">
@@ -1752,10 +1928,10 @@
 
     function handleScroll() {
       const scrollY = window.scrollY;
-      
+
       // Navbar border
       navbar.classList.toggle('scrolled', scrollY > 50);
-      
+
       // Hero parallax
       if (scrollY < 600 && heroContent) {
         heroContent.style.transform = `translateY(${scrollY * 0.15}px)`;
@@ -1863,7 +2039,7 @@
         return res.json();
       })
       .then(data => {
-        const grid  = document.getElementById('latest-articles');
+        const grid = document.getElementById('latest-articles');
         const items = data.items;
 
         if (!items || items.length === 0) {
@@ -1931,9 +2107,9 @@
 
     // ── BCI Disclaimer Modal with Focus Trap ──────────────────
     const disclaimerOverlay = document.getElementById('bci-disclaimer-overlay');
-    const acceptCheckbox    = document.getElementById('bci-accept-checkbox');
-    const proceedBtn        = document.getElementById('bci-proceed-btn');
-    const modal             = disclaimerOverlay.querySelector('.bci-modal');
+    const acceptCheckbox = document.getElementById('bci-accept-checkbox');
+    const proceedBtn = document.getElementById('bci-proceed-btn');
+    const modal = disclaimerOverlay.querySelector('.bci-modal');
 
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-modal', 'true');
@@ -1948,8 +2124,8 @@
 
     function trapFocus(e) {
       const focusable = getFocusable();
-      const first     = focusable[0];
-      const last      = focusable[focusable.length - 1];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
 
       if (e.key === 'Tab') {
         if (e.shiftKey) {
@@ -2034,23 +2210,23 @@
     // This catches all clicks including dynamically injected cards.
     bindHaptics('body', {
       // Navigation
-      '.nav-icon':        'light',
-      '.nav-brand':       'light',
+      '.nav-icon': 'light',
+      '.nav-brand': 'light',
 
       // Hero CTA & primary buttons
-      '.btn-primary':     'medium',
+      '.btn-primary': 'medium',
 
       // Practice area cards (touch feedback)
-      '.practice-card':   'light',
+      '.practice-card': 'light',
 
       // Article cards (including dynamically created)
-      '.article-card':    'light',
+      '.article-card': 'light',
 
       // "All articles →" link
-      '.view-all-link':   'light',
+      '.view-all-link': 'light',
 
       // Connect icons (social/contact — outbound action)
-      '.connect-icon':    'medium',
+      '.connect-icon': 'medium',
     });
 
     // BCI Disclaimer — checkbox gets a light tick, proceed gets success
@@ -2068,7 +2244,7 @@
       const closeIcon = document.getElementById('close-icon');
       const mobileLinks = document.querySelectorAll('.mobile-link');
 
-      if(mobileBtn && mobileMenu) {
+      if (mobileBtn && mobileMenu) {
         function toggleMenu() {
           const isActive = mobileMenu.classList.contains('active');
           mobileMenu.classList.toggle('active');
@@ -2092,8 +2268,22 @@
 
   <!-- Global FAB -->
   <button id="global-theme-toggle" class="fab-btn" aria-label="Toggle Dark Mode">
-    <svg id="fab-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-    <svg id="fab-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    <svg id="fab-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    <svg id="fab-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
   </button>
 </body>
 
